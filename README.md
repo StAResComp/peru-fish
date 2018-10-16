@@ -1,8 +1,6 @@
-# SIFIDS [![Build Status](https://travis-ci.org/StAResComp/sifids.svg?branch=master)](https://travis-ci.org/StAResComp/sifids)
+# Peruvian Fishing App
 
-An Android app being developed as part of the Scottish Inshore Fisheries Integrated Data System (SIFIDS) Project.
-
-Allows fishermen to track their location and record their fishing activity in order to populate a [FISH1 Form](http://www.gov.scot/Topics/marine/Compliance/letters/FISH12016) which can be completed in the app. Completion of the form is eased by the setting of default values for vessel, owner, ports, gear, species etc.
+An Android app for Peruvian fishers based on that [developed](https://github.com/StAResComp/sifids) as part of the Scottish Inshore Fisheries Integrated Data System (SIFIDS) Project.
 
 ## Building from source
 
