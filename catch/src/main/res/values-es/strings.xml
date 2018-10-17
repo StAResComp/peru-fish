@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE resources [<!ENTITY email "sifids@st-andrews.ac.uk">]>
+<resources>
+    <string name="app_name">sifids</string>
+    <string name="email">&email;</string>
+
+    <!-- Settings -->
+
+    <string name="title_activity_settings">Settings</string>
+
+    <string name="pref_header_fishery_office_details">Fishery Office Details</string>
+    <string name="pref_fishery_office_title">Fishery Office</string>
+
+    <string name="pref_header_vessel_details">Vessel Details</string>
+    <string name="pref_vessel_pln_title">Vessel PLN</string>
+    <string name="pref_vessel_name_title">Vessel Name</string>
+
+    <string name="pref_header_owner_master_details">Owner/Master Details</string>
+    <string name="pref_owner_master_name_title">Owner/Master Name</string>
+    <string name="pref_owner_master_address_title">Owner/Master Address</string>
+    <string name="pref_owner_master_email_title">Owner/Master Email Address</string>
+
+    <string name="pref_header_port_details">Usual Landing and Departing Ports</string>
+    <string name="pref_port_title">Ports</string>
+
+    <string name="pref_header_gear_details">Gear Details</string>
+    <string name="pref_gear_title">Gear</string>
+    <string name="pref_mesh_size_title">Mesh Size</string>
+    <string name="pref_total_pots_fishing_title">Total Pots Fishing</string>
+
+    <string name="pref_header_species_details">Species Details</string>
+    <string name="pref_species_title">Species</string>
+
+    <string name="pref_header_buyer_details">Buyer Details</string>
+    <string name="pref_buyer_details_title">Transporter Reg. etc.</string>
+
+    <!-- Consent -->
+
+    <string name="need_to_consent">Vamos a borrar todo esto! </string>
+    <string name="participant_info_header">SIFIDS FISH1 App trial Participant Information</string>
+    <string name="participant_info_project_title_header">Project Title</string>
+    <string name="participant_info_project_title">Capturing and Identifying Experiential Inshore, Small-Scale Fisheries Data to Inform Local Management Strategies Through the Development of a Mobile Phone Application for Onboard Use.</string>
+    <string name="participant_info_app_name_header">App Name</string>
+    <string name="participant_info_app_name">SIFIDS FISH1 App (for android phones only)</string>
+    <string name="participant_info_about_study_header">What is the study about?</string>
+    <string name="participant_info_about_study_1">We invite you to participate in a research project aimed at improving the sustainability within commercial inshore fisheries (i.e. vessels of 12m or less fishing out to the 12nm limit). This project aims to trial ways to capture information that could contribute to the industry\'s long-term sustainability and profitability. The project aims to generate this information through industry gathered data via a mobile phone application (Android App) that can be used within the scope of marine spatial planning and fisheries management. The project also seeks to identify how the App could provide a platform to capture useful observations and experiential information from fishers in a standardised format so that these data can either in isolation or collated over time, contribute to fisheries management and marine planning. This will involve engagement (through a trial using the mobile phone App) with a sample of inshore fishers to study the quality of the data provided through the App and will enable a better understanding of the fishing activities.</string>
+    <string name="participant_info_about_study_2">This study is being conducted as part of the Scottish Inshore Fisheries Integrated Database System (SIFIDS) project, led by Dr Mark James who is based the University of St Andrews, Scotland.</string>
+    <string name="participant_info_what_does_app_do_header">What does the App do?</string>
+    <string name="participant_info_what_does_app_do_1">With your agreement, we would like you to start using our App\'s FISH1 form to record information about your daily catches. All information will be sent securely, via email, from your phone to your local Fishery Office and to researchers at the University of St Andrews. The FISH1 form will be available to for you review at any time in the App and can be sent to your/the master\'s email address. The App has been approved by Marine Scotland for this trial.</string>
+    <string name="participant_info_what_does_app_do_2">If you are willing to assist us further, we would like to collect some GPS tracking data using the App whilst you are fishing. The GPS track will only be seen by researchers and yourself. This will allow the researchers to understand the areas you fish and frequency you fish in these locations.</string>
+    <string name="participant_info_what_does_app_do_3">There is also an observation reporter. This will allow you to record unusual sightings or interactions with wildlife such as whales, dolphins, wrasse and octopus whilst fishing. This information will only be seen by researchers and yourself. These observations will provide useful, often unrecorded information on the distribution of these species.</string>
+    <string name="participant_info_what_does_app_do_4">After the trial, we will seek your feedback on the overall functionality of the App and how we might improve it. <b>Please be assured that all the information and data that we collect in this research project will be treated as <u>STRICTLY CONFIDENTIAL</u></b>. The results will be analysed and presented in such a way that no personal details or information which might compromise your fishing activities will be made public.</string>
+    <string name="participant_info_do_i_have_to_take_part_header">Do I have to take part?</string>
+    <string name="participant_info_do_i_have_to_take_part">This information has been provided to help you decide if you would like to take part. It is up to you and you alone whether or not you wish to participate. If you do decide to take part, you will be free to withdraw from the study at any time without providing a reason.</string>
+    <string name="participant_info_what_do_i_do_header">What would I be required to do?</string>
+    <string name="participant_info_what_do_i_do">This will vary depending on which part(s) of the App you choose to use. If you agree to collect information on your daily catch, you will be provided with instructions on how to fill in the FISH1 form and how to use the mobile phone App, including the GPS tracker. Recording an observation could take from a few seconds to a couple of minutes depending upon the amount of information you wish to provide.  This can all be done at a time and place that is convenient to you.</string>
+    <string name="participant_info_anonymous_confidential_header">Will my participation be Anonymous and Confidential?</string>
+    <string name="participant_info_anonymous_confidential_1">The only data Marine Scotland will have access to will be the FISH1 form you submit, via email, from the app to your local Fishery Office.</string>
+    <string name="participant_info_anonymous_confidential_2">Project researchers will have access to all the raw data which will be kept confidential. The data collected will only be made available in reports or publications in aggregated or anonymised form. Your permission will be sought in the Participant Consent form for the data you provide, which will be coded*, to be used for future research purposes.</string>
+    <string name="participant_info_anonymous_confidential_3">*\'Coded Data\' refers to when data collected by the researcher is identifiable as belonging to a particular participant but is kept with personal identifiers removed.</string>
+    <string name="participant_info_data_storage_destruction_header">Storage and Destruction of Data Collected</string>
+    <string name="participant_info_data_storage_destruction_1">The data collected will be only be accessed in its raw form by the researchers involved in this study, unless explicit consent for wider access is given by means of the consent form. Your data will be stored for a period of at least 5 years before being destroyed*, i.e. in (1) coded format on the University computer system (2) in the case of hardcopy in a locked storage cupboard.</string>
+    <string name="participant_info_data_storage_destruction_2">*Unless secondary data permission has been indicated on the consent form. In the case of electronic data destruction will involve the permanent deletion (overwriting) of files using Eraser© software, while any hard copy records will be cross-cut shredded.</string>
+    <string name="participant_info_what_happens_to_results_header">What will happen to the results of the research study?</string>
+    <string name="participant_info_what_happens_to_results">The results will be made publicly available after the trial of the mobile phone App in <u>aggregated form or be sufficiently anonymised</u> as to prevent identification of the participant. Also, it is the intent of the researchers that wherever possible outputs from the trials will be submitted for publication as peer reviewed journal articles.</string>
+    <string name="participant_info_risks_header">Are there any potential risks to taking part?</string>
+    <string name="participant_info_risks">We do not anticipate there being any personal, emotional or financial risks to taking part in these studies. Very limited personal information will be recorded (name and contact details) to be used by the project team for identification purposes. If these data are utilised at any point, it will only be in aggregate form (e.g. participant, age, demographics). <i>In cases where video/images may be taken specific permission (by means of the consent form) will be sort from the participants involved.</i></string>
+    <string name="participant_info_questions_header">Questions</string>
+    <string name="participant_info_questions">You will have the opportunity to ask any questions in relation to this project before filling in the Consent Form and during the project.</string>
+    <string name="participant_info_consent_approval_header">Consent and Approval</string>
+    <string name="participant_info_consent_approval">This research proposal has been scrutinised and been granted Ethical Approval through the University of St Andrews ethical approval process.</string>
+    <string name="participant_info_concerns_header">What should I do if I have concerns about this study?</string>
+    <string name="participant_info_concerns">A full outline of the procedures governed by the University Teaching and Research Ethical Committee is available at http://www.st-andrews.ac.uk/utrec/guidelinespolicies/complaints/</string>
+    <string name="participant_info_contact_header">Contact Details</string>
+    <string name="participant_info_contact">If you have any queries regarding the study please contact the SIFIDS Project Facilitators Kyla Orr, Kathryn Logan or Ali McKnight using the Freephone number <b>0800 043 3474</b> or via email at marineconsulting@kylaorr.com, logank2@ukif.com or alimcknight@agroecosystems.co.uk</string>
+    <string name="participant_consent_form_header">Participant Consent Form: Coded Data</string>
+    <string name="participant_consent_form_researchers_header">Researchers</string>
+    <string name="participant_consent_form_researchers">\u2022 <i>Dr Mark James</i>\n\u2022 <i>Dr Tania Mendo</i>\n\u2022 <i>Dr Simon Northridge</i>\n\u2022 <i>Miss Hannah Ladd-Jones</i>\n\u2022 <i>Mr Patrick McCann</i>\n\u2022 <i>Mr Swithun Crowe</i>\n\nThe University of St Andrews attaches high priority to the ethical conduct of research. We therefore ask you to consider the following and the above points in the Participation Information sheet before submitting this form. Your submission of this form confirms that you are happy to participate in the study.</string>
+    <string name="participant_consent_form_coded_data_header">What is Coded Data?</string>
+    <string name="participant_consent_form_coded_data">The term \'Coded Data\' refers to when data collected by the researcher is identifiable as belonging to a particular participant but is kept with personal identifiers removed. The researcher(s) retain a \'key\' to the coded data which allows individual participants to be re-connected with their data at a later date. The un-coded data is kept confidential to the researchers. If consent is given to archive data (see consent section of form below) the participant may be contacted in the future by the original researchers or other researchers.</string>
+    <string name="participant_consent_form_consent_header">Consent</string>
+    <string name="participant_consent_form_consent">The purpose of this form is to ensure that you are willing to take part in this study and to let you understand what it entails. Signing this form does not commit you to anything you do not wish to do and you are free to withdraw at any stage. Material gathered during this research will be coded and kept confidentially by the researchers with only the research team having access. It will be securely stored; in (1) electronic form (coded format) on the University computer system; (2) in the case of hardcopy in a locked storage cupboard.\n\nPlease take note of each statement concerning the collection and use of the research data.</string>
+    <string name="participant_consent_form_summary_header">By submitting this form you are accepting the following numbered statements to be true:</string>
+    <string name="participant_consent_form_summary">1. I have read and understood the participant information;\n2. I have been given the opportunity to ask questions about the study;\n3. I have had my questions answered satisfactorily;\n4. I understand that I can withdraw from the study at any time without having to give an explanation;\n5. I understand that my data will be confidential and that it will contain identifiable personal data but that will be stored with personal identifiers removed by the researchers and that only the project researchers will be able to decode this information as and when necessary.</string>
+    <string name="participant_consent_form_read_and_understand">I have read and understood the participant information</string>
+    <string name="participant_consent_form_questions_opportunity">I have been given the opportunity to ask questions about the study</string>
+    <string name="participant_consent_form_questions_answered">I have had my questions answered satisfactorily</string>
+    <string name="participant_consent_form_can_withdraw">I understand that I can withdraw from the study at any time without having to give an explanation</string>
+    <string name="participant_consent_form_confidential">I understand that my data will be confidential and that it will contain identifiable personal data but that will be stored with personal identifiers removed by the researchers and that only the project researchers will be able to decode this information as and when necessary</string>
+    <string name="participant_consent_form_secondary_data_header">Secondary Data Permission/Decline</string>
+    <string name="participant_consent_form_secondary_data_summary">5. I agree to my data (in line with conditions outlined above) being kept by the researchers and being archived for potential use in further research projects / by other bona fide researchers. I understand that this may allow other researchers to de-code the data and identify me.\n6. I have been made fully aware of the potential risks associated with this research and am satisfied with the information provided.\n8.I agree to take part in the study</string>
+    <string name="participant_consent_form_data_archiving">I agree to my data (in line with conditions outlined above) being kept by the researchers and being archived for potential use in further research projects / by other bona fide researchers. I understand that this may allow other researchers to de-code the data and identify me.</string>
+    <string name="participant_consent_form_risks">I have been made fully aware of the potential risks associated with this research and am satisfied with the information provided.</string>
+    <string name="participant_consent_form_take_part">I agree to take part in the study</string>
+    <string name="participant_consent_form_photography_header">Photographic Images and Video</string>
+    <string name="participant_consent_form_photography_1">Part of our research <u>may</u> involve taking photographic images and video. These images / recordings will be kept secure and stored with no identifying factors i.e. consent forms and questionnaires.</string>
+    <string name="participant_consent_form_photography_2">Photographs and recorded data can be valuable resources for future studies therefore we ask for your additional consent to maintain data and images for this purpose. You can ask to review any photographic images or videos that were taken with or of you at any time.</string>
+    <string name="participant_consent_form_photography_summary">9. I agree to have my photo taken / to being videoed\n10. I agree for my photo and video recorded material to be published as part of this research\n11. I agree for my photos and video recorded material to be used in future studies.</string>
+    <string name="participant_consent_form_photography_capture">I agree to have my photo taken / to being videoed</string>
+    <string name="participant_consent_form_photography_publication">I agree for my photo and video recorded material to be published as part of this research</string>
+    <string name="participant_consent_form_photography_future_studies">I agree for my photos and video recorded material to be used in future studies</string>
+    <string name="participant_consent_form_voluntary">Participation in this research is completely voluntary and your consent is required before you can participate in this research. If you decide at a later date that data should be destroyed we will honour your request in writing.</string>
+    <string name="participant_consent_form_consent_statement_header">SIFIDS Project Participant Consent</string>
+    <string name="participant_consent_form_consent_statement">I wish to participate in the research conducted under the EMFF SIFIDS Project and as such agree to researchers from the University of St Andrews accessing all data submitted through the SIFIDS FISH1 App for the purposes of collecting data on fishing activity and observations of species listed in the mobile phone application.</string>
+    <string name="participant_consent_form_name">Name</string>
+    <string name="participant_consent_form_email">Email</string>
+    <string name="participant_consent_form_phone">Telephone Number</string>
+    <string name="participant_consent_form_fish_1_header">FISH1/ logbook Data Access Consent</string>
+    <string name="participant_consent_form_fish_1">12. I, the fishing licence holder named below, agree for the researchers at the University of St Andrews to have access to the data submitted via the FISH1 form through the mobile phone application developed by the University of St Andrews for the purposes of research under the EMFF SIFIDS Project for the above stated vessel.</string>
+    <string name="participant_consent_form_fish_1_period">The information provided will span the period 1st December 2016 to 31st May 2019 (the duration of the SIFIDS Project).</string>
+    <string name="participant_consent_form_accept_all_title">I accept all the numbered statements above</string>
+    <string name="participant_consent_form_accept_all_summary">I confirm that I accept all statements 1 to 12 above to be true, and that all details I have entered here are correct.</string>
+    <string name="participant_consent_submit_button_text">Confirm consent</string>
+    <string name="participant_consent_thank_you">Thank-you for agreeing to take part in this study</string>
+    <string name="participant_consent_error">There was an error processing your agreement to take part. Please try again later.</string>
+    <string name="participant_consent_incomplete">Please complete all fields before submitting.</string>
+
+    <!-- FISH1 Forms -->
+
+    <string name="title_activity_catch">Home</string>
+    <string name="activity_tracking_header">Track Activity</string>
+    <string name="start_tracking_location">Start Tracking Location</string>
+    <string name="stop_tracking_location">Stop Tracking Location</string>
+    <string name="location_switch_label"><b>Location</b> - turn on when at sea</string>
+    <string name="start_fishing">Start Fishing</string>
+    <string name="stop_fishing">Stop Fishing</string>
+    <string name="fishing_switch_label"><b>Fishing</b> - turn on when fishing</string>
+    <string name="submit_track">Submit last 1000 location points</string>
+    <string name="fish_1_form_summary">%s\n%s</string>
+    <string name="stopped_tracking_location">Stopped tracking location</string>
+    <string name="started_fishing">Recorded location information will now indicate that you are fishing</string>
+    <string name="stopped_fishing">Recorded location information will no longer indicate that you are fishing</string>
+    <string name="fish_1_forms_header">FISH1 Forms (for owners of vessels 10m and under only)</string>
+
+    <!-- FISH1 Form Creation -->
+
+    <string name="dialog_select_week">Select Week</string>
+    <string name="this_week">This Week (starting %s)</string>
+    <string name="last_week">Last Week (starting %s)</string>
+    <string name="other_week">Other Week</string>
+
+    <!-- FISH1 Form Editing -->
+
+    <string name="fish_1_form_header">Dates not yet set</string>
+    <string name="fish_1_form_fishery_office_string">%s (%s)</string>
+    <string name="fish_1_form_fishery_office">Fishery Office</string>
+    <string name="fish_1_form_fishery_office_email">Fishery Office Email</string>
+    <string name="fish_1_form_port_of_departure">Port of Departure</string>
+    <string name="fish_1_form_port_of_landing">Port of Landing</string>
+    <string name="fish_1_form_pln">PLN</string>
+    <string name="fish_1_form_vessel_name">Vessel Name</string>
+    <string name="fish_1_form_owner_master">Owner/Master</string>
+    <string name="fish_1_form_address">Address</string>
+    <string name="fish_1_form_total_pots_fishing">Total Pots Fishing</string>
+    <string name="fish_1_form_comment_buyers_information">Comment and Buyers Information</string>
+    <string name="fish_1_form_add_row">Add Row Below</string>
+    <string name="fish_1_form_save">Save Form</string>
+    <string name="fish_1_form_delete">Delete Form</string>
+    <string name="fish_1_form_rows_header">FISH1 Form Rows</string>
+    <string name="fish_1_form_error_retrieving_from_database">Error retrieving FISH1 form from database</string>
+    <string name="fish_1_form_error_creating_new_form">Error creating new FISH1 form</string>
+    <string name="fish_1_form_loading_ports_list">Error loading ports from database</string>
+    <string name="fish_1_form_error_deleting_form">Error deleting form</string>
+
+    <!-- FISH1 Form Deletion -->
+
+    <string name="fish_1_form_deletion_confirmation_message">"Are you sure you want to delete this form?"</string>
+
+    <!-- FISH1 Form Email -->
+
+    <string name="fish_1_form_email_subject">FISH1 Form</string>
+    <string name="fish_1_form_email_text">Please find FISH1 Form attached.</string>
+    <string name="fish_1_form_email_intent_title">Send message&#8230;</string>
+
+    <!-- FISH1 Form CSV -->
+
+    <string name="csv_file_name">%s.csv</string>
+    <string name="csv_fishery_office"># Fishery Office: \"%s\"</string>
+    <string name="csv_email"># Email: %s</string>
+    <string name="csv_port_of_departure"># Port of Departure: %s</string>
+    <string name="csv_port_of_landing"># Port of Landing: %s</string>
+    <string name="csv_pln"># PLN: %s</string>
+    <string name="csv_vessel_name"># Vessel Name: %s</string>
+    <string name="csv_owner_master"># Owner/Master: %s</string>
+    <string name="csv_address"># Address: %s</string>
+    <string name="csv_total_pots_fishing"># Total Pots Fishing: %s</string>
+    <string name="csv_comments_buyers_information"># Comment and Buyers Information: %s</string>
+    <string name="csv_header_row">
+        Fishing Activity Date,Lat/Long,Stat Rect / ICES Area,Gear,Mesh Size,Species,State,Presentation,Weight,DIS,BMS,Number of Pots Hauled,Landing or Discard Date,\"Transporter Reg, Not Transported or Landed to Keeps\"
+    </string>
+    <string name="csv_saved">CSV file saved for attaching to email as %s</string>
+    <string name="csv_not_saved">Unable to create email attachment</string>
+
+    <!-- FISH1 Form Row Editing -->
+
+    <string name="fish_1_form_row_fishing_activity_date">Fishing Activity Date:\u00A0</string>
+    <string name="fish_1_form_row_fishing_activity_date_not_set">Fishing Activity Date not set </string>
+    <string name="fish_1_form_row_select_fishing_activity_date">Select Fishing Activity Date</string>
+    <string name="fish_1_form_row_latitude_degrees">Latitude Deg</string>
+    <string name="fish_1_form_row_latitude_minutes">Latitude Min (0-59)</string>
+    <string name="fish_1_form_row_latitude_direction">Latitude Dir</string>
+    <string name="fish_1_form_row_longitude_degrees">Longitude Deg</string>
+    <string name="fish_1_form_row_longitude_minutes">Longitude Min (0-59)</string>
+    <string name="fish_1_form_row_longitude_direction">Longitude Dir</string>
+    <string name="fish_1_form_row_ices_area">ICES Area</string>
+    <string name="fish_1_form_row_gear">Gear</string>
+    <string name="fish_1_form_row_mesh_size">Mesh Size (mm)</string>
+    <string name="fish_1_form_row_species">Species</string>
+    <string name="fish_1_form_row_state">State</string>
+    <string name="fish_1_form_row_presentation">Presentation</string>
+    <string name="fish_1_form_row_weight">Wt. (kg)</string>
+    <string name="fish_1_form_row_dis">DIS</string>
+    <string name="fish_1_form_row_bms">BMS</string>
+    <string name="fish_1_form_row_number_pots_hauled">Number of Pots Hauled</string>
+    <string name="fish_1_form_row_landing_or_discard_date">Landing or Discard Date:\u00A0</string>
+    <string name="fish_1_form_row_landing_or_discard_date_not_set">Select Landing or Discard Date not set</string>
+    <string name="fish_1_form_row_select_landing_or_discard_date">Landing or Discard Date</string>
+    <string name="fish_1_form_row_transporter_reg_etc">Transporter Reg. etc.</string>
+    <string name="fish_1_form_row_save">Save Form Row</string>
+    <string name="fish_1_form_row_delete">Delete Form Row</string>
+    <string name="duplicated_fish_1_form_row">FISH1 Form Row duplicated</string>
+
+    <!-- FISH1 Form Row Deletion -->
+
+    <string name="fish_1_form_row_deletion_confirmation_message">"Are you sure you want to delete this row?"</string>
+
+    <!-- Map -->
+
+    <string name="title_activity_map">Map (last 24hrs)</string>
+    <string name="title_activity_map_custom">Map (%s)</string>
+
+    <!-- Location Tracking -->
+
+    <string name="location_tracking_notification_channel_name">SIFIDS Location Tracking</string>
+    <string name="location_tracking_notification_title">Tracking location</string>
+    <string name="location_tracking_notification_text">The SIFIDS app is tracking your location</string>
+    <string name="location_tracking_disclaimer">
+        Any location data recorded by this app will be uploaded silently to a server at the University of St Andrews as part of the SIFIDS project.
+        The uploaded data comprises the PLN of your vessel (please set this if you haven\'t already),
+        along with the latitude, longitude, timestamp and indicator of fishing activity for each recorded location.
+        Please email us at SIFIDS.app@gmail.com for more information or contact the SIFIDS Freephone helpline 08000 433474.
+    </string>
+
+    <!-- Sending Data to Server -->
+
+    <string name="post_request_url">https://arts.st-andrews.ac.uk/sifids/</string>
+
+    <!-- Observations -->
+
+    <string name="title_activity_record_observation">Record Observation</string>
+    <string name="observation_what_did_you_see">What did you see?</string>
+    <string name="observation_do_you_know_species">Are you sure of the species?</string>
+    <string name="observation_select_species">Please select the species from the list.</string>
+    <string name="observation_species_prompt">Species</string>
+    <string name="observation_other_species_text">
+        If you saw a species which isn\'t listed, please tap \"Other species\" and include species details in the notes at the end.</string>
+    <string name="observation_other_species_button">Other species</string>
+    <string name="observation_when_did_you_see">When did you see this animal?</string>
+    <string name="observation_now">Just now</string>
+    <string name="observation_select_time">Select other time</string>
+    <string name="observation_where_did_you_see">Where did you see this animal?</string>
+    <string name="observation_suggested_location">Suggested location based on time and tracking data: %s</string>
+    <string name="observation_use_suggested_location">Use suggested location</string>
+    <string name="observation_here">At my current location</string>
+    <string name="observation_select_place_from_map">Select location from map</string>
+    <string name="observation_enter_lat_long">Enter latitude and longitude</string>
+    <string name="observation_submit_latitude_longitude">Submit latitude and longitude</string>
+    <string name="observation_how_many">How many did you see?</string>
+    <string name="observation_additional_notes">Additional notes</string>
+    <string name="observation_additional_notes_hint">Please enter any other information here e.g.
+        the nature of your interaction with the animal,
+        whether it appeared to be in good health.</string>
+    <string name="observation_submit">Submit Observation</string>
+    <string name="observation_thank_you">Thank you! %s You have submitted %s observations, with %s queued for submission.</string>
+    <string name="observation_submission_successful">Your observation has been successfully submitted.</string>
+    <string name="observation_submission_unsuccessful">Your observation could not be submitted just now - it has been added to a queue for submitting later.</string>
+    <string name="observation_make_another">Make another observation</string>
+    <string name="observation_done">Finished</string>
+
+    <!-- About -->
+
+    <string name="title_activity_about">About this App</string>
+    <string name="about_version_header">Version</string>
+    <string name="about_version_current_version">Current version: %s</string>
+    <string name="about_version_updates">New releases are made available via https://github.com/StAResComp/sifids/releases</string>
+    <string name="about_contact">Contact</string>
+    <string name="about_email">If you have queries about this app, please get in touch by emailing &email;</string>
+
+    <!-- General Purpose -->
+
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="ymd">yyyy-MM-dd</string>
+    <string name="dmonthy">dd MMM yyyy</string>
+    <string name="n">N</string>
+    <string name="north">North</string>
+    <string name="s">S</string>
+    <string name="south">South</string>
+    <string name="e">E</string>
+    <string name="east">East</string>
+    <string name="w">W</string>
+    <string name="west">West</string>
+    <string name="edit">Edit</string>
+    <string name="duplicate">Duplicate</string>
+    <string name="delete">Delete</string>
+    <string name="back">Go back</string>
+    <string name="next">Next</string>
+
+</resources>
