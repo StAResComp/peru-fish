@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <id name="form_in_question">form_in_question</id>
-    <id name="parent_form">parent_form</id>
-    <id name="form_row_in_question">form_row_in_question</id>
+    <id name="form_in_question" />
+    <id name="parent_form" />
+    <id name="form_row_in_question" />
 </resources>
