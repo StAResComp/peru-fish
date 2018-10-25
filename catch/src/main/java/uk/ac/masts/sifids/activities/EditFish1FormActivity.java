@@ -64,7 +64,6 @@ public class EditFish1FormActivity extends EditingActivity implements AdapterVie
     Fish1Form fish1Form;
 
     //Form elements
-    EditText fisheryOffice;
     EditText fisheryOfficeEmail;
     EditText pln;
     EditText vesselName;
@@ -176,14 +175,7 @@ public class EditFish1FormActivity extends EditingActivity implements AdapterVie
                         //Use user preferences to create form
                         FisheryOffice fisheryOfficeObject =
                                 EditFish1FormActivity.this.db.catchDao()
-                                        .getOffice(
-                                                Integer.parseInt(
-                                                        EditFish1FormActivity.this.prefs.getString(
-                                                                getString(R.string.pref_fishery_office_key),
-                                                                "1"
-                                                        )
-                                                )
-                                        );
+                                        .getOffice();
                         if (fisheryOfficeObject != null) {
                             fish1Form.setFisheryOffice(
                                     String.format(
@@ -289,7 +281,6 @@ public class EditFish1FormActivity extends EditingActivity implements AdapterVie
      * Build the user form - bind variables to XML elements
      */
     protected void buildForm() {
-        fisheryOffice = findViewById(R.id.fishery_office);
         fisheryOfficeEmail = findViewById(R.id.fishery_office_email);
         pln = findViewById(R.id.pln);
         vesselName = findViewById(R.id.vessel_name);
@@ -349,7 +340,6 @@ public class EditFish1FormActivity extends EditingActivity implements AdapterVie
      */
     private void applyExistingValues() {
         if (fish1Form != null) {
-            fisheryOffice.setText(fish1Form.getFisheryOffice());
             fisheryOfficeEmail.setText(fish1Form.getEmail());
             pln.setText(fish1Form.getPln());
             vesselName.setText(fish1Form.getVesselName());
@@ -490,8 +480,7 @@ public class EditFish1FormActivity extends EditingActivity implements AdapterVie
         }
         //Only write to the database if something has changed (or form is new)
         if (
-                create || fish1Form.setFisheryOffice(fisheryOffice.getText().toString())
-                        || fish1Form.setEmail(fisheryOfficeEmail.getText().toString())
+                create || fish1Form.setEmail(fisheryOfficeEmail.getText().toString())
                         || fish1Form.setPln(pln.getText().toString())
                         || fish1Form.setVesselName(vesselName.getText().toString())
                         || fish1Form.setOwnerMaster(ownerMaster.getText().toString())
@@ -621,11 +610,6 @@ public class EditFish1FormActivity extends EditingActivity implements AdapterVie
             FileWriter fw = new FileWriter(file);
             BufferedWriter writer = new BufferedWriter(fw);
             //Write form info as comments above CSV rows
-            writer.write(
-                    String.format(
-                            getString(R.string.csv_fishery_office),
-                            this.fisheryOffice.getText().toString()));
-            writer.newLine();
             writer.write(
                     String.format(
                             getString(R.string.csv_email),

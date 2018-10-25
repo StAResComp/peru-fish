@@ -11,24 +11,7 @@ import java.util.List;
 public class FisheryOffice extends EntityWithId {
 
     private static final String[][] OFFICES = {
-            {"Aberdeen", "Room A30, 375 Victoria Road, ABERDEEN, AB11 9DB, Tel: 0300 244 9166", "fo.aberdeen@gov.scot"},
-            {"Anstruther", "28 Cunzie Street, ANSTRUTHER KY10 3DF, Tel: 0300 244 9100", "fo.anstruther@gov.scot"},
-            {"Ayr", "Russell House, King Street, AYR KA8 0BE, Tel: 01292 291380", "fo.ayr@gov.scot"},
-            {"Buckie", "Suites 3 -5, Douglas Centre, March Road, BUCKIE AB56 1ER", "fo.buckie@gov.scot"},
-            {"Campbeltown", "40 Hall Street, CAMPBELTOWN PA28 6BU", "fo.campbeltown@gov.scot"},
-            {"Eyemouth", "Gunsgreen, Fish Market Buildings, EYEMOUTH TD14 5SD", "fo.eyemouth@gov.scot"},
-            {"Fraserburgh", "121 Shore Street, FRASERBURGH AB43 9BR, Tel: 0300 244 9424", "fo.fraserburgh@gov.scot"},
-            {"Kinlochbervie", "Bervie Pier, Kinlochbervie, LAIRG IV27 4RR, Tel: 01971 521375", "fo.kinlochbervie@gov.scot"},
-            {"Kirkwall", "Terminal Buildings, Kirkwall Passenger Terminal, East Pier, KIRKWALL KW15 1HU", "fo.kirkwall@gov.scot"},
-            {"Lerwick", "Alexandra Buildings, Lerwick, SHETLAND ZE1 0LL, Tel: 01595 692007", "fo.lerwick@gov.scot"},
-            {"Lochinver", "Culag Pier, Lochinver, LAIRG IV27 4LE, Tel: 01571 844486", "fo.lochinver@gov.scot"},
-            {"Mallaig", "Marine Office, Harbour Offices, MALLAIG PH41 4QB, Tel: 01687 462155", "fo.mallaig@gov.scot"},
-            {"Oban", "Marine Office, Cameron House, Albany Street, OBAN PA34 4AE, Tel: 0300 244 9400", "fo.oban@gov.scot"},
-            {"Peterhead", "Keith House, Seagate, PETERHEAD AB42 1JP, Tel: 0300 244 9200", "fo.peterhead@gov.scot"},
-            {"Portree", "Marine Office, Estates Office, Scorrybreac, PORTREE, Isle of Skye, IV51 9DH, Tel: 01478 612038", "fo.portree@gov.scot"},
-            {"Scrabster", "St Ola House, SCRABSTER KW14 7UJ, Tel: 01847 895074", "fo.scrabster@gov.scot"},
-            {"Stornoway", "Marine Office, Quay Street, STORNOWAY, Isle of Lewis, HS1 2XX, Tel: 01851 703291", "fo.stornoway@gov.scot"},
-            {"Ullapool", "West Shore Street, ULLAPOOL IV26 2UR, Tel: 01854 612704", "fo.ullapool@gov.scot"}
+            {"Peru", "Some address", "research-computing@st-andrews.ac.uk"}
     };
 
     public String name;

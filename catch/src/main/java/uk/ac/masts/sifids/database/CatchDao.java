@@ -117,8 +117,8 @@ public interface CatchDao {
     @Query("SELECT * FROM fishery_office")
     public List<FisheryOffice> getOffices();
 
-    @Query("SELECT * FROM fishery_office WHERE id = :id")
-    public FisheryOffice getOffice(Integer id);
+    @Query("SELECT * FROM fishery_office LIMIT 1")
+    public FisheryOffice getOffice();
 
     @Query("SELECT COUNT(*) FROM fishery_office")
     public int countOffices();

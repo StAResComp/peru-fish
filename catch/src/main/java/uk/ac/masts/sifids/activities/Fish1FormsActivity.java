@@ -57,8 +57,6 @@ public class Fish1FormsActivity extends AppCompatActivityWithMenuBar {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        PreferenceManager.setDefaultValues(this, R.xml.pref_fishery_office_details, false);
-
         db = CatchDatabase.getInstance(getApplicationContext());
         final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
