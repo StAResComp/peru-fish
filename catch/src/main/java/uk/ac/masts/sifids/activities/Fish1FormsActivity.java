@@ -5,6 +5,7 @@ import android.app.ActivityManager;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -26,6 +27,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
+import java.util.concurrent.Executors;
 
 import uk.ac.masts.sifids.CatchApplication;
 import uk.ac.masts.sifids.R;
@@ -58,6 +60,15 @@ public class Fish1FormsActivity extends AppCompatActivityWithMenuBar {
         PreferenceManager.setDefaultValues(this, R.xml.pref_fishery_office_details, false);
 
         db = CatchDatabase.getInstance(getApplicationContext());
+        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+        Executors.newSingleThreadScheduledExecutor().execute(new Runnable() {
+            @Override
+            public void run() {
+                int portId = db.catchDao().getPortId();
+                prefs.edit().putInt(getString(R.string.pref_port_key),portId).apply();
+            }
+        });
 
         locationSwitch = findViewById(R.id.toggle_location_tracking);
         fishingSwitch = findViewById(R.id.toggle_fishing);

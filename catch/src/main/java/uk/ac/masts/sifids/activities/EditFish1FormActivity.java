@@ -34,6 +34,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -300,9 +301,10 @@ public class EditFish1FormActivity extends EditingActivity implements AdapterVie
         Runnable r = new Runnable() {
             @Override
             public void run() {
-                ports = EditFish1FormActivity.this.db.catchDao().getPortNames(
-                        EditFish1FormActivity.this.prefs.getStringSet(
-                                getString(R.string.pref_port_key), new HashSet<String>()));
+                Set portsSet = new HashSet<String>();
+                portsSet.add(Integer.toString(EditFish1FormActivity.this.prefs.getInt(
+                        getString(R.string.pref_port_key),0)));
+                ports = EditFish1FormActivity.this.db.catchDao().getPortNames(portsSet);
             }
         };
         Thread newThread = new Thread(r);

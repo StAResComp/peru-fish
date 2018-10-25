@@ -146,7 +146,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                 || FisheryOfficeDetailsPreferenceFragment.class.getName().equals(fragmentName)
                 || VesselDetailsPreferenceFragment.class.getName().equals(fragmentName)
                 || OwnerMasterDetailsPreferenceFragment.class.getName().equals(fragmentName)
-                || PortDetailsPreferenceFragment.class.getName().equals(fragmentName)
                 || GearDetailsPreferenceFragment.class.getName().equals(fragmentName)
                 || SpeciesDetailsPreferenceFragment.class.getName().equals(fragmentName)
                 || BuyerDetailsPreferenceFragment.class.getName().equals(fragmentName);
@@ -243,26 +242,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             bindPreferenceSummaryToValue(findPreference(getString(R.string.pref_owner_master_name_key)));
             bindPreferenceSummaryToValue(findPreference(getString(R.string.pref_owner_master_address_key)));
             bindPreferenceSummaryToValue(findPreference(getString(R.string.pref_owner_master_email_key)));
-        }
-    }
-
-    /**
-     * This fragment shows general preferences only. It is used when the
-     * activity is showing a two-pane settings UI.
-     */
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-    public static class PortDetailsPreferenceFragment extends BasePreferenceFragment {
-        @Override
-        public void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            addPreferencesFromResource(R.xml.pref_port_details);
-            setHasOptionsMenu(true);
-
-            // Bind the summaries of EditText/List/Dialog/Ringtone preferences
-            // to their values. When their values change, their summaries are
-            // updated to reflect the new value, per the Android Design
-            // guidelines.
-            bindPreferenceSummaryToValue(findPreference(getString(R.string.pref_port_key)));
         }
     }
 

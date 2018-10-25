@@ -1,7 +1,0 @@
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <uk.ac.masts.sifids.preferences.PortPreference
-        android:key="@string/pref_port_key"
-        android:title="@string/pref_port_title" />
-
-</PreferenceScreen>
