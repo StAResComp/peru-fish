@@ -241,7 +241,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             // updated to reflect the new value, per the Android Design
             // guidelines.
             bindPreferenceSummaryToValue(findPreference(getString(R.string.pref_gear_key)));
-            bindPreferenceSummaryToValue(findPreference(getString(R.string.pref_total_pots_fishing_key)));
         }
     }
 

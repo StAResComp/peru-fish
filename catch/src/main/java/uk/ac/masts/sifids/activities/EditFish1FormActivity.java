@@ -69,7 +69,6 @@ public class EditFish1FormActivity extends EditingActivity implements AdapterVie
     EditText vesselName;
     EditText ownerMaster;
     EditText address;
-    EditText totalPotsFishing;
     EditText comment;
     Spinner portOfDeparture;
     Spinner portOfLanding;
@@ -200,11 +199,6 @@ public class EditFish1FormActivity extends EditingActivity implements AdapterVie
                                 EditFish1FormActivity.this.prefs.getString(
                                         getString(R.string.pref_owner_master_address_key),
                                         ""));
-                        fish1Form.setTotalPotsFishing(
-                                Integer.parseInt(
-                                        EditFish1FormActivity.this.prefs.getString(
-                                                getString(R.string.pref_total_pots_fishing_key),
-                                                "0")));
                         long[] ids = EditFish1FormActivity.this.db
                                 .catchDao().insertFish1Forms(fish1Form);
                         fish1Form = EditFish1FormActivity.this.db.catchDao().getForm((int) ids[0]);
@@ -286,7 +280,6 @@ public class EditFish1FormActivity extends EditingActivity implements AdapterVie
         vesselName = findViewById(R.id.vessel_name);
         ownerMaster = findViewById(R.id.owner_master);
         address = findViewById(R.id.address);
-        totalPotsFishing = findViewById(R.id.total_pots_fishing);
         comment = findViewById(R.id.comment);
         //Database queries can't be run on the UI thread
         Runnable r = new Runnable() {
@@ -345,7 +338,6 @@ public class EditFish1FormActivity extends EditingActivity implements AdapterVie
             vesselName.setText(fish1Form.getVesselName());
             ownerMaster.setText(fish1Form.getOwnerMaster());
             address.setText(fish1Form.getAddress());
-            totalPotsFishing.setText(Integer.toString(fish1Form.getTotalPotsFishing()));
             portOfDeparture.setSelection(
                     portOfDepartureAdapter.getPosition(fish1Form.getPortOfDeparture()));
             portOfLanding.setSelection(
@@ -485,8 +477,6 @@ public class EditFish1FormActivity extends EditingActivity implements AdapterVie
                         || fish1Form.setVesselName(vesselName.getText().toString())
                         || fish1Form.setOwnerMaster(ownerMaster.getText().toString())
                         || fish1Form.setAddress(address.getText().toString())
-                        || fish1Form.setTotalPotsFishing(
-                        Integer.parseInt(totalPotsFishing.getText().toString()))
                         || fish1Form.setCommentsAndBuyersInformation(
                         comment.getText().toString())
                         || fish1Form.setPortOfDeparture(portOfDepartureValue)
@@ -643,11 +633,6 @@ public class EditFish1FormActivity extends EditingActivity implements AdapterVie
                     String.format(
                             getString(R.string.csv_address),
                             address.getText().toString()));
-            writer.newLine();
-            writer.write(
-                    String.format(
-                            getString(R.string.csv_total_pots_fishing),
-                            totalPotsFishing.getText().toString()));
             writer.newLine();
             writer.write(
                     String.format(
