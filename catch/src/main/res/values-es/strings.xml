@@ -30,8 +30,8 @@
     <string name="pref_header_species_details">Species Details</string>
     <string name="pref_species_title">Species</string>
 
-    <string name="pref_header_buyer_details">Buyer Details</string>
-    <string name="pref_buyer_details_title">Transporter Reg. etc.</string>
+    <string name="pref_header_buyer_details">Detalles del comprador</string>
+    <string name="pref_buyer_details_title">Detalles del comprador</string>
 
     <!-- Consent -->
 
@@ -185,7 +185,7 @@
     <string name="csv_total_pots_fishing"># Total Pots Fishing: %s</string>
     <string name="csv_comments_buyers_information"># Comment and Buyers Information: %s</string>
     <string name="csv_header_row">
-        Fishing Activity Date,Lat/Long,Stat Rect / ICES Area,Gear,Mesh Size,Species,State,Presentation,Weight,DIS,BMS,Number of Pots Hauled,Landing or Discard Date,\"Transporter Reg, Not Transported or Landed to Keeps\"
+        Fishing Activity Date,Lat/Long,Stat Rect / ICES Area,Gear,Mesh Size,Species,State,Presentation,Weight,DIS,BMS,Number of Pots Hauled,Landing or Discard Date,\"Detalles del comprador\"
     </string>
     <string name="csv_saved">CSV file saved for attaching to email as %s</string>
     <string name="csv_not_saved">Unable to create email attachment</string>
@@ -214,7 +214,7 @@
     <string name="fish_1_form_row_landing_or_discard_date">Landing or Discard Date:\u00A0</string>
     <string name="fish_1_form_row_landing_or_discard_date_not_set">Select Landing or Discard Date not set</string>
     <string name="fish_1_form_row_select_landing_or_discard_date">Landing or Discard Date</string>
-    <string name="fish_1_form_row_transporter_reg_etc">Transporter Reg. etc.</string>
+    <string name="fish_1_form_row_transporter_reg_etc">Detalles del comprador</string>
     <string name="fish_1_form_row_save">Save Form Row</string>
     <string name="fish_1_form_row_delete">Delete Form Row</string>
     <string name="duplicated_fish_1_form_row">FISH1 Form Row duplicated</string>
