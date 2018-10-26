@@ -5,30 +5,30 @@
 
     <!-- Settings -->
 
-    <string name="title_activity_settings">Settings</string>
+    <string name="title_activity_settings">Ajustes</string>
 
     <string name="pref_header_fishery_office_details">Fishery Office Details</string>
     <string name="pref_fishery_office_title">Fishery Office</string>
 
-    <string name="pref_header_vessel_details">Vessel Details</string>
-    <string name="pref_vessel_pln_title">Vessel PLN</string>
-    <string name="pref_vessel_name_title">Vessel Name</string>
+    <string name="pref_header_vessel_details">Información embarcación</string>
+    <string name="pref_vessel_pln_title">Número de placa</string>
+    <string name="pref_vessel_name_title">Nombre embarcación</string>
 
-    <string name="pref_header_owner_master_details">Owner/Master Details</string>
-    <string name="pref_owner_master_name_title">Owner/Master Name</string>
-    <string name="pref_owner_master_address_title">Owner/Master Address</string>
-    <string name="pref_owner_master_email_title">Owner/Master Email Address</string>
+    <string name="pref_header_owner_master_details">Información patrón</string>
+    <string name="pref_owner_master_name_title">Nombre del patrón</string>
+    <string name="pref_owner_master_address_title">Dirección</string>
+    <string name="pref_owner_master_email_title">correo electrónico</string>
 
-    <string name="pref_header_port_details">Usual Landing and Departing Ports</string>
+    <string name="pref_header_port_details">Puertos de desembarque</string>
     <string name="pref_port_title">Ports</string>
 
-    <string name="pref_header_gear_details">Gear Details</string>
-    <string name="pref_gear_title">Gear</string>
-    <string name="pref_mesh_size_title">Mesh Size</string>
+    <string name="pref_header_gear_details">Arte de pesca</string>
+    <string name="pref_gear_title">Arte de pesca</string>
+    <string name="pref_mesh_size_title">Tamaño de malla</string>
     <string name="pref_total_pots_fishing_title">Total Pots Fishing</string>
 
-    <string name="pref_header_species_details">Species Details</string>
-    <string name="pref_species_title">Species</string>
+    <string name="pref_header_species_details">Información especies</string>
+    <string name="pref_species_title">Especies</string>
 
     <string name="pref_header_buyer_details">Detalles del comprador</string>
     <string name="pref_buyer_details_title">Detalles del comprador</string>
@@ -116,45 +116,45 @@
 
     <!-- FISH1 Forms -->
 
-    <string name="title_activity_catch">Home</string>
-    <string name="activity_tracking_header">Track Activity</string>
-    <string name="start_tracking_location">Start Tracking Location</string>
-    <string name="stop_tracking_location">Stop Tracking Location</string>
-    <string name="location_switch_label"><b>Location</b> - turn on when at sea</string>
+    <string name="title_activity_catch">Principal</string>
+    <string name="activity_tracking_header">Grabar trayectoria</string>
+    <string name="start_tracking_location">Empezar a grabar trayectoria de viaje</string>
+    <string name="stop_tracking_location">Parar de grabar trayectoria de viaje</string>
+    <string name="location_switch_label"><b>Location</b> - activar cuando empiece el viaje</string>
     <string name="start_fishing">Start Fishing</string>
     <string name="stop_fishing">Stop Fishing</string>
     <string name="fishing_switch_label"><b>Fishing</b> - turn on when fishing</string>
-    <string name="submit_track">Submit last 1000 location points</string>
+    <string name="submit_track">Submitir las últimos 1000 coordenadas</string>
     <string name="fish_1_form_summary">%s\n%s</string>
-    <string name="stopped_tracking_location">Stopped tracking location</string>
+    <string name="stopped_tracking_location">Paró de grabar coordenadas</string>
     <string name="started_fishing">Recorded location information will now indicate that you are fishing</string>
     <string name="stopped_fishing">Recorded location information will no longer indicate that you are fishing</string>
     <string name="fish_1_forms_header">FISH1 Forms (for owners of vessels 10m and under only)</string>
 
     <!-- FISH1 Form Creation -->
 
-    <string name="dialog_select_week">Select Week</string>
-    <string name="this_week">This Week (starting %s)</string>
-    <string name="last_week">Last Week (starting %s)</string>
-    <string name="other_week">Other Week</string>
+    <string name="dialog_select_week">Seleccione semana</string>
+    <string name="this_week">Esta semana (empezando %s)</string>
+    <string name="last_week">Semana pasada (empezando %s)</string>
+    <string name="other_week">Otra semana</string>
 
     <!-- FISH1 Form Editing -->
 
-    <string name="fish_1_form_header">Dates not yet set</string>
+    <string name="fish_1_form_header">Fechas no seleccionadas</string>
     <string name="fish_1_form_fishery_office_string">%s (%s)</string>
     <string name="fish_1_form_fishery_office">Fishery Office</string>
     <string name="fish_1_form_fishery_office_email">Fishery Office Email</string>
-    <string name="fish_1_form_port_of_departure">Port of Departure</string>
-    <string name="fish_1_form_port_of_landing">Port of Landing</string>
-    <string name="fish_1_form_pln">PLN</string>
-    <string name="fish_1_form_vessel_name">Vessel Name</string>
-    <string name="fish_1_form_owner_master">Owner/Master</string>
-    <string name="fish_1_form_address">Address</string>
+    <string name="fish_1_form_port_of_departure">Puerto de embarque</string>
+    <string name="fish_1_form_port_of_landing">Puerto de desembarque</string>
+    <string name="fish_1_form_pln">Placa</string>
+    <string name="fish_1_form_vessel_name">Nombre de la embarcación</string>
+    <string name="fish_1_form_owner_master">Nombre del patrón</string>
+    <string name="fish_1_form_address">Dirección</string>
     <string name="fish_1_form_total_pots_fishing">Total Pots Fishing</string>
     <string name="fish_1_form_comment_buyers_information">Comment and Buyers Information</string>
-    <string name="fish_1_form_add_row">Add Row Below</string>
-    <string name="fish_1_form_save">Save Form</string>
-    <string name="fish_1_form_delete">Delete Form</string>
+    <string name="fish_1_form_add_row">Añadir otra faena de pesca</string>
+    <string name="fish_1_form_save">Grabar datos</string>
+    <string name="fish_1_form_delete">Borrar faena de pesca</string>
     <string name="fish_1_form_rows_header">FISH1 Form Rows</string>
     <string name="fish_1_form_error_retrieving_from_database">Error retrieving FISH1 form from database</string>
     <string name="fish_1_form_error_creating_new_form">Error creating new FISH1 form</string>
@@ -163,7 +163,7 @@
 
     <!-- FISH1 Form Deletion -->
 
-    <string name="fish_1_form_deletion_confirmation_message">"Are you sure you want to delete this form?"</string>
+    <string name="fish_1_form_deletion_confirmation_message">"Está seguro que desea eliminar esta faena de pesca?"</string>
 
     <!-- FISH1 Form Email -->
 
@@ -176,38 +176,38 @@
     <string name="csv_file_name">%s.csv</string>
     <string name="csv_fishery_office"># Fishery Office: \"%s\"</string>
     <string name="csv_email"># Email: %s</string>
-    <string name="csv_port_of_departure"># Port of Departure: %s</string>
-    <string name="csv_port_of_landing"># Port of Landing: %s</string>
+    <string name="csv_port_of_departure">#Puerto de embarque: %s</string>
+    <string name="csv_port_of_landing"># Puerto de desembarque: %s</string>
     <string name="csv_pln"># PLN: %s</string>
-    <string name="csv_vessel_name"># Vessel Name: %s</string>
-    <string name="csv_owner_master"># Owner/Master: %s</string>
-    <string name="csv_address"># Address: %s</string>
+    <string name="csv_vessel_name"># Nombre de la embarcación: %s</string>
+    <string name="csv_owner_master"># Nombre del patrón: %s</string>
+    <string name="csv_address"># Dirección: %s</string>
     <string name="csv_total_pots_fishing"># Total Pots Fishing: %s</string>
     <string name="csv_comments_buyers_information"># Comment and Buyers Information: %s</string>
     <string name="csv_header_row">
-        Fishing Activity Date,Lat/Long,Gear,Mesh Size,Species,Weight,Fecha de desembarque,\"Detalles del comprador\"
+        Fecha de faena de pesca,Lat/Long,Arte de pesca,Tamaño de malla,Especies,Peso,Fecha de desembarque,\"Detalles del comprador\"
     </string>
     <string name="csv_saved">CSV file saved for attaching to email as %s</string>
     <string name="csv_not_saved">Unable to create email attachment</string>
 
     <!-- FISH1 Form Row Editing -->
 
-    <string name="fish_1_form_row_fishing_activity_date">Fishing Activity Date:\u00A0</string>
-    <string name="fish_1_form_row_fishing_activity_date_not_set">Fishing Activity Date not set </string>
-    <string name="fish_1_form_row_select_fishing_activity_date">Select Fishing Activity Date</string>
-    <string name="fish_1_form_row_latitude_degrees">Latitude Deg</string>
-    <string name="fish_1_form_row_latitude_minutes">Latitude Min (0-59)</string>
-    <string name="fish_1_form_row_latitude_direction">Latitude Dir</string>
-    <string name="fish_1_form_row_longitude_degrees">Longitude Deg</string>
-    <string name="fish_1_form_row_longitude_minutes">Longitude Min (0-59)</string>
-    <string name="fish_1_form_row_longitude_direction">Longitude Dir</string>
+    <string name="fish_1_form_row_fishing_activity_date">Fecha de faena de pesca:\u00A0</string>
+    <string name="fish_1_form_row_fishing_activity_date_not_set">Fecha no seleccionada </string>
+    <string name="fish_1_form_row_select_fishing_activity_date">Seleccionar fecha de faena de pesca</string>
+    <string name="fish_1_form_row_latitude_degrees">Latitud Deg</string>
+    <string name="fish_1_form_row_latitude_minutes">Latitud Min (0-59)</string>
+    <string name="fish_1_form_row_latitude_direction">Latitud Dir</string>
+    <string name="fish_1_form_row_longitude_degrees">Longitud Deg</string>
+    <string name="fish_1_form_row_longitude_minutes">Longitud Min (0-59)</string>
+    <string name="fish_1_form_row_longitude_direction">Longitud Dir</string>
     <string name="fish_1_form_row_ices_area">ICES Area</string>
-    <string name="fish_1_form_row_gear">Gear</string>
-    <string name="fish_1_form_row_mesh_size">Mesh Size (mm)</string>
-    <string name="fish_1_form_row_species">Species</string>
+    <string name="fish_1_form_row_gear">Arte de pesca</string>
+    <string name="fish_1_form_row_mesh_size">Tamaño de malla (mm)</string>
+    <string name="fish_1_form_row_species">Especies</string>
     <string name="fish_1_form_row_state">State</string>
     <string name="fish_1_form_row_presentation">Presentation</string>
-    <string name="fish_1_form_row_weight">Wt. (kg)</string>
+    <string name="fish_1_form_row_weight">Peso (kg)</string>
     <string name="fish_1_form_row_dis">DIS</string>
     <string name="fish_1_form_row_bms">BMS</string>
     <string name="fish_1_form_row_number_pots_hauled">Number of Pots Hauled</string>
@@ -215,18 +215,18 @@
     <string name="fish_1_form_row_landing_or_discard_date_not_set">Fecha de desembarque no registrada</string>
     <string name="fish_1_form_row_select_landing_or_discard_date">Fecha de desembarque</string>
     <string name="fish_1_form_row_transporter_reg_etc">Detalles del comprador</string>
-    <string name="fish_1_form_row_save">Save Form Row</string>
-    <string name="fish_1_form_row_delete">Delete Form Row</string>
-    <string name="duplicated_fish_1_form_row">FISH1 Form Row duplicated</string>
+    <string name="fish_1_form_row_save">Grabar datos de faena de pesca</string>
+    <string name="fish_1_form_row_delete">Borrar datos de faena de pesca</string>
+    <string name="duplicated_fish_1_form_row">Duplicar faena de pesca</string>
 
     <!-- FISH1 Form Row Deletion -->
 
-    <string name="fish_1_form_row_deletion_confirmation_message">"Are you sure you want to delete this row?"</string>
+    <string name="fish_1_form_row_deletion_confirmation_message">"Está seguro que desea eliminar esta faena de pesca?"</string>
 
     <!-- Map -->
 
-    <string name="title_activity_map">Map (last 24hrs)</string>
-    <string name="title_activity_map_custom">Map (%s)</string>
+    <string name="title_activity_map">Mapa (últimas 24 horas)</string>
+    <string name="title_activity_map_custom">Mapa (%s)</string>
 
     <!-- Location Tracking -->
 
