@@ -229,30 +229,6 @@ public class EditFish1FormActivity extends EditingActivity implements AdapterVie
                                                         upper.getTime());
                                 if (point != null) {
                                     rows.add(new Fish1FormRow(fish1Form, point));
-                                    //Need to check if fishing activity moved into another ICES Area
-                                    while (point != null &&
-                                            point.getTimestamp().before(upper.getTime())) {
-                                        Map<Integer, Double> bounds =
-                                                point.getIcesRectangleBounds();
-                                        if (bounds == null) {
-                                            point = EditFish1FormActivity.this.db.catchDao()
-                                                    .getFirstValidIcesFishingLocationBetweenDates(
-                                                            point.getTimestamp(), upper.getTime());
-                                        }
-                                        else {
-                                            point = EditFish1FormActivity.this.db.catchDao()
-                                                    .getFirstFishingLocationOutsideBoundsBetweenDates(
-                                                            point.getTimestamp(),
-                                                            upper.getTime(),
-                                                            bounds.get(CatchLocation.LOWER_LAT),
-                                                            bounds.get(CatchLocation.UPPER_LAT),
-                                                            bounds.get(CatchLocation.LOWER_LONG),
-                                                            bounds.get(CatchLocation.UPPER_LONG));
-                                        }
-                                        if (point != null) {
-                                            rows.add(new Fish1FormRow(fish1Form, point));
-                                        }
-                                    }
                                 }
                             }
                             EditFish1FormActivity.this.db.catchDao().insertFish1FormRows(rows);
@@ -656,8 +632,6 @@ public class EditFish1FormActivity extends EditingActivity implements AdapterVie
                 rowToWrite = Csv.appendToCsvRow(rowToWrite, cal, false, this);
                 rowToWrite = Csv.appendToCsvRow(rowToWrite,
                         formRow.getCoordinates(), false, this);
-                rowToWrite = Csv.appendToCsvRow(rowToWrite,
-                        formRow.getIcesArea(), true, this);
                 final String rowSoFar = rowToWrite;
                 //Need another thread for the database request
                 Callable<String> c = new Callable<String>() {

@@ -7,10 +7,8 @@ import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
 import android.text.InputFilter;
 import android.text.Spanned;
-import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
@@ -68,7 +66,6 @@ public class EditFish1FormRowActivity extends EditingActivity implements Adapter
     EditText longitudeDegrees;
     EditText longitudeMinutes;
     String longitudeDirectionValue;
-    EditText icesArea;
     EditText meshSize;
     EditText weight;
     CheckBox dis;
@@ -175,39 +172,17 @@ public class EditFish1FormRowActivity extends EditingActivity implements Adapter
 
         fishingActivityDateDisplay = (TextView) findViewById(R.id.fishing_activity_date);
 
-        TextWatcher coordWatcher = new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                EditFish1FormRowActivity.this.updateIcesAreaValue();
-            }
-        };
-
         latitudeDegrees = (EditText) findViewById(R.id.latitude_degrees);
-        latitudeDegrees.addTextChangedListener(coordWatcher);
         latitudeDegrees.setFilters(new InputFilter[]{ new InputFilterMinMax("0", "180") });
         latitudeMinutes = (EditText) findViewById(R.id.latitude_minutes);
-        latitudeMinutes.addTextChangedListener(coordWatcher);
         latitudeMinutes.setFilters(new InputFilter[]{ new InputFilterMinMax("0", "59") });
         this.createSpinner(LATITUDE_DIRECTION_KEY, R.id.latitude_direction);
         longitudeDegrees = (EditText) findViewById(R.id.longitude_degrees);
-        longitudeDegrees.addTextChangedListener(coordWatcher);
         longitudeDegrees.setFilters(new InputFilter[]{ new InputFilterMinMax("0", "90") });
         longitudeMinutes = (EditText) findViewById(R.id.longitude_minutes);
-        longitudeMinutes.addTextChangedListener(coordWatcher);
         longitudeMinutes.setFilters(new InputFilter[]{ new InputFilterMinMax("0", "59") });
         this.createSpinner(LONGITUDE_DIRECTION_KEY, R.id.longitude_direction);
 
-        icesArea = (EditText) findViewById(R.id.ices_area);
         this.createSpinner(GEAR_KEY, R.id.gear);
         meshSize = (EditText) findViewById(R.id.mesh_size);
         this.createSpinner(SPECIES_KEY, R.id.species);
@@ -298,9 +273,6 @@ public class EditFish1FormRowActivity extends EditingActivity implements Adapter
             meshSize.setText(this.prefs.getString(getString(R.string.pref_mesh_size_key), ""));
         }
         if (fish1FormRow != null
-                && fish1FormRow.getIcesArea() != null && !fish1FormRow.getIcesArea().equals(""))
-            icesArea.setText(fish1FormRow.getIcesArea());
-        if (fish1FormRow != null
                 && fish1FormRow.getLandingOrDiscardDate() != null) {
             landingOrDiscardDate = fish1FormRow.getLandingOrDiscardDate();
             this.updateDateDisplay(landingOrDiscardDate, landingOrDiscardDateDisplay,
@@ -315,30 +287,6 @@ public class EditFish1FormRowActivity extends EditingActivity implements Adapter
                     this.prefs.getString(getString(R.string.pref_buyer_details_key), ""));
         }
 
-    }
-
-    private void updateIcesAreaValue() {
-        if (latitudeDegrees.getText() != null && !latitudeDegrees.getText().toString().equals("")
-                && latitudeMinutes.getText() != null && !latitudeMinutes.getText().toString().equals("")
-                && latitudeDirectionValue != null
-                && longitudeDegrees.getText() != null && !longitudeDegrees.getText().toString().equals("")
-                && longitudeMinutes.getText() != null && !longitudeMinutes.getText().toString().equals("")
-                && longitudeDirectionValue != null) {
-            icesArea.setText(
-                    CatchLocation.getIcesRectangle(
-                            CatchLocation.getDecimalCoordinate(
-                                    Integer.parseInt(latitudeDegrees.getText().toString()),
-                                    Integer.parseInt(latitudeMinutes.getText().toString()),
-                                    latitudeDirectionValue
-                            ),
-                            CatchLocation.getDecimalCoordinate(
-                                    Integer.parseInt(longitudeDegrees.getText().toString()),
-                                    Integer.parseInt(longitudeMinutes.getText().toString()),
-                                    longitudeDirectionValue
-                            )
-                    )
-            );
-        }
     }
 
     private void setListeners() {
@@ -379,9 +327,6 @@ public class EditFish1FormRowActivity extends EditingActivity implements Adapter
                         dataEntered = true;
                     }
                 } catch (NumberFormatException nfe) {
-                }
-                if (fish1FormRow.setIcesArea(icesArea.getText().toString())) {
-                    dataEntered = true;
                 }
                 try {
                     if (fish1FormRow.setGearId(gearIdValue)) {
@@ -678,11 +623,9 @@ public class EditFish1FormRowActivity extends EditingActivity implements Adapter
                 break;
             case R.id.latitude_direction:
                 this.latitudeDirectionValue = ((String) parent.getItemAtPosition(pos));
-                this.updateIcesAreaValue();
                 break;
             case R.id.longitude_direction:
                 this.longitudeDirectionValue = ((String) parent.getItemAtPosition(pos));
-                this.updateIcesAreaValue();
                 break;
         }
     }
