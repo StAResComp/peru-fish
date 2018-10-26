@@ -185,7 +185,7 @@
     <string name="csv_total_pots_fishing"># Total Pots Fishing: %s</string>
     <string name="csv_comments_buyers_information"># Comment and Buyers Information: %s</string>
     <string name="csv_header_row">
-        Fishing Activity Date,Lat/Long,Stat Rect / ICES Area,Gear,Mesh Size,Species,State,Presentation,Weight,DIS,BMS,Number of Pots Hauled,Fecha de desembarque,\"Detalles del comprador\"
+        Fishing Activity Date,Lat/Long,Gear,Mesh Size,Species,Weight,Fecha de desembarque,\"Detalles del comprador\"
     </string>
     <string name="csv_saved">CSV file saved for attaching to email as %s</string>
     <string name="csv_not_saved">Unable to create email attachment</string>
