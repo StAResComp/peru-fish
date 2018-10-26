@@ -14,7 +14,6 @@ import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -68,9 +67,6 @@ public class EditFish1FormRowActivity extends EditingActivity implements Adapter
     String longitudeDirectionValue;
     EditText meshSize;
     EditText weight;
-    CheckBox dis;
-    CheckBox bms;
-    EditText numberOfPotsHauled;
     TextView landingOrDiscardDateDisplay;
     Date landingOrDiscardDate;
     EditText transporterRegEtc;
@@ -189,9 +185,6 @@ public class EditFish1FormRowActivity extends EditingActivity implements Adapter
         this.createSpinner(STATE_KEY, R.id.state);
         this.createSpinner(PRESENTATION_KEY, R.id.presentation);
         weight = (EditText) findViewById(R.id.weight);
-        dis = (CheckBox) findViewById(R.id.dis);
-        bms = (CheckBox) findViewById(R.id.bms);
-        numberOfPotsHauled = (EditText) findViewById(R.id.number_of_pots_hauled);
         landingOrDiscardDateDisplay = (TextView) findViewById(R.id.landing_or_discard_date);
         transporterRegEtc = (EditText) findViewById(R.id.transporter_reg_etc);
 
@@ -259,9 +252,6 @@ public class EditFish1FormRowActivity extends EditingActivity implements Adapter
                     spinners.get(PRESENTATION_KEY).setSelection(i);
             }
             weight.setText(Double.toString(fish1FormRow.getWeight()));
-            dis.setChecked(fish1FormRow.isDis());
-            bms.setChecked(fish1FormRow.isBms());
-            numberOfPotsHauled.setText(Integer.toString(fish1FormRow.getNumberOfPotsHauled()));
             for (int i = 0; i < adapters.get(GEAR_KEY).getCount(); i++) {
                 if (fish1FormRow.getGearId() != null
                         && ((Gear) adapters.get(GEAR_KEY).getItem(i)).getId()
@@ -350,19 +340,6 @@ public class EditFish1FormRowActivity extends EditingActivity implements Adapter
                 }
                 try {
                     if (fish1FormRow.setWeight(Double.parseDouble(weight.getText().toString()))) {
-                        dataEntered = true;
-                    }
-                } catch (NumberFormatException nfe) {
-                }
-                if (fish1FormRow.setDis(dis.isChecked())) {
-                    dataEntered = true;
-                }
-                if (fish1FormRow.setBms(bms.isChecked())) {
-                    dataEntered = true;
-                }
-                try {
-                    if (fish1FormRow.setNumberOfPotsHauled(
-                            Integer.parseInt(numberOfPotsHauled.getText().toString()))) {
                         dataEntered = true;
                     }
                 } catch (NumberFormatException nfe) {

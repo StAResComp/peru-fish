@@ -698,13 +698,6 @@ public class EditFish1FormActivity extends EditingActivity implements AdapterVie
                 }
                 rowToWrite = Csv.appendToCsvRow(
                         rowToWrite, formRow.getWeight(), false, this);
-                rowToWrite = Csv.appendToCsvRow(
-                        rowToWrite, formRow.isDis(), false, this);
-                rowToWrite = Csv.appendToCsvRow(
-                        rowToWrite, formRow.isBms(), false, this);
-                rowToWrite = Csv.appendToCsvRow(
-                        rowToWrite,
-                        formRow.getNumberOfPotsHauled(), false, this);
                 cal = Calendar.getInstance();
                 if (formRow.getLandingOrDiscardDate() != null) {
                     cal.setTime(formRow.getLandingOrDiscardDate());

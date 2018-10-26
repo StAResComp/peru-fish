@@ -227,47 +227,6 @@
                 android:layout_height="1dip"
                 android:background="#999999" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal">
-
-                <CheckBox
-                    android:id="@+id/dis"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight=".25"
-                    android:text="@string/fish_1_form_row_dis" />
-
-                <CheckBox
-                    android:id="@+id/bms"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight=".25"
-                    android:text="@string/fish_1_form_row_bms" />
-
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight=".50">
-
-                    <android.support.design.widget.TextInputEditText
-                        android:id="@+id/number_of_pots_hauled"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="@string/fish_1_form_row_number_pots_hauled"
-                        android:inputType="number" />
-
-                </android.support.design.widget.TextInputLayout>
-
-            </LinearLayout>
-
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="1dip"
-                android:background="#999999" />
-
             <TextView
                 style="@android:style/TextAppearance.Medium"
                 android:id="@+id/landing_or_discard_date"
