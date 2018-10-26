@@ -129,7 +129,7 @@
     <string name="stopped_tracking_location">Paró de grabar coordenadas</string>
     <string name="started_fishing">Recorded location information will now indicate that you are fishing</string>
     <string name="stopped_fishing">Recorded location information will no longer indicate that you are fishing</string>
-    <string name="fish_1_forms_header">FISH1 Forms (for owners of vessels 10m and under only)</string>
+    <string name="fish_1_forms_header">Reporte semanal de faenas </string>
 
     <!-- FISH1 Form Creation -->
 
@@ -155,9 +155,9 @@
     <string name="fish_1_form_add_row">Añadir otra faena de pesca</string>
     <string name="fish_1_form_save">Grabar datos</string>
     <string name="fish_1_form_delete">Borrar faena de pesca</string>
-    <string name="fish_1_form_rows_header">FISH1 Form Rows</string>
+    <string name="fish_1_form_rows_header">Faenas de pesca</string>
     <string name="fish_1_form_error_retrieving_from_database">Error retrieving FISH1 form from database</string>
-    <string name="fish_1_form_error_creating_new_form">Error creating new FISH1 form</string>
+    <string name="fish_1_form_error_creating_new_form">Error creando nueva faena de pesca</string>
     <string name="fish_1_form_loading_ports_list">Error loading ports from database</string>
     <string name="fish_1_form_error_deleting_form">Error deleting form</string>
 
@@ -167,8 +167,8 @@
 
     <!-- FISH1 Form Email -->
 
-    <string name="fish_1_form_email_subject">FISH1 Form</string>
-    <string name="fish_1_form_email_text">Please find FISH1 Form attached.</string>
+    <string name="fish_1_form_email_subject">Semana de pesca</string>
+    <string name="fish_1_form_email_text">Adjunto la información de mi semana de pesca.</string>
     <string name="fish_1_form_email_intent_title">Send message&#8230;</string>
 
     <!-- FISH1 Form CSV -->
@@ -230,14 +230,13 @@
 
     <!-- Location Tracking -->
 
-    <string name="location_tracking_notification_channel_name">SIFIDS Location Tracking</string>
-    <string name="location_tracking_notification_title">Tracking location</string>
-    <string name="location_tracking_notification_text">The SIFIDS app is tracking your location</string>
+    <string name="location_tracking_notification_channel_name">Trayectoria</string>
+    <string name="location_tracking_notification_title">Grabando trayectoria</string>
+    <string name="location_tracking_notification_text">El aplicativo está grabando sus coordenadas</string>
     <string name="location_tracking_disclaimer">
-        Any location data recorded by this app will be uploaded silently to a server at the University of St Andrews as part of the SIFIDS project.
-        The uploaded data comprises the PLN of your vessel (please set this if you haven\'t already),
-        along with the latitude, longitude, timestamp and indicator of fishing activity for each recorded location.
-        Please email us at SIFIDS.app@gmail.com for more information or contact the SIFIDS Freephone helpline 08000 433474.
+        Las coordenadas grabadas por este aplicativo serán enviadas a un servidor de la Universidad de St. Andrews, Escocia.
+        Los datos transmitidos incluyen el número de placa, latitud, longitud, hora y fecha.
+
     </string>
 
     <!-- Sending Data to Server -->
@@ -246,11 +245,11 @@
 
     <!-- Observations -->
 
-    <string name="title_activity_record_observation">Record Observation</string>
+    <string name="title_activity_record_observation">Otras especies</string>
     <string name="observation_what_did_you_see">What did you see?</string>
     <string name="observation_do_you_know_species">Are you sure of the species?</string>
-    <string name="observation_select_species">Please select the species from the list.</string>
-    <string name="observation_species_prompt">Species</string>
+    <string name="observation_select_species">Seleccione una especie de la lista</string>
+    <string name="observation_species_prompt">Especies</string>
     <string name="observation_other_species_text">
         If you saw a species which isn\'t listed, please tap \"Other species\" and include species details in the notes at the end.</string>
     <string name="observation_other_species_button">Other species</string>
@@ -278,7 +277,7 @@
 
     <!-- About -->
 
-    <string name="title_activity_about">About this App</string>
+    <string name="title_activity_about">Sobre el aplicativo</string>
     <string name="about_version_header">Version</string>
     <string name="about_version_current_version">Current version: %s</string>
     <string name="about_version_updates">New releases are made available via https://github.com/StAResComp/sifids/releases</string>
