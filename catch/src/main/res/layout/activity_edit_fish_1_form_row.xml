@@ -190,22 +190,6 @@
                 android:gravity="center_horizontal"
                 android:orientation="horizontal">
 
-                <Spinner
-                    android:id="@+id/state"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight=".40"
-                    android:prompt="@string/fish_1_form_row_state"
-                    android:spinnerMode="dropdown" />
-
-                <Spinner
-                    android:id="@+id/presentation"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight=".40"
-                    android:prompt="@string/fish_1_form_row_presentation"
-                    android:spinnerMode="dropdown" />
-
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"

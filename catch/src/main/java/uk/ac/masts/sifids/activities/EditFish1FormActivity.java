@@ -33,7 +33,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
@@ -42,9 +41,7 @@ import java.util.concurrent.Future;
 
 import uk.ac.masts.sifids.database.CatchDatabase;
 import uk.ac.masts.sifids.entities.CatchLocation;
-import uk.ac.masts.sifids.entities.CatchPresentation;
 import uk.ac.masts.sifids.entities.CatchSpecies;
-import uk.ac.masts.sifids.entities.CatchState;
 import uk.ac.masts.sifids.entities.Fish1Form;
 import uk.ac.masts.sifids.R;
 import uk.ac.masts.sifids.entities.Fish1FormRow;
@@ -641,10 +638,6 @@ public class EditFish1FormActivity extends EditingActivity implements AdapterVie
                                 .db.catchDao().getGearById(formRow.getGearId());
                         CatchSpecies species = EditFish1FormActivity.this
                                 .db.catchDao().getSpeciesById(formRow.getSpeciesId());
-                        CatchState state = EditFish1FormActivity.this
-                                .db.catchDao().getStateById(formRow.getStateId());
-                        CatchPresentation presentation = EditFish1FormActivity.this
-                                .db.catchDao().getPresentationById(formRow.getPresentationId());
                         String row = rowSoFar;
                         if (gear != null) {
                             row = Csv.appendToCsvRow(
@@ -661,24 +654,6 @@ public class EditFish1FormActivity extends EditingActivity implements AdapterVie
                         if (species != null) {
                             row = Csv.appendToCsvRow(
                                     row, species.toString(), true,
-                                    EditFish1FormActivity.this);
-                        } else {
-                            row = Csv.appendToCsvRow(
-                                    row, null, false,
-                                    EditFish1FormActivity.this);
-                        }
-                        if (state != null) {
-                            row = Csv.appendToCsvRow(
-                                    row, state.getName(), true,
-                                    EditFish1FormActivity.this);
-                        } else {
-                            row = Csv.appendToCsvRow(
-                                    row, null, false,
-                                    EditFish1FormActivity.this);
-                        }
-                        if (presentation != null) {
-                            row = Csv.appendToCsvRow(
-                                    row, presentation.getName(), true,
                                     EditFish1FormActivity.this);
                         } else {
                             row = Csv.appendToCsvRow(

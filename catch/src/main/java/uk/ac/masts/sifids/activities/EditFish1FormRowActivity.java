@@ -36,9 +36,7 @@ import java.util.concurrent.Future;
 
 import uk.ac.masts.sifids.R;
 import uk.ac.masts.sifids.entities.CatchLocation;
-import uk.ac.masts.sifids.entities.CatchPresentation;
 import uk.ac.masts.sifids.entities.CatchSpecies;
-import uk.ac.masts.sifids.entities.CatchState;
 import uk.ac.masts.sifids.entities.EntityWithId;
 import uk.ac.masts.sifids.entities.Fish1Form;
 import uk.ac.masts.sifids.entities.Fish1FormRow;
@@ -79,14 +77,10 @@ public class EditFish1FormRowActivity extends EditingActivity implements Adapter
     Map<String, List> spinnerLists;
     final String GEAR_KEY = "gear";
     final String SPECIES_KEY = "species";
-    final String STATE_KEY = "state";
-    final String PRESENTATION_KEY = "presentation";
     final String LATITUDE_DIRECTION_KEY = "latitude_direction";
     final String LONGITUDE_DIRECTION_KEY = "longitude_direction";
     int gearIdValue;
     int speciesIdValue;
-    int stateIdValue;
-    int presentationIdValue;
     Date minDate;
     Date maxDate;
 
@@ -154,8 +148,6 @@ public class EditFish1FormRowActivity extends EditingActivity implements Adapter
 
         this.spinnerLists.put(GEAR_KEY, new ArrayList<Gear>());
         this.spinnerLists.put(SPECIES_KEY, new ArrayList<CatchSpecies>());
-        this.spinnerLists.put(STATE_KEY, new ArrayList<CatchState>());
-        this.spinnerLists.put(PRESENTATION_KEY, new ArrayList<CatchPresentation>());
         this.spinnerLists.put(LATITUDE_DIRECTION_KEY,
                 new ArrayList<>(Arrays.asList(getString(R.string.n), getString(R.string.s))));
         this.spinnerLists.put(LONGITUDE_DIRECTION_KEY,
@@ -182,8 +174,6 @@ public class EditFish1FormRowActivity extends EditingActivity implements Adapter
         this.createSpinner(GEAR_KEY, R.id.gear);
         meshSize = (EditText) findViewById(R.id.mesh_size);
         this.createSpinner(SPECIES_KEY, R.id.species);
-        this.createSpinner(STATE_KEY, R.id.state);
-        this.createSpinner(PRESENTATION_KEY, R.id.presentation);
         weight = (EditText) findViewById(R.id.weight);
         landingOrDiscardDateDisplay = (TextView) findViewById(R.id.landing_or_discard_date);
         transporterRegEtc = (EditText) findViewById(R.id.transporter_reg_etc);
@@ -238,18 +228,6 @@ public class EditFish1FormRowActivity extends EditingActivity implements Adapter
                         && ((CatchSpecies) adapters.get(SPECIES_KEY).getItem(i)).getId()
                         == fish1FormRow.getSpeciesId())
                     spinners.get(SPECIES_KEY).setSelection(i);
-            }
-            for (int i = 0; i < adapters.get(STATE_KEY).getCount(); i++) {
-                if (fish1FormRow.getStateId() != null
-                        && ((CatchState) adapters.get(STATE_KEY).getItem(i)).getId()
-                        == fish1FormRow.getStateId())
-                    spinners.get(STATE_KEY).setSelection(i);
-            }
-            for (int i = 0; i < adapters.get(PRESENTATION_KEY).getCount(); i++) {
-                if (fish1FormRow.getPresentationId() != null
-                        && ((CatchPresentation) adapters.get(PRESENTATION_KEY).getItem(i)).getId()
-                        == fish1FormRow.getPresentationId())
-                    spinners.get(PRESENTATION_KEY).setSelection(i);
             }
             weight.setText(Double.toString(fish1FormRow.getWeight()));
             for (int i = 0; i < adapters.get(GEAR_KEY).getCount(); i++) {
@@ -330,12 +308,6 @@ public class EditFish1FormRowActivity extends EditingActivity implements Adapter
                 } catch (NumberFormatException nfe) {
                 }
                 if (fish1FormRow.setSpeciesId(speciesIdValue)) {
-                    dataEntered = true;
-                }
-                if (fish1FormRow.setStateId(stateIdValue)) {
-                    dataEntered = true;
-                }
-                if (fish1FormRow.setPresentationId(presentationIdValue)) {
                     dataEntered = true;
                 }
                 try {
@@ -511,12 +483,6 @@ public class EditFish1FormRowActivity extends EditingActivity implements Adapter
                 }
                 EditFish1FormRowActivity.this.spinnerLists.put(
                         EditFish1FormRowActivity.this.SPECIES_KEY, speciesList);
-                EditFish1FormRowActivity.this.spinnerLists.put(
-                        EditFish1FormRowActivity.this.STATE_KEY,
-                        EditFish1FormRowActivity.this.db.catchDao().getStates());
-                EditFish1FormRowActivity.this.spinnerLists.put(
-                        EditFish1FormRowActivity.this.PRESENTATION_KEY,
-                        EditFish1FormRowActivity.this.db.catchDao().getPresentations());
             }
         };
 
@@ -590,13 +556,6 @@ public class EditFish1FormRowActivity extends EditingActivity implements Adapter
                 break;
             case R.id.species:
                 this.speciesIdValue = ((CatchSpecies) parent.getItemAtPosition(pos)).getId();
-                break;
-            case R.id.state:
-                this.stateIdValue = ((CatchState) parent.getItemAtPosition(pos)).getId();
-                break;
-            case R.id.presentation:
-                this.presentationIdValue =
-                        ((CatchPresentation) parent.getItemAtPosition(pos)).getId();
                 break;
             case R.id.latitude_direction:
                 this.latitudeDirectionValue = ((String) parent.getItemAtPosition(pos));
