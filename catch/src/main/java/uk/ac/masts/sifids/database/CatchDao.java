@@ -108,17 +108,23 @@ public interface CatchDao {
     @Query("SELECT * FROM port")
     public List<Port> getPorts();
 
+    @Query("SELECT * FROM port LIMIT 1")
+    public int getPortId();
+
     @Query("SELECT name FROM port WHERE id IN(:ids)")
     public List<String> getPortNames(Set<String> ids);
 
     @Query("SELECT * FROM fishery_office")
     public List<FisheryOffice> getOffices();
 
-    @Query("SELECT * FROM fishery_office WHERE id = :id")
-    public FisheryOffice getOffice(Integer id);
+    @Query("SELECT * FROM fishery_office LIMIT 1")
+    public FisheryOffice getOffice();
 
     @Query("SELECT COUNT(*) FROM fishery_office")
     public int countOffices();
+
+    @Query("SELECT COUNT(*) FROM port")
+    public int countPorts();
 
     @Query("SELECT * FROM gear WHERE id = :id")
     public Gear getGearById(Integer id);

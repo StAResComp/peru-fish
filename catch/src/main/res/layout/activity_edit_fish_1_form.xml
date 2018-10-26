@@ -34,18 +34,6 @@
                     android:layout_height="wrap_content">
 
                     <android.support.design.widget.TextInputEditText
-                        android:id="@+id/fishery_office"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="@string/fish_1_form_fishery_office" />
-
-                </android.support.design.widget.TextInputLayout>
-
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <android.support.design.widget.TextInputEditText
                         android:id="@+id/fishery_office_email"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -160,19 +148,6 @@
                         android:layout_height="wrap_content"
                         android:hint="@string/fish_1_form_address"
                         android:inputType="textCapWords" />
-
-                </android.support.design.widget.TextInputLayout>
-
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <android.support.design.widget.TextInputEditText
-                        android:id="@+id/total_pots_fishing"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="@string/fish_1_form_total_pots_fishing"
-                        android:inputType="number" />
 
                 </android.support.design.widget.TextInputLayout>
 

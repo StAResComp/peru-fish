@@ -67,7 +67,6 @@ public class CatchApplication extends Application {
                 }
             };
             bindService(new Intent(this, CatchLocationService.class), connection, Context.BIND_AUTO_CREATE);
-//            unbindService(connection);
         }
     }
 
@@ -88,44 +87,11 @@ public class CatchApplication extends Application {
     }
 
     public void redirectIfNecessary() {
-        if (!hasConsented()) {
-            Toast.makeText(getBaseContext(), getString(R.string.need_to_consent),
-                    Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(this, SettingsActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            intent.putExtra(PreferenceActivity.EXTRA_SHOW_FRAGMENT, SettingsActivity.ConsentDetailsPreferenceFragment.class.getName());
-            startActivity(intent);
-        }
-        else if (!hasSetMinimumPreferences()) {
+        if (!hasSetMinimumPreferences()) {
             Intent intent = new Intent(this, SettingsActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
         }
-    }
-
-    private boolean hasConsented() {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        return (prefs.getBoolean(getString(R.string.consent_read_understand_key), false)
-                && prefs.getBoolean(getString(R.string.consent_questions_opportunity_key), false)
-                && prefs.getBoolean(getString(R.string.consent_questions_answered_key), false)
-                && prefs.getBoolean(getString(R.string.consent_can_withdraw_key), false)
-                && prefs.getBoolean(getString(R.string.consent_confidential_key), false)
-                && prefs.getBoolean(getString(R.string.consent_data_archiving_key), false)
-                && prefs.getBoolean(getString(R.string.consent_risks_key), false)
-                && prefs.getBoolean(getString(R.string.consent_take_part_key), false)
-                && prefs.getBoolean(getString(R.string.consent_photography_capture_key), false)
-                && prefs.getBoolean(getString(R.string.consent_photography_publication_key), false)
-                && prefs.getBoolean(getString(R.string.consent_photography_future_studies_key), false)
-                && !prefs.getString(getString(R.string.consent_name_key), "").isEmpty()
-                && !prefs.getString(getString(R.string.consent_email_key), "").isEmpty()
-                && !prefs.getString(getString(R.string.consent_phone_key), "").isEmpty()
-                && prefs.getBoolean(getString(R.string.consent_fish_1_key), false)
-                && !prefs.getString(getString(R.string.consent_name_key), "").isEmpty()
-                && !prefs.getString(getString(R.string.pref_vessel_pln_key), "").isEmpty()
-                && !prefs.getString(getString(R.string.pref_vessel_name_key), "").isEmpty()
-                && !prefs.getString(getString(R.string.pref_owner_master_name_key), "").isEmpty()
-                && prefs.getBoolean(getString(R.string.consent_confirmed_key), false)
-                );
     }
 
     private boolean hasSetMinimumPreferences() {

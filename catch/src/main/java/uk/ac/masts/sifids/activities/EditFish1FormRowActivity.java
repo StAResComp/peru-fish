@@ -7,16 +7,13 @@ import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
 import android.text.InputFilter;
 import android.text.Spanned;
-import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -39,9 +36,7 @@ import java.util.concurrent.Future;
 
 import uk.ac.masts.sifids.R;
 import uk.ac.masts.sifids.entities.CatchLocation;
-import uk.ac.masts.sifids.entities.CatchPresentation;
 import uk.ac.masts.sifids.entities.CatchSpecies;
-import uk.ac.masts.sifids.entities.CatchState;
 import uk.ac.masts.sifids.entities.EntityWithId;
 import uk.ac.masts.sifids.entities.Fish1Form;
 import uk.ac.masts.sifids.entities.Fish1FormRow;
@@ -68,12 +63,8 @@ public class EditFish1FormRowActivity extends EditingActivity implements Adapter
     EditText longitudeDegrees;
     EditText longitudeMinutes;
     String longitudeDirectionValue;
-    EditText icesArea;
     EditText meshSize;
     EditText weight;
-    CheckBox dis;
-    CheckBox bms;
-    EditText numberOfPotsHauled;
     TextView landingOrDiscardDateDisplay;
     Date landingOrDiscardDate;
     EditText transporterRegEtc;
@@ -86,14 +77,10 @@ public class EditFish1FormRowActivity extends EditingActivity implements Adapter
     Map<String, List> spinnerLists;
     final String GEAR_KEY = "gear";
     final String SPECIES_KEY = "species";
-    final String STATE_KEY = "state";
-    final String PRESENTATION_KEY = "presentation";
     final String LATITUDE_DIRECTION_KEY = "latitude_direction";
     final String LONGITUDE_DIRECTION_KEY = "longitude_direction";
     int gearIdValue;
     int speciesIdValue;
-    int stateIdValue;
-    int presentationIdValue;
     Date minDate;
     Date maxDate;
 
@@ -161,8 +148,6 @@ public class EditFish1FormRowActivity extends EditingActivity implements Adapter
 
         this.spinnerLists.put(GEAR_KEY, new ArrayList<Gear>());
         this.spinnerLists.put(SPECIES_KEY, new ArrayList<CatchSpecies>());
-        this.spinnerLists.put(STATE_KEY, new ArrayList<CatchState>());
-        this.spinnerLists.put(PRESENTATION_KEY, new ArrayList<CatchPresentation>());
         this.spinnerLists.put(LATITUDE_DIRECTION_KEY,
                 new ArrayList<>(Arrays.asList(getString(R.string.n), getString(R.string.s))));
         this.spinnerLists.put(LONGITUDE_DIRECTION_KEY,
@@ -175,48 +160,21 @@ public class EditFish1FormRowActivity extends EditingActivity implements Adapter
 
         fishingActivityDateDisplay = (TextView) findViewById(R.id.fishing_activity_date);
 
-        TextWatcher coordWatcher = new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                EditFish1FormRowActivity.this.updateIcesAreaValue();
-            }
-        };
-
         latitudeDegrees = (EditText) findViewById(R.id.latitude_degrees);
-        latitudeDegrees.addTextChangedListener(coordWatcher);
         latitudeDegrees.setFilters(new InputFilter[]{ new InputFilterMinMax("0", "180") });
         latitudeMinutes = (EditText) findViewById(R.id.latitude_minutes);
-        latitudeMinutes.addTextChangedListener(coordWatcher);
         latitudeMinutes.setFilters(new InputFilter[]{ new InputFilterMinMax("0", "59") });
         this.createSpinner(LATITUDE_DIRECTION_KEY, R.id.latitude_direction);
         longitudeDegrees = (EditText) findViewById(R.id.longitude_degrees);
-        longitudeDegrees.addTextChangedListener(coordWatcher);
         longitudeDegrees.setFilters(new InputFilter[]{ new InputFilterMinMax("0", "90") });
         longitudeMinutes = (EditText) findViewById(R.id.longitude_minutes);
-        longitudeMinutes.addTextChangedListener(coordWatcher);
         longitudeMinutes.setFilters(new InputFilter[]{ new InputFilterMinMax("0", "59") });
         this.createSpinner(LONGITUDE_DIRECTION_KEY, R.id.longitude_direction);
 
-        icesArea = (EditText) findViewById(R.id.ices_area);
         this.createSpinner(GEAR_KEY, R.id.gear);
         meshSize = (EditText) findViewById(R.id.mesh_size);
         this.createSpinner(SPECIES_KEY, R.id.species);
-        this.createSpinner(STATE_KEY, R.id.state);
-        this.createSpinner(PRESENTATION_KEY, R.id.presentation);
         weight = (EditText) findViewById(R.id.weight);
-        dis = (CheckBox) findViewById(R.id.dis);
-        bms = (CheckBox) findViewById(R.id.bms);
-        numberOfPotsHauled = (EditText) findViewById(R.id.number_of_pots_hauled);
         landingOrDiscardDateDisplay = (TextView) findViewById(R.id.landing_or_discard_date);
         transporterRegEtc = (EditText) findViewById(R.id.transporter_reg_etc);
 
@@ -271,22 +229,7 @@ public class EditFish1FormRowActivity extends EditingActivity implements Adapter
                         == fish1FormRow.getSpeciesId())
                     spinners.get(SPECIES_KEY).setSelection(i);
             }
-            for (int i = 0; i < adapters.get(STATE_KEY).getCount(); i++) {
-                if (fish1FormRow.getStateId() != null
-                        && ((CatchState) adapters.get(STATE_KEY).getItem(i)).getId()
-                        == fish1FormRow.getStateId())
-                    spinners.get(STATE_KEY).setSelection(i);
-            }
-            for (int i = 0; i < adapters.get(PRESENTATION_KEY).getCount(); i++) {
-                if (fish1FormRow.getPresentationId() != null
-                        && ((CatchPresentation) adapters.get(PRESENTATION_KEY).getItem(i)).getId()
-                        == fish1FormRow.getPresentationId())
-                    spinners.get(PRESENTATION_KEY).setSelection(i);
-            }
             weight.setText(Double.toString(fish1FormRow.getWeight()));
-            dis.setChecked(fish1FormRow.isDis());
-            bms.setChecked(fish1FormRow.isBms());
-            numberOfPotsHauled.setText(Integer.toString(fish1FormRow.getNumberOfPotsHauled()));
             for (int i = 0; i < adapters.get(GEAR_KEY).getCount(); i++) {
                 if (fish1FormRow.getGearId() != null
                         && ((Gear) adapters.get(GEAR_KEY).getItem(i)).getId()
@@ -297,9 +240,6 @@ public class EditFish1FormRowActivity extends EditingActivity implements Adapter
         } else {
             meshSize.setText(this.prefs.getString(getString(R.string.pref_mesh_size_key), ""));
         }
-        if (fish1FormRow != null
-                && fish1FormRow.getIcesArea() != null && !fish1FormRow.getIcesArea().equals(""))
-            icesArea.setText(fish1FormRow.getIcesArea());
         if (fish1FormRow != null
                 && fish1FormRow.getLandingOrDiscardDate() != null) {
             landingOrDiscardDate = fish1FormRow.getLandingOrDiscardDate();
@@ -315,30 +255,6 @@ public class EditFish1FormRowActivity extends EditingActivity implements Adapter
                     this.prefs.getString(getString(R.string.pref_buyer_details_key), ""));
         }
 
-    }
-
-    private void updateIcesAreaValue() {
-        if (latitudeDegrees.getText() != null && !latitudeDegrees.getText().toString().equals("")
-                && latitudeMinutes.getText() != null && !latitudeMinutes.getText().toString().equals("")
-                && latitudeDirectionValue != null
-                && longitudeDegrees.getText() != null && !longitudeDegrees.getText().toString().equals("")
-                && longitudeMinutes.getText() != null && !longitudeMinutes.getText().toString().equals("")
-                && longitudeDirectionValue != null) {
-            icesArea.setText(
-                    CatchLocation.getIcesRectangle(
-                            CatchLocation.getDecimalCoordinate(
-                                    Integer.parseInt(latitudeDegrees.getText().toString()),
-                                    Integer.parseInt(latitudeMinutes.getText().toString()),
-                                    latitudeDirectionValue
-                            ),
-                            CatchLocation.getDecimalCoordinate(
-                                    Integer.parseInt(longitudeDegrees.getText().toString()),
-                                    Integer.parseInt(longitudeMinutes.getText().toString()),
-                                    longitudeDirectionValue
-                            )
-                    )
-            );
-        }
     }
 
     private void setListeners() {
@@ -380,9 +296,6 @@ public class EditFish1FormRowActivity extends EditingActivity implements Adapter
                     }
                 } catch (NumberFormatException nfe) {
                 }
-                if (fish1FormRow.setIcesArea(icesArea.getText().toString())) {
-                    dataEntered = true;
-                }
                 try {
                     if (fish1FormRow.setGearId(gearIdValue)) {
                         dataEntered = true;
@@ -397,27 +310,8 @@ public class EditFish1FormRowActivity extends EditingActivity implements Adapter
                 if (fish1FormRow.setSpeciesId(speciesIdValue)) {
                     dataEntered = true;
                 }
-                if (fish1FormRow.setStateId(stateIdValue)) {
-                    dataEntered = true;
-                }
-                if (fish1FormRow.setPresentationId(presentationIdValue)) {
-                    dataEntered = true;
-                }
                 try {
                     if (fish1FormRow.setWeight(Double.parseDouble(weight.getText().toString()))) {
-                        dataEntered = true;
-                    }
-                } catch (NumberFormatException nfe) {
-                }
-                if (fish1FormRow.setDis(dis.isChecked())) {
-                    dataEntered = true;
-                }
-                if (fish1FormRow.setBms(bms.isChecked())) {
-                    dataEntered = true;
-                }
-                try {
-                    if (fish1FormRow.setNumberOfPotsHauled(
-                            Integer.parseInt(numberOfPotsHauled.getText().toString()))) {
                         dataEntered = true;
                     }
                 } catch (NumberFormatException nfe) {
@@ -589,12 +483,6 @@ public class EditFish1FormRowActivity extends EditingActivity implements Adapter
                 }
                 EditFish1FormRowActivity.this.spinnerLists.put(
                         EditFish1FormRowActivity.this.SPECIES_KEY, speciesList);
-                EditFish1FormRowActivity.this.spinnerLists.put(
-                        EditFish1FormRowActivity.this.STATE_KEY,
-                        EditFish1FormRowActivity.this.db.catchDao().getStates());
-                EditFish1FormRowActivity.this.spinnerLists.put(
-                        EditFish1FormRowActivity.this.PRESENTATION_KEY,
-                        EditFish1FormRowActivity.this.db.catchDao().getPresentations());
             }
         };
 
@@ -669,20 +557,11 @@ public class EditFish1FormRowActivity extends EditingActivity implements Adapter
             case R.id.species:
                 this.speciesIdValue = ((CatchSpecies) parent.getItemAtPosition(pos)).getId();
                 break;
-            case R.id.state:
-                this.stateIdValue = ((CatchState) parent.getItemAtPosition(pos)).getId();
-                break;
-            case R.id.presentation:
-                this.presentationIdValue =
-                        ((CatchPresentation) parent.getItemAtPosition(pos)).getId();
-                break;
             case R.id.latitude_direction:
                 this.latitudeDirectionValue = ((String) parent.getItemAtPosition(pos));
-                this.updateIcesAreaValue();
                 break;
             case R.id.longitude_direction:
                 this.longitudeDirectionValue = ((String) parent.getItemAtPosition(pos));
-                this.updateIcesAreaValue();
                 break;
         }
     }

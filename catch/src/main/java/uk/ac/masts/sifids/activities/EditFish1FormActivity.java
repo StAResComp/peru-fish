@@ -33,7 +33,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -41,9 +41,7 @@ import java.util.concurrent.Future;
 
 import uk.ac.masts.sifids.database.CatchDatabase;
 import uk.ac.masts.sifids.entities.CatchLocation;
-import uk.ac.masts.sifids.entities.CatchPresentation;
 import uk.ac.masts.sifids.entities.CatchSpecies;
-import uk.ac.masts.sifids.entities.CatchState;
 import uk.ac.masts.sifids.entities.Fish1Form;
 import uk.ac.masts.sifids.R;
 import uk.ac.masts.sifids.entities.Fish1FormRow;
@@ -63,13 +61,11 @@ public class EditFish1FormActivity extends EditingActivity implements AdapterVie
     Fish1Form fish1Form;
 
     //Form elements
-    EditText fisheryOffice;
     EditText fisheryOfficeEmail;
     EditText pln;
     EditText vesselName;
     EditText ownerMaster;
     EditText address;
-    EditText totalPotsFishing;
     EditText comment;
     Spinner portOfDeparture;
     Spinner portOfLanding;
@@ -175,14 +171,7 @@ public class EditFish1FormActivity extends EditingActivity implements AdapterVie
                         //Use user preferences to create form
                         FisheryOffice fisheryOfficeObject =
                                 EditFish1FormActivity.this.db.catchDao()
-                                        .getOffice(
-                                                Integer.parseInt(
-                                                        EditFish1FormActivity.this.prefs.getString(
-                                                                getString(R.string.pref_fishery_office_key),
-                                                                "1"
-                                                        )
-                                                )
-                                        );
+                                        .getOffice();
                         if (fisheryOfficeObject != null) {
                             fish1Form.setFisheryOffice(
                                     String.format(
@@ -207,11 +196,6 @@ public class EditFish1FormActivity extends EditingActivity implements AdapterVie
                                 EditFish1FormActivity.this.prefs.getString(
                                         getString(R.string.pref_owner_master_address_key),
                                         ""));
-                        fish1Form.setTotalPotsFishing(
-                                Integer.parseInt(
-                                        EditFish1FormActivity.this.prefs.getString(
-                                                getString(R.string.pref_total_pots_fishing_key),
-                                                "0")));
                         long[] ids = EditFish1FormActivity.this.db
                                 .catchDao().insertFish1Forms(fish1Form);
                         fish1Form = EditFish1FormActivity.this.db.catchDao().getForm((int) ids[0]);
@@ -242,30 +226,6 @@ public class EditFish1FormActivity extends EditingActivity implements AdapterVie
                                                         upper.getTime());
                                 if (point != null) {
                                     rows.add(new Fish1FormRow(fish1Form, point));
-                                    //Need to check if fishing activity moved into another ICES Area
-                                    while (point != null &&
-                                            point.getTimestamp().before(upper.getTime())) {
-                                        Map<Integer, Double> bounds =
-                                                point.getIcesRectangleBounds();
-                                        if (bounds == null) {
-                                            point = EditFish1FormActivity.this.db.catchDao()
-                                                    .getFirstValidIcesFishingLocationBetweenDates(
-                                                            point.getTimestamp(), upper.getTime());
-                                        }
-                                        else {
-                                            point = EditFish1FormActivity.this.db.catchDao()
-                                                    .getFirstFishingLocationOutsideBoundsBetweenDates(
-                                                            point.getTimestamp(),
-                                                            upper.getTime(),
-                                                            bounds.get(CatchLocation.LOWER_LAT),
-                                                            bounds.get(CatchLocation.UPPER_LAT),
-                                                            bounds.get(CatchLocation.LOWER_LONG),
-                                                            bounds.get(CatchLocation.UPPER_LONG));
-                                        }
-                                        if (point != null) {
-                                            rows.add(new Fish1FormRow(fish1Form, point));
-                                        }
-                                    }
                                 }
                             }
                             EditFish1FormActivity.this.db.catchDao().insertFish1FormRows(rows);
@@ -288,21 +248,20 @@ public class EditFish1FormActivity extends EditingActivity implements AdapterVie
      * Build the user form - bind variables to XML elements
      */
     protected void buildForm() {
-        fisheryOffice = findViewById(R.id.fishery_office);
         fisheryOfficeEmail = findViewById(R.id.fishery_office_email);
         pln = findViewById(R.id.pln);
         vesselName = findViewById(R.id.vessel_name);
         ownerMaster = findViewById(R.id.owner_master);
         address = findViewById(R.id.address);
-        totalPotsFishing = findViewById(R.id.total_pots_fishing);
         comment = findViewById(R.id.comment);
         //Database queries can't be run on the UI thread
         Runnable r = new Runnable() {
             @Override
             public void run() {
-                ports = EditFish1FormActivity.this.db.catchDao().getPortNames(
-                        EditFish1FormActivity.this.prefs.getStringSet(
-                                getString(R.string.pref_port_key), new HashSet<String>()));
+                Set portsSet = new HashSet<String>();
+                portsSet.add(Integer.toString(EditFish1FormActivity.this.prefs.getInt(
+                        getString(R.string.pref_port_key),0)));
+                ports = EditFish1FormActivity.this.db.catchDao().getPortNames(portsSet);
             }
         };
         Thread newThread = new Thread(r);
@@ -347,13 +306,11 @@ public class EditFish1FormActivity extends EditingActivity implements AdapterVie
      */
     private void applyExistingValues() {
         if (fish1Form != null) {
-            fisheryOffice.setText(fish1Form.getFisheryOffice());
             fisheryOfficeEmail.setText(fish1Form.getEmail());
             pln.setText(fish1Form.getPln());
             vesselName.setText(fish1Form.getVesselName());
             ownerMaster.setText(fish1Form.getOwnerMaster());
             address.setText(fish1Form.getAddress());
-            totalPotsFishing.setText(Integer.toString(fish1Form.getTotalPotsFishing()));
             portOfDeparture.setSelection(
                     portOfDepartureAdapter.getPosition(fish1Form.getPortOfDeparture()));
             portOfLanding.setSelection(
@@ -488,14 +445,11 @@ public class EditFish1FormActivity extends EditingActivity implements AdapterVie
         }
         //Only write to the database if something has changed (or form is new)
         if (
-                create || fish1Form.setFisheryOffice(fisheryOffice.getText().toString())
-                        || fish1Form.setEmail(fisheryOfficeEmail.getText().toString())
+                create || fish1Form.setEmail(fisheryOfficeEmail.getText().toString())
                         || fish1Form.setPln(pln.getText().toString())
                         || fish1Form.setVesselName(vesselName.getText().toString())
                         || fish1Form.setOwnerMaster(ownerMaster.getText().toString())
                         || fish1Form.setAddress(address.getText().toString())
-                        || fish1Form.setTotalPotsFishing(
-                        Integer.parseInt(totalPotsFishing.getText().toString()))
                         || fish1Form.setCommentsAndBuyersInformation(
                         comment.getText().toString())
                         || fish1Form.setPortOfDeparture(portOfDepartureValue)
@@ -621,11 +575,6 @@ public class EditFish1FormActivity extends EditingActivity implements AdapterVie
             //Write form info as comments above CSV rows
             writer.write(
                     String.format(
-                            getString(R.string.csv_fishery_office),
-                            this.fisheryOffice.getText().toString()));
-            writer.newLine();
-            writer.write(
-                    String.format(
                             getString(R.string.csv_email),
                             this.fisheryOfficeEmail.getText().toString()));
             writer.newLine();
@@ -660,11 +609,6 @@ public class EditFish1FormActivity extends EditingActivity implements AdapterVie
             writer.newLine();
             writer.write(
                     String.format(
-                            getString(R.string.csv_total_pots_fishing),
-                            totalPotsFishing.getText().toString()));
-            writer.newLine();
-            writer.write(
-                    String.format(
                             getString(R.string.csv_comments_buyers_information),
                             comment.getText().toString()));
             writer.newLine();
@@ -685,8 +629,6 @@ public class EditFish1FormActivity extends EditingActivity implements AdapterVie
                 rowToWrite = Csv.appendToCsvRow(rowToWrite, cal, false, this);
                 rowToWrite = Csv.appendToCsvRow(rowToWrite,
                         formRow.getCoordinates(), false, this);
-                rowToWrite = Csv.appendToCsvRow(rowToWrite,
-                        formRow.getIcesArea(), true, this);
                 final String rowSoFar = rowToWrite;
                 //Need another thread for the database request
                 Callable<String> c = new Callable<String>() {
@@ -696,10 +638,6 @@ public class EditFish1FormActivity extends EditingActivity implements AdapterVie
                                 .db.catchDao().getGearById(formRow.getGearId());
                         CatchSpecies species = EditFish1FormActivity.this
                                 .db.catchDao().getSpeciesById(formRow.getSpeciesId());
-                        CatchState state = EditFish1FormActivity.this
-                                .db.catchDao().getStateById(formRow.getStateId());
-                        CatchPresentation presentation = EditFish1FormActivity.this
-                                .db.catchDao().getPresentationById(formRow.getPresentationId());
                         String row = rowSoFar;
                         if (gear != null) {
                             row = Csv.appendToCsvRow(
@@ -722,24 +660,6 @@ public class EditFish1FormActivity extends EditingActivity implements AdapterVie
                                     row, null, false,
                                     EditFish1FormActivity.this);
                         }
-                        if (state != null) {
-                            row = Csv.appendToCsvRow(
-                                    row, state.getName(), true,
-                                    EditFish1FormActivity.this);
-                        } else {
-                            row = Csv.appendToCsvRow(
-                                    row, null, false,
-                                    EditFish1FormActivity.this);
-                        }
-                        if (presentation != null) {
-                            row = Csv.appendToCsvRow(
-                                    row, presentation.getName(), true,
-                                    EditFish1FormActivity.this);
-                        } else {
-                            row = Csv.appendToCsvRow(
-                                    row, null, false,
-                                    EditFish1FormActivity.this);
-                        }
                         return row;
                     }
                 };
@@ -753,13 +673,6 @@ public class EditFish1FormActivity extends EditingActivity implements AdapterVie
                 }
                 rowToWrite = Csv.appendToCsvRow(
                         rowToWrite, formRow.getWeight(), false, this);
-                rowToWrite = Csv.appendToCsvRow(
-                        rowToWrite, formRow.isDis(), false, this);
-                rowToWrite = Csv.appendToCsvRow(
-                        rowToWrite, formRow.isBms(), false, this);
-                rowToWrite = Csv.appendToCsvRow(
-                        rowToWrite,
-                        formRow.getNumberOfPotsHauled(), false, this);
                 cal = Calendar.getInstance();
                 if (formRow.getLandingOrDiscardDate() != null) {
                     cal.setTime(formRow.getLandingOrDiscardDate());

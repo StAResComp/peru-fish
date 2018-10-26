@@ -1,7 +1,0 @@
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <uk.ac.masts.sifids.preferences.FisheryOfficePreference
-        android:key="@string/pref_fishery_office_key"
-        android:title="@string/pref_fishery_office_title" />
-
-</PreferenceScreen>
