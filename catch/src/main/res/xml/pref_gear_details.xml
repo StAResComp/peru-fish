@@ -4,9 +4,4 @@
         android:key="@string/pref_gear_key"
         android:title="@string/pref_gear_title" />
 
-    <EditTextPreference
-        android:inputType="number"
-        android:key="@string/pref_total_pots_fishing_key"
-        android:title="@string/pref_total_pots_fishing_title" />
-
 </PreferenceScreen>
