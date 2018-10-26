@@ -109,7 +109,6 @@ public class Fish1FormRow extends ChangeLoggingEntity{
         this.fishingActivityDate = point.getTimestamp();
         this.latitude = point.getLatitude();
         this.longitude = point.getLongitude();
-        this.icesArea = point.getIcesRectangle();
         this.updateDates();
     }
 
@@ -170,11 +169,6 @@ public class Fish1FormRow extends ChangeLoggingEntity{
     }
 
     public boolean setIcesArea(String icesArea) {
-        if (!icesArea.equals(this.getIcesArea())) {
-            this.icesArea = icesArea;
-            this.updateDates();
-            return true;
-        }
         return false;
     }
 
@@ -325,7 +319,7 @@ public class Fish1FormRow extends ChangeLoggingEntity{
         if (this.getFishingActivityDate() != null) {
             Calendar cal = Calendar.getInstance();
             cal.setTime(this.getFishingActivityDate());
-            return new SimpleDateFormat("dd MMM").format(cal.getTime()) + " " + this.getIcesArea();
+            return new SimpleDateFormat("dd MMM").format(cal.getTime());
         }
         else {
             return "Date not set";
@@ -349,9 +343,6 @@ public class Fish1FormRow extends ChangeLoggingEntity{
         } catch (Exception e) {}
         try {
             newRow.setLongitude(this.getLongitude());
-        } catch (Exception e) {}
-        try {
-            newRow.setIcesArea(this.getIcesArea());
         } catch (Exception e) {}
         try {
             newRow.setGearId(this.getGearId());
