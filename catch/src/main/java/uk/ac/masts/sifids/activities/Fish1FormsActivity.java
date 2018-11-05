@@ -44,7 +44,6 @@ public class Fish1FormsActivity extends AppCompatActivityWithMenuBar {
     CatchDatabase db;
     Calendar selectedWeekStart;
     Switch locationSwitch;
-    Switch fishingSwitch;
 
     final static int PERMISSION_REQUEST_FINE_LOCATION = 568;
 
@@ -69,7 +68,6 @@ public class Fish1FormsActivity extends AppCompatActivityWithMenuBar {
         });
 
         locationSwitch = findViewById(R.id.toggle_location_tracking);
-        fishingSwitch = findViewById(R.id.toggle_fishing);
 
         locationSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -85,25 +83,6 @@ public class Fish1FormsActivity extends AppCompatActivityWithMenuBar {
                             PERMISSION_REQUEST_FINE_LOCATION);
                 } else {
                     ((CatchApplication) Fish1FormsActivity.this.getApplication()).setTrackingLocation(isChecked);
-                    if (!isChecked) {
-                        ((Switch) findViewById(R.id.toggle_fishing)).setChecked(false);
-                    }
-                }
-            }
-        });
-
-        fishingSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                CatchApplication app = (CatchApplication) getApplication();
-                app.setFishing(isChecked);
-                if (isChecked) {
-                    ((Switch) findViewById(R.id.toggle_location_tracking)).setChecked(true);
-                    Toast.makeText(getBaseContext(), getString(R.string.started_fishing),
-                            Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(getBaseContext(), getString(R.string.stopped_fishing),
-                            Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -192,8 +171,6 @@ public class Fish1FormsActivity extends AppCompatActivityWithMenuBar {
         newThread.start();
 
         locationSwitch.setChecked(((CatchApplication) this.getApplication()).isTrackingLocation());
-
-        fishingSwitch.setChecked(((CatchApplication) this.getApplication()).isFishing());
     }
 
     @Override
