@@ -1,6 +1,7 @@
 package uk.ac.masts.sifids.entities;
 
 import android.arch.persistence.room.Entity;
+import android.location.Location;
 
 import com.google.android.gms.maps.model.LatLng;
 
@@ -29,10 +30,8 @@ public class CatchLocation extends ChangeLoggingEntity {
 
     public boolean uploaded;
 
-    public final static int LOWER_LAT = 0;
-    public final static int UPPER_LAT = 1;
-    public final static int LOWER_LONG = 2;
-    public final static int UPPER_LONG = 3;
+    public final static double PORT_LAT = -4.1775;
+    public final static double PORT_LONG = -81.13472222;
 
     public CatchLocation() {
         this.uploaded = false;
@@ -223,35 +222,9 @@ public class CatchLocation extends ChangeLoggingEntity {
         }
     }
 
-    public static List<CatchLocation> createTestLocations() {
-        List<CatchLocation> locations = new ArrayList<>();
-        Calendar cal = Calendar.getInstance(CatchApplication.TIME_ZONE);
-        cal.set(Calendar.HOUR_OF_DAY, 0);
-        cal.set(Calendar.MINUTE, 0);
-        cal.set(Calendar.SECOND, 0);
-        Calendar today = (Calendar) cal.clone();
-        cal.add(Calendar.DATE, -1 * (cal.get(Calendar.DAY_OF_WEEK) - 1));
-        ;
-        cal.add(Calendar.DATE, -30);
-        while (cal.before(today)) {
-            Calendar s = (Calendar) cal.clone();
-            s.set(Calendar.HOUR_OF_DAY, 9);
-            Random rand = new Random();
-            double lat = 36.0 + ((85.5 - 36.0) * rand.nextDouble());
-            double lon = -44.0 + ((68.5 - -44.0) * rand.nextDouble());
-            while (s.get(Calendar.HOUR_OF_DAY) < 16 && lat >= 36.0 && lat < 85.5 && lon >= -44.0 && lon < 68.5) {
-                CatchLocation location = new CatchLocation();
-                location.setLatitude(lat);
-                location.setLongitude(lon);
-                location.setTimestamp(s.getTime());
-                location.setFishing(true);
-                locations.add(location);
-                lat = (lat - 0.001) + (((lat + 0.001) - (lat - 0.001)) * rand.nextDouble());
-                lon = (lon - 0.001) + (((lon + 0.001) - (lon - 0.001)) * rand.nextDouble());
-                s.add(Calendar.SECOND, 10);
-            }
-            cal.add(Calendar.DATE, 1);
-        }
-        return locations;
+    public double getDistanceFromPort() {
+        float[] results = new float[3];
+        Location.distanceBetween(PORT_LAT, PORT_LONG, this.getLatitude(), this.getLongitude(), results);
+        return (double) results[0];
     }
 }
