@@ -38,70 +38,13 @@
                 android:layout_gravity="center"
                 android:text="@string/activity_tracking_header" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_marginEnd="5dp"
-                        android:layout_marginRight="5dp"
-                        android:text="@string/location_switch_label" />
-
-                    <Switch
-                        android:id="@+id/toggle_location_tracking"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginStart="5dp" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_marginEnd="5dp"
-                        android:layout_marginRight="5dp"
-                        android:text="@string/fishing_switch_label" />
-
-                    <Switch
-                        android:id="@+id/toggle_fishing"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginStart="5dp" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:autoLink="all"
-                android:text="@string/location_tracking_disclaimer" />
+            <Switch
+                android:id="@+id/toggle_location_tracking"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:scaleX="4"
+                android:scaleY="4" />
 
             <TextView
                 style="@android:style/TextAppearance.Medium"
@@ -117,6 +60,13 @@
                 android:layout_height="match_parent">
 
             </android.support.v7.widget.RecyclerView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:autoLink="all"
+                android:text="@string/location_tracking_disclaimer" />
 
         </LinearLayout>
 

@@ -432,30 +432,39 @@ public class EditFish1FormRowActivity extends EditingActivity implements Adapter
             final Date startDate = cal.getTime();
             cal.add(Calendar.DATE, 1);
             final Date endDate = cal.getTime();
-            Callable<CatchLocation> c = new Callable<CatchLocation>() {
+            Callable<List<CatchLocation>> c = new Callable<List<CatchLocation>>() {
                 @Override
-                public CatchLocation call() {
-                    return db.catchDao().getFirstFishingLocationBetweenDates(startDate, endDate);
+                public List<CatchLocation> call() {
+                    return db.catchDao().getLocationsBetween(startDate, endDate);
                 }
             };
             ExecutorService service = Executors.newSingleThreadExecutor();
-            Future<CatchLocation> future = service.submit(c);
+            Future<List<CatchLocation>> future = service.submit(c);
             try {
-                CatchLocation location = future.get();
-                if (location != null) {
-                    latitudeDegrees.setText(Integer.toString(location.getLatitudeDegrees()));
-                    latitudeMinutes.setText(Integer.toString(location.getLatitudeMinutes()));
+                List<CatchLocation> locations = future.get();
+                CatchLocation furthestLocation = null;
+                double greatestDistance = 0.0;
+                for(CatchLocation location : locations ) {
+                    double distanceFromPort = location.getDistanceFromPort();
+                    if (distanceFromPort > greatestDistance) {
+                        greatestDistance = distanceFromPort;
+                        furthestLocation = location;
+                    }
+                }
+                if (furthestLocation != null) {
+                    latitudeDegrees.setText(Integer.toString(furthestLocation.getLatitudeDegrees()));
+                    latitudeMinutes.setText(Integer.toString(furthestLocation.getLatitudeMinutes()));
                     for (int i = 0; i < adapters.get(LATITUDE_DIRECTION_KEY).getCount(); i++) {
                         if (((String) adapters.get(LATITUDE_DIRECTION_KEY).getItem(i)).charAt(0)
-                                == location.getLatitudeDirection()) {
+                                == furthestLocation.getLatitudeDirection()) {
                             spinners.get(LATITUDE_DIRECTION_KEY).setSelection(i);
                         }
                     }
-                    longitudeDegrees.setText(Integer.toString(location.getLongitudeDegrees()));
-                    longitudeMinutes.setText(Integer.toString(location.getLongitudeMinutes()));
+                    longitudeDegrees.setText(Integer.toString(furthestLocation.getLongitudeDegrees()));
+                    longitudeMinutes.setText(Integer.toString(furthestLocation.getLongitudeMinutes()));
                     for (int i = 0; i < adapters.get(LONGITUDE_DIRECTION_KEY).getCount(); i++) {
                         if (((String) adapters.get(LONGITUDE_DIRECTION_KEY).getItem(i)).charAt(0)
-                                == location.getLongitudeDirection()) {
+                                == furthestLocation.getLongitudeDirection()) {
                             spinners.get(LONGITUDE_DIRECTION_KEY).setSelection(i);
                         }
                     }

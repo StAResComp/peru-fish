@@ -3,11 +3,6 @@
     <!-- These settings headers are only used on tablets. -->
 
     <header
-        android:fragment="uk.ac.masts.sifids.activities.SettingsActivity$FisheryOfficeDetailsPreferenceFragment"
-        android:icon="@drawable/ic_info_black_24dp"
-        android:title="@string/pref_header_fishery_office_details" />
-
-    <header
         android:fragment="uk.ac.masts.sifids.activities.SettingsActivity$VesselDetailsPreferenceFragment"
         android:icon="@drawable/ic_info_black_24dp"
         android:title="@string/pref_header_vessel_details" />
@@ -16,11 +11,6 @@
         android:fragment="uk.ac.masts.sifids.activities.SettingsActivity$OwnerMasterDetailsPreferenceFragment"
         android:icon="@drawable/ic_info_black_24dp"
         android:title="@string/pref_header_owner_master_details" />
-
-    <header
-        android:fragment="uk.ac.masts.sifids.activities.SettingsActivity$PortDetailsPreferenceFragment"
-        android:icon="@drawable/ic_info_black_24dp"
-        android:title="@string/pref_header_port_details" />
 
     <header
         android:fragment="uk.ac.masts.sifids.activities.SettingsActivity$GearDetailsPreferenceFragment"
@@ -36,10 +26,5 @@
         android:fragment="uk.ac.masts.sifids.activities.SettingsActivity$BuyerDetailsPreferenceFragment"
         android:icon="@drawable/ic_info_black_24dp"
         android:title="@string/pref_header_buyer_details" />
-
-    <header
-        android:fragment="uk.ac.masts.sifids.activities.SettingsActivity$ConsentDetailsPreferenceFragment"
-        android:icon="@drawable/ic_info_black_24dp"
-        android:title="@string/participant_info_header" />
 
 </preference-headers>
