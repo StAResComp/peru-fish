@@ -219,13 +219,22 @@ public class EditFish1FormActivity extends EditingActivity implements AdapterVie
                                 Calendar upper = Calendar.getInstance();
                                 upper.setTime(date);
                                 upper.add(Calendar.DATE, 1);
-                                //Get location where fishing started...
-                                CatchLocation point =
+                                //Get all locations
+                                List<CatchLocation> locations =
                                         EditFish1FormActivity.this.db.catchDao()
-                                                .getFirstFishingLocationBetweenDates(date,
-                                                        upper.getTime());
-                                if (point != null) {
-                                    rows.add(new Fish1FormRow(fish1Form, point));
+                                                .getLocationsBetween(date, upper.getTime());
+                                //Get furthest point
+                                CatchLocation furthestLocation = null;
+                                double greatestDistance = 0.0;
+                                for(CatchLocation location : locations ) {
+                                    double distanceFromPort = location.getDistanceFromPort();
+                                    if (distanceFromPort > greatestDistance) {
+                                        greatestDistance = distanceFromPort;
+                                        furthestLocation = location;
+                                    }
+                                }
+                                if (furthestLocation != null) {
+                                    rows.add(new Fish1FormRow(fish1Form, furthestLocation));
                                 }
                             }
                             EditFish1FormActivity.this.db.catchDao().insertFish1FormRows(rows);
