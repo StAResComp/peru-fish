@@ -322,7 +322,7 @@ public class Fish1FormRow extends ChangeLoggingEntity{
             return new SimpleDateFormat("dd MMM").format(cal.getTime());
         }
         else {
-            return "Date not set";
+            return null;
         }
     }
 

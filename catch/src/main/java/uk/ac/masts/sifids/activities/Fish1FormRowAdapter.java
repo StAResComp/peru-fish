@@ -66,7 +66,7 @@ public class Fish1FormRowAdapter extends RecyclerView.Adapter<Fish1FormRowAdapte
             species = future.get();
         } catch (Exception e) {
         }
-        holder.label.setText(row.toString() + (species != null ? " " + species.getSpeciesCode() : ""));
+        holder.label.setText((row.toString() != null ? row.toString() : this.context.getString(R.string.fish_1_form_row_tostring_default)) + (species != null ? " " + species.getSpeciesCode() : ""));
         holder.editButton.setTag(R.id.parent_form, row.getFormId());
         holder.editButton.setTag(R.id.form_row_in_question, row.getId());
         holder.duplicateButton.setTag(R.id.parent_form, row.getFormId());

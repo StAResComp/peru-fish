@@ -192,6 +192,7 @@
 
     <!-- FISH1 Form Row Editing -->
 
+    <string name="fish_1_form_row_title">FISH1 Form Row</string>
     <string name="fish_1_form_row_fishing_activity_date">Fishing Activity Date:\u00A0</string>
     <string name="fish_1_form_row_fishing_activity_date_not_set">Fishing Activity Date not set </string>
     <string name="fish_1_form_row_select_fishing_activity_date">Select Fishing Activity Date</string>
@@ -218,6 +219,7 @@
     <string name="fish_1_form_row_save">Save Form Row</string>
     <string name="fish_1_form_row_delete">Delete Form Row</string>
     <string name="duplicated_fish_1_form_row">FISH1 Form Row duplicated</string>
+    <string name="fish_1_form_row_tostring_default">Date not set</string>
 
     <!-- FISH1 Form Row Deletion -->
 
