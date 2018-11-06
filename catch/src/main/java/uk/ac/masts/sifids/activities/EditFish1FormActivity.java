@@ -118,7 +118,7 @@ public class EditFish1FormActivity extends EditingActivity implements AdapterVie
             Callable<String> c = new Callable<String>() {
                 @Override
                 public String call() throws Exception {
-                    String rowDates = "Dates not set";
+                    String rowDates = getString(R.string.fish_1_form_header);
                     Calendar cal = Calendar.getInstance();
                     Date lowerDate = db.catchDao().getDateOfEarliestRow(fish1Form.getId());
                     if (lowerDate != null) {

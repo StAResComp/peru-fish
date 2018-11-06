@@ -192,6 +192,7 @@
 
     <!-- FISH1 Form Row Editing -->
 
+    <string name="fish_1_form_row_title">FISH1 Form Row (ES)</string>
     <string name="fish_1_form_row_fishing_activity_date">Fecha de faena de pesca:\u00A0</string>
     <string name="fish_1_form_row_fishing_activity_date_not_set">Fecha no seleccionada </string>
     <string name="fish_1_form_row_select_fishing_activity_date">Seleccionar fecha de faena de pesca</string>
@@ -218,6 +219,7 @@
     <string name="fish_1_form_row_save">Grabar datos de faena de pesca</string>
     <string name="fish_1_form_row_delete">Borrar datos de faena de pesca</string>
     <string name="duplicated_fish_1_form_row">Duplicar faena de pesca</string>
+    <string name="fish_1_form_row_tostring_default">Date not set (ES)</string>
 
     <!-- FISH1 Form Row Deletion -->
 
