@@ -132,6 +132,9 @@ public interface CatchDao {
     @Query("SELECT * FROM catch_species WHERE id = :id")
     public CatchSpecies getSpeciesById(Integer id);
 
+    @Query("SELECT COUNT(*) FROM catch_species")
+    public int countCatchSpecies();
+
     @Query("SELECT * FROM catch_state WHERE id = :id")
     public CatchState getStateById(Integer id);
 
