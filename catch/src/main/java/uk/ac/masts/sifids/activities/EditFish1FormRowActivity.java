@@ -64,7 +64,6 @@ public class EditFish1FormRowActivity extends EditingActivity implements Adapter
     EditText longitudeMinutes;
     String longitudeDirectionValue;
     EditText meshSize;
-    EditText weight;
     TextView landingOrDiscardDateDisplay;
     Date landingOrDiscardDate;
     EditText transporterRegEtc;
@@ -76,11 +75,9 @@ public class EditFish1FormRowActivity extends EditingActivity implements Adapter
     Map<String, Adapter> adapters;
     Map<String, List> spinnerLists;
     final String GEAR_KEY = "gear";
-    final String SPECIES_KEY = "species";
     final String LATITUDE_DIRECTION_KEY = "latitude_direction";
     final String LONGITUDE_DIRECTION_KEY = "longitude_direction";
     int gearIdValue;
-    int speciesIdValue;
     Date minDate;
     Date maxDate;
 
@@ -147,7 +144,6 @@ public class EditFish1FormRowActivity extends EditingActivity implements Adapter
         this.spinnerLists = new HashMap();
 
         this.spinnerLists.put(GEAR_KEY, new ArrayList<Gear>());
-        this.spinnerLists.put(SPECIES_KEY, new ArrayList<CatchSpecies>());
         this.spinnerLists.put(LATITUDE_DIRECTION_KEY,
                 new ArrayList<>(Arrays.asList(getString(R.string.n), getString(R.string.s))));
         this.spinnerLists.put(LONGITUDE_DIRECTION_KEY,
@@ -173,8 +169,6 @@ public class EditFish1FormRowActivity extends EditingActivity implements Adapter
 
         this.createSpinner(GEAR_KEY, R.id.gear);
         meshSize = (EditText) findViewById(R.id.mesh_size);
-        this.createSpinner(SPECIES_KEY, R.id.species);
-        weight = (EditText) findViewById(R.id.weight);
         landingOrDiscardDateDisplay = (TextView) findViewById(R.id.landing_or_discard_date);
         transporterRegEtc = (EditText) findViewById(R.id.transporter_reg_etc);
 
@@ -223,13 +217,6 @@ public class EditFish1FormRowActivity extends EditingActivity implements Adapter
                         == fish1FormRow.getGearId())
                     spinners.get(GEAR_KEY).setSelection(i);
             }
-            for (int i = 0; i < adapters.get(SPECIES_KEY).getCount(); i++) {
-                if (fish1FormRow.getSpeciesId() != null
-                        && ((CatchSpecies) adapters.get(SPECIES_KEY).getItem(i)).getId()
-                        == fish1FormRow.getSpeciesId())
-                    spinners.get(SPECIES_KEY).setSelection(i);
-            }
-            weight.setText(Double.toString(fish1FormRow.getWeight()));
             for (int i = 0; i < adapters.get(GEAR_KEY).getCount(); i++) {
                 if (fish1FormRow.getGearId() != null
                         && ((Gear) adapters.get(GEAR_KEY).getItem(i)).getId()
@@ -303,15 +290,6 @@ public class EditFish1FormRowActivity extends EditingActivity implements Adapter
                 } catch (NullPointerException npe) { }
                 try {
                     if (fish1FormRow.setMeshSize(Integer.parseInt(meshSize.getText().toString()))) {
-                        dataEntered = true;
-                    }
-                } catch (NumberFormatException nfe) {
-                }
-                if (fish1FormRow.setSpeciesId(speciesIdValue)) {
-                    dataEntered = true;
-                }
-                try {
-                    if (fish1FormRow.setWeight(Double.parseDouble(weight.getText().toString()))) {
                         dataEntered = true;
                     }
                 } catch (NumberFormatException nfe) {
@@ -490,8 +468,6 @@ public class EditFish1FormRowActivity extends EditingActivity implements Adapter
                     speciesList = EditFish1FormRowActivity.rearrangeList(
                             speciesList, Integer.parseInt(idString));
                 }
-                EditFish1FormRowActivity.this.spinnerLists.put(
-                        EditFish1FormRowActivity.this.SPECIES_KEY, speciesList);
             }
         };
 
@@ -562,9 +538,6 @@ public class EditFish1FormRowActivity extends EditingActivity implements Adapter
         switch (parent.getId()) {
             case R.id.gear:
                 this.gearIdValue = ((Gear) parent.getItemAtPosition(pos)).getId();
-                break;
-            case R.id.species:
-                this.speciesIdValue = ((CatchSpecies) parent.getItemAtPosition(pos)).getId();
                 break;
             case R.id.latitude_direction:
                 this.latitudeDirectionValue = ((String) parent.getItemAtPosition(pos));
