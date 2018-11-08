@@ -6,6 +6,7 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.text.InputFilter;
 import android.text.Spanned;
@@ -40,6 +41,7 @@ import uk.ac.masts.sifids.entities.CatchSpecies;
 import uk.ac.masts.sifids.entities.EntityWithId;
 import uk.ac.masts.sifids.entities.Fish1Form;
 import uk.ac.masts.sifids.entities.Fish1FormRow;
+import uk.ac.masts.sifids.entities.Fish1FormRowSpecies;
 import uk.ac.masts.sifids.entities.Gear;
 
 /**
@@ -50,6 +52,7 @@ public class EditFish1FormRowActivity extends EditingActivity implements Adapter
 
     //FISH1 Form Row being edited
     Fish1FormRow fish1FormRow;
+    Map<Integer, Fish1FormRowSpecies> fish1FormRowSpeciesMap;
 
     //ID of the parent FISH1 Form
     int formId;
@@ -69,6 +72,8 @@ public class EditFish1FormRowActivity extends EditingActivity implements Adapter
     EditText transporterRegEtc;
     Button saveButton;
     Button deleteButton;
+
+    Map<Integer, EditText> speciesWeightFields;
 
     //Stuff for spinners
     Map<String, Spinner> spinners;
@@ -120,11 +125,16 @@ public class EditFish1FormRowActivity extends EditingActivity implements Adapter
             }
             if (!extras.isEmpty() && extras.containsKey(Fish1FormRow.ID)) {
                 final int id = extras.getInt(Fish1FormRow.ID);
-
+                fish1FormRowSpeciesMap = new HashMap<>();
                 Runnable r = new Runnable() {
                     @Override
                     public void run() {
                         fish1FormRow = EditFish1FormRowActivity.this.db.catchDao().getFormRow(id);
+                        List<Fish1FormRowSpecies> fish1FormRowSpeciesList =
+                                EditFish1FormRowActivity.this.db.catchDao().getSpeciesForRow(id);
+                        for (Fish1FormRowSpecies species : fish1FormRowSpeciesList) {
+                            fish1FormRowSpeciesMap.put(species.getSpeciesId(), species);
+                        }
                     }
                 };
 
@@ -169,6 +179,36 @@ public class EditFish1FormRowActivity extends EditingActivity implements Adapter
 
         this.createSpinner(GEAR_KEY, R.id.gear);
         meshSize = (EditText) findViewById(R.id.mesh_size);
+
+        Callable<List<CatchSpecies>> c = new Callable<List<CatchSpecies>>() {
+            @Override
+            public List<CatchSpecies> call() {
+                return db.catchDao().getSpecies();
+            }
+        };
+        ExecutorService service = Executors.newSingleThreadExecutor();
+        Future<List<CatchSpecies>> future = service.submit(c);
+        try {
+            List<CatchSpecies> speciesList = future.get();
+            int index = 1;
+            Resources res = getResources();
+            speciesWeightFields = new HashMap<>();
+            for (CatchSpecies species : speciesList) {
+                TextView speciesName = (TextView) findViewById(
+                        res.getIdentifier(
+                                "species" + index, "id",
+                                getApplicationContext().getPackageName()));
+                speciesName.setText(species.getSpeciesName());
+                speciesWeightFields.put(species.getId(), (EditText) findViewById(
+                        res.getIdentifier(
+                                "weight" + index, "id",
+                                getApplicationContext().getPackageName())));
+                index++;
+            }
+        }
+        catch (Exception e) {
+        }
+
         landingOrDiscardDateDisplay = (TextView) findViewById(R.id.landing_or_discard_date);
         transporterRegEtc = (EditText) findViewById(R.id.transporter_reg_etc);
 
@@ -227,6 +267,15 @@ public class EditFish1FormRowActivity extends EditingActivity implements Adapter
         } else {
             meshSize.setText(this.prefs.getString(getString(R.string.pref_mesh_size_key), ""));
         }
+        if (fish1FormRow != null) {
+            for (int rowSpeciesId : fish1FormRowSpeciesMap.keySet()) {
+                Fish1FormRowSpecies species = fish1FormRowSpeciesMap.get(rowSpeciesId);
+                EditText weightField = speciesWeightFields.get(species.getSpeciesId());
+                if (weightField != null && species.getWeight() != null) {
+                    weightField.setText(species.getWeight().toString());
+                }
+            }
+        }
         if (fish1FormRow != null
                 && fish1FormRow.getLandingOrDiscardDate() != null) {
             landingOrDiscardDate = fish1FormRow.getLandingOrDiscardDate();
@@ -256,6 +305,7 @@ public class EditFish1FormRowActivity extends EditingActivity implements Adapter
                     create = true;
                     fish1FormRow = new Fish1FormRow();
                     fish1FormRow.setFormId(formId);
+                    fish1FormRowSpeciesMap = new HashMap<>();
                 }
 
                 boolean dataEntered = false;
@@ -294,6 +344,23 @@ public class EditFish1FormRowActivity extends EditingActivity implements Adapter
                     }
                 } catch (NumberFormatException nfe) {
                 }
+                for (final Integer speciesId : speciesWeightFields.keySet()) {
+                    String weightString = speciesWeightFields.get(speciesId).getText().toString();
+                    if (weightString != null && weightString.length() > 0) {
+                        double weight = Double.parseDouble(
+                                speciesWeightFields.get(speciesId).getText().toString());
+                        if (fish1FormRowSpeciesMap.containsKey(speciesId)) {
+                            if (fish1FormRowSpeciesMap.get(speciesId).setWeight(weight)) {
+                                dataEntered = true;
+                            }
+                        } else {
+                            Fish1FormRowSpecies fish1FormRowSpecies =
+                                    new Fish1FormRowSpecies(fish1FormRow.getId(), speciesId, weight);
+                            fish1FormRowSpeciesMap.put(speciesId, fish1FormRowSpecies);
+                            dataEntered = true;
+                        }
+                    }
+                }
                 if (fish1FormRow.setLandingOrDiscardDate(landingOrDiscardDate)) {
                     dataEntered = true;
                 }
@@ -308,6 +375,8 @@ public class EditFish1FormRowActivity extends EditingActivity implements Adapter
                             public void run() {
                                 EditFish1FormRowActivity.this.db.catchDao()
                                         .insertFish1FormRows(fish1FormRow);
+                                EditFish1FormRowActivity.this.db.catchDao()
+                                        .insertFish1FormRowSpecies(fish1FormRowSpeciesMap.values());
                             }
                         };
                         Thread newThread = new Thread(r);
@@ -324,6 +393,10 @@ public class EditFish1FormRowActivity extends EditingActivity implements Adapter
                             public void run() {
                                 EditFish1FormRowActivity.this.db.catchDao()
                                         .updateFish1FormRows(fish1FormRow);
+                                EditFish1FormRowActivity.this.db.catchDao()
+                                        .insertFish1FormRowSpecies(fish1FormRowSpeciesMap.values());
+                                EditFish1FormRowActivity.this.db.catchDao()
+                                        .updateFish1FormRowSpecies(fish1FormRowSpeciesMap.values());
                             }
                         };
                         Thread newThread = new Thread(r);

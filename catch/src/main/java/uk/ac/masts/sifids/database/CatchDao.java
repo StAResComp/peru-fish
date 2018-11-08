@@ -3,6 +3,7 @@ package uk.ac.masts.sifids.database;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
+import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
 import android.util.SparseArray;
@@ -19,6 +20,7 @@ import uk.ac.masts.sifids.entities.CatchSpecies;
 import uk.ac.masts.sifids.entities.CatchState;
 import uk.ac.masts.sifids.entities.Fish1Form;
 import uk.ac.masts.sifids.entities.Fish1FormRow;
+import uk.ac.masts.sifids.entities.Fish1FormRowSpecies;
 import uk.ac.masts.sifids.entities.FisheryOffice;
 import uk.ac.masts.sifids.entities.Gear;
 import uk.ac.masts.sifids.entities.Observation;
@@ -74,6 +76,9 @@ public interface CatchDao {
 
     @Insert
     public long insertObservation(Observation observation);
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    public void insertFish1FormRowSpecies(Collection<Fish1FormRowSpecies> fish1FormRowSpecies);
 
     @Query("SELECT * FROM catch_species")
     public List<CatchSpecies> getSpecies();
@@ -198,6 +203,12 @@ public interface CatchDao {
     @Query("SELECT * FROM observation WHERE submitted = 0")
     public List<Observation> getUnsubmittedObservations();
 
+    @Query("SELECT * FROM fish_1_form_row_species WHERE form_row_id = :id")
+    public List<Fish1FormRowSpecies> getSpeciesForRow(int id);
+
+    @Query("SELECT * FROM fish_1_form_row_species WHERE form_row_id = :row_id AND species_id = :species_id LIMIT 1")
+    public Fish1FormRowSpecies getSpeciesEntryForRow(int row_id, int species_id);
+
     @Query("UPDATE observation SET submitted = 1 WHERE id = :id")
     public void markObservationSubmitted(int id);
 
@@ -209,6 +220,9 @@ public interface CatchDao {
 
     @Query("UPDATE location SET uploaded = 1 WHERE id IN (:ids)")
     public void markLocationsUploaded(List<String> ids);
+
+    @Update(onConflict = OnConflictStrategy.IGNORE)
+    public void updateFish1FormRowSpecies(Collection<Fish1FormRowSpecies> fish1FormRowSpecies);
 
     @Query("DELETE FROM fish_1_form WHERE id = :id")
     public void deleteFish1Form(int id);

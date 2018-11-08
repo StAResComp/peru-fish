@@ -182,7 +182,7 @@
                         android:text="species1" />
                     <EditText
                         android:id="@+id/weight1"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_width="match_parent"
                         android:hint="@string/fish_1_form_row_weight"
                         android:inputType="numberDecimal" />
@@ -193,7 +193,7 @@
                         android:text="species2" />
                     <EditText
                         android:id="@+id/weight2"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_width="match_parent"
                         android:hint="@string/fish_1_form_row_weight"
                         android:inputType="numberDecimal" />
@@ -204,7 +204,7 @@
                         android:text="species3" />
                     <EditText
                         android:id="@+id/weight3"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_width="match_parent"
                         android:hint="@string/fish_1_form_row_weight"
                         android:inputType="numberDecimal" />
@@ -215,7 +215,7 @@
                         android:text="species4" />
                     <EditText
                         android:id="@+id/weight4"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_width="match_parent"
                         android:hint="@string/fish_1_form_row_weight"
                         android:inputType="numberDecimal" />
@@ -226,7 +226,7 @@
                         android:text="species5" />
                     <EditText
                         android:id="@+id/weight5"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_width="match_parent"
                         android:hint="@string/fish_1_form_row_weight"
                         android:inputType="numberDecimal" />
@@ -237,7 +237,7 @@
                         android:text="species6" />
                     <EditText
                         android:id="@+id/weight6"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_width="match_parent"
                         android:hint="@string/fish_1_form_row_weight"
                         android:inputType="numberDecimal" />
@@ -248,7 +248,7 @@
                         android:text="species7" />
                     <EditText
                         android:id="@+id/weight7"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_width="match_parent"
                         android:hint="@string/fish_1_form_row_weight"
                         android:inputType="numberDecimal" />
@@ -259,7 +259,7 @@
                         android:text="species8" />
                     <EditText
                         android:id="@+id/weight8"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_width="match_parent"
                         android:hint="@string/fish_1_form_row_weight"
                         android:inputType="numberDecimal" />
@@ -270,7 +270,7 @@
                         android:text="species9" />
                     <EditText
                         android:id="@+id/weight9"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_width="match_parent"
                         android:hint="@string/fish_1_form_row_weight"
                         android:inputType="numberDecimal" />
@@ -281,7 +281,7 @@
                         android:text="species10" />
                     <EditText
                         android:id="@+id/weight10"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_width="match_parent"
                         android:hint="@string/fish_1_form_row_weight"
                         android:inputType="numberDecimal" />
@@ -292,7 +292,7 @@
                         android:text="species11" />
                     <EditText
                         android:id="@+id/weight11"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_width="match_parent"
                         android:hint="@string/fish_1_form_row_weight"
                         android:inputType="numberDecimal" />
