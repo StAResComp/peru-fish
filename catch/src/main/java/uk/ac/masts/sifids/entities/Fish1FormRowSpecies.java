@@ -77,7 +77,7 @@ public class Fish1FormRowSpecies extends ChangeLoggingEntity {
     }
 
     public boolean setWeight(Double weight) {
-        if (weight != this.getWeight()) {
+        if (!weight.equals(this.getWeight())) {
             this.weight = weight;
             this.updateDates();
             return true;
