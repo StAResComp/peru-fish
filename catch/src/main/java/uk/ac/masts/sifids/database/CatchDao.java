@@ -80,7 +80,7 @@ public interface CatchDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     public void insertFish1FormRowSpecies(Collection<Fish1FormRowSpecies> fish1FormRowSpecies);
 
-    @Query("SELECT * FROM catch_species")
+    @Query("SELECT * FROM catch_species ORDER BY id")
     public List<CatchSpecies> getSpecies();
 
     @Query("SELECT * FROM fish_1_form")
@@ -203,7 +203,7 @@ public interface CatchDao {
     @Query("SELECT * FROM observation WHERE submitted = 0")
     public List<Observation> getUnsubmittedObservations();
 
-    @Query("SELECT * FROM fish_1_form_row_species WHERE form_row_id = :id")
+    @Query("SELECT * FROM fish_1_form_row_species WHERE form_row_id = :id ORDER BY species_id")
     public List<Fish1FormRowSpecies> getSpeciesForRow(int id);
 
     @Query("SELECT * FROM fish_1_form_row_species WHERE form_row_id = :row_id AND species_id = :species_id LIMIT 1")
