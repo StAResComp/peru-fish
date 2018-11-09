@@ -62,12 +62,10 @@ public class EditFish1FormActivity extends EditingActivity implements AdapterVie
     Fish1Form fish1Form;
 
     //Form elements
-    EditText fisheryOfficeEmail;
     EditText pln;
     EditText vesselName;
     EditText ownerMaster;
     EditText address;
-    EditText comment;
     Spinner portOfDeparture;
     Spinner portOfLanding;
     Button saveButton;
@@ -258,12 +256,10 @@ public class EditFish1FormActivity extends EditingActivity implements AdapterVie
      * Build the user form - bind variables to XML elements
      */
     protected void buildForm() {
-        fisheryOfficeEmail = findViewById(R.id.fishery_office_email);
         pln = findViewById(R.id.pln);
         vesselName = findViewById(R.id.vessel_name);
         ownerMaster = findViewById(R.id.owner_master);
         address = findViewById(R.id.address);
-        comment = findViewById(R.id.comment);
         //Database queries can't be run on the UI thread
         Runnable r = new Runnable() {
             @Override
@@ -316,7 +312,6 @@ public class EditFish1FormActivity extends EditingActivity implements AdapterVie
      */
     private void applyExistingValues() {
         if (fish1Form != null) {
-            fisheryOfficeEmail.setText(fish1Form.getEmail());
             pln.setText(fish1Form.getPln());
             vesselName.setText(fish1Form.getVesselName());
             ownerMaster.setText(fish1Form.getOwnerMaster());
@@ -325,7 +320,6 @@ public class EditFish1FormActivity extends EditingActivity implements AdapterVie
                     portOfDepartureAdapter.getPosition(fish1Form.getPortOfDeparture()));
             portOfLanding.setSelection(
                     portOfLandingAdapter.getPosition(fish1Form.getPortOfDeparture()));
-            comment.setText(fish1Form.getCommentsAndBuyersInformation());
         }
     }
 
@@ -455,13 +449,10 @@ public class EditFish1FormActivity extends EditingActivity implements AdapterVie
         }
         //Only write to the database if something has changed (or form is new)
         if (
-                create || fish1Form.setEmail(fisheryOfficeEmail.getText().toString())
-                        || fish1Form.setPln(pln.getText().toString())
+                create || fish1Form.setPln(pln.getText().toString())
                         || fish1Form.setVesselName(vesselName.getText().toString())
                         || fish1Form.setOwnerMaster(ownerMaster.getText().toString())
                         || fish1Form.setAddress(address.getText().toString())
-                        || fish1Form.setCommentsAndBuyersInformation(
-                        comment.getText().toString())
                         || fish1Form.setPortOfDeparture(portOfDepartureValue)
                         || fish1Form.setPortOfLanding(portOfLandingValue)
                 ) {
@@ -585,11 +576,6 @@ public class EditFish1FormActivity extends EditingActivity implements AdapterVie
             //Write form info as comments above CSV rows
             writer.write(
                     String.format(
-                            getString(R.string.csv_email),
-                            this.fisheryOfficeEmail.getText().toString()));
-            writer.newLine();
-            writer.write(
-                    String.format(
                             getString(R.string.csv_port_of_departure),
                             this.portOfDepartureValue));
             writer.newLine();
@@ -616,11 +602,6 @@ public class EditFish1FormActivity extends EditingActivity implements AdapterVie
                     String.format(
                             getString(R.string.csv_address),
                             address.getText().toString()));
-            writer.newLine();
-            writer.write(
-                    String.format(
-                            getString(R.string.csv_comments_buyers_information),
-                            comment.getText().toString()));
             writer.newLine();
             //Do the header row
             writer.newLine();

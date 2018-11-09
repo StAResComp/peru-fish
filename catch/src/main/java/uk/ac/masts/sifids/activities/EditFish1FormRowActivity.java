@@ -531,9 +531,7 @@ public class EditFish1FormRowActivity extends EditingActivity implements Adapter
             public void run() {
                 EditFish1FormRowActivity.this.spinnerLists.put(
                         EditFish1FormRowActivity.this.GEAR_KEY,
-                        EditFish1FormRowActivity.this.db.catchDao().getGear(
-                                EditFish1FormRowActivity.this.prefs.getStringSet(
-                                        getString(R.string.pref_gear_key), new HashSet<String>())));
+                        EditFish1FormRowActivity.this.db.catchDao().getGear());
                 List speciesList = EditFish1FormRowActivity.this.db.catchDao().getSpecies();
                 for (String idString :
                         EditFish1FormRowActivity.this.prefs.getStringSet(

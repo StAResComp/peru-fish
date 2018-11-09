@@ -29,19 +29,6 @@
                     android:id="@+id/fish_1_form_header"
                     android:text="@string/fish_1_form_header"/>
 
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <android.support.design.widget.TextInputEditText
-                        android:id="@+id/fishery_office_email"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="@string/fish_1_form_fishery_office_email"
-                        android:inputType="textEmailAddress" />
-
-                </android.support.design.widget.TextInputLayout>
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -148,18 +135,6 @@
                         android:layout_height="wrap_content"
                         android:hint="@string/fish_1_form_address"
                         android:inputType="textCapWords" />
-
-                </android.support.design.widget.TextInputLayout>
-
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <android.support.design.widget.TextInputEditText
-                        android:id="@+id/comment"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="@string/fish_1_form_comment_buyers_information" />
 
                 </android.support.design.widget.TextInputLayout>
 

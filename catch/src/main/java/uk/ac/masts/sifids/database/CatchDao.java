@@ -101,6 +101,9 @@ public interface CatchDao {
     @Query("SELECT * FROM gear")
     public List<Gear> getGear();
 
+    @Query("SELECT COUNT(*) FROM gear")
+    public int countGear();
+
     @Query("SELECT * FROM gear WHERE id IN(:ids)")
     public List<Gear> getGear(Set<String> ids);
 
