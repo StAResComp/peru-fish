@@ -286,22 +286,22 @@
 
     <!-- General Purpose -->
 
-    <string name="yes">Yes</string>
+    <string name="yes">Si</string>
     <string name="no">No</string>
     <string name="ymd">yyyy-MM-dd</string>
     <string name="dmonthy">dd MMM yyyy</string>
     <string name="n">N</string>
-    <string name="north">North</string>
+    <string name="north">Norte</string>
     <string name="s">S</string>
-    <string name="south">South</string>
+    <string name="south">Sur</string>
     <string name="e">E</string>
-    <string name="east">East</string>
-    <string name="w">W</string>
-    <string name="west">West</string>
-    <string name="edit">Edit</string>
-    <string name="duplicate">Duplicate</string>
-    <string name="delete">Delete</string>
-    <string name="back">Go back</string>
-    <string name="next">Next</string>
+    <string name="east">Este</string>
+    <string name="w">O</string>
+    <string name="west">Oeste</string>
+    <string name="edit">Editar</string>
+    <string name="duplicate">Duplicar</string>
+    <string name="delete">Borrar</string>
+    <string name="back">Atrás</string>
+    <string name="next">Siguiente</string>
 
 </resources>
