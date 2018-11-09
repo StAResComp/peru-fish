@@ -29,53 +29,12 @@
                     android:id="@+id/fish_1_form_header"
                     android:text="@string/fish_1_form_header"/>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0.50"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/fish_1_form_port_of_departure" />
-
-                        <Spinner
-                            android:id="@+id/port_of_departure"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:prompt="@string/fish_1_form_port_of_departure"
-                            android:spinnerMode="dropdown" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0.50"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/fish_1_form_port_of_landing" />
-
-                        <Spinner
-                            android:id="@+id/port_of_landing"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:prompt="@string/fish_1_form_port_of_landing"
-                            android:spinnerMode="dropdown" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
+                    android:layout_gravity="center"
+                    android:id="@+id/port"
+                    android:text="@string/fish_1_form_port"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"

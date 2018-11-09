@@ -117,6 +117,9 @@ public interface CatchDao {
     public List<Port> getPorts();
 
     @Query("SELECT * FROM port LIMIT 1")
+    public Port getPort();
+
+    @Query("SELECT * FROM port LIMIT 1")
     public int getPortId();
 
     @Query("SELECT name FROM port WHERE id IN(:ids)")

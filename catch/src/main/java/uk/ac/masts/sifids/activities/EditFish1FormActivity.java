@@ -48,6 +48,7 @@ import uk.ac.masts.sifids.entities.Fish1FormRow;
 import uk.ac.masts.sifids.entities.Fish1FormRowSpecies;
 import uk.ac.masts.sifids.entities.FisheryOffice;
 import uk.ac.masts.sifids.entities.Gear;
+import uk.ac.masts.sifids.entities.Port;
 import uk.ac.masts.sifids.providers.GenericFileProvider;
 import uk.ac.masts.sifids.tasks.PostDataTask;
 import uk.ac.masts.sifids.utilities.Csv;
@@ -56,28 +57,21 @@ import uk.ac.masts.sifids.utilities.Csv;
  * Activity for editing (and creating/deleting) a FISH1 Form.
  * Created by pgm5 on 21/02/2018.
  */
-public class EditFish1FormActivity extends EditingActivity implements AdapterView.OnItemSelectedListener {
+public class EditFish1FormActivity extends EditingActivity {
 
     //FISH1 Form being edited
     Fish1Form fish1Form;
 
     //Form elements
+    TextView port;
     EditText pln;
     EditText vesselName;
     EditText ownerMaster;
     EditText address;
-    Spinner portOfDeparture;
-    Spinner portOfLanding;
     Button saveButton;
     Button addRowButton;
     Button deleteButton;
-
-    //Stuff for spinners
-    List<String> ports;
-    String portOfDepartureValue;
-    String portOfLandingValue;
-    ArrayAdapter<CharSequence> portOfDepartureAdapter;
-    ArrayAdapter<CharSequence> portOfLandingAdapter;
+    Port portValue;
 
     //Associated FISH1 Form Rows
     List<Fish1FormRow> formRows;
@@ -256,6 +250,7 @@ public class EditFish1FormActivity extends EditingActivity implements AdapterVie
      * Build the user form - bind variables to XML elements
      */
     protected void buildForm() {
+        port = findViewById(R.id.port);
         pln = findViewById(R.id.pln);
         vesselName = findViewById(R.id.vessel_name);
         ownerMaster = findViewById(R.id.owner_master);
@@ -264,10 +259,7 @@ public class EditFish1FormActivity extends EditingActivity implements AdapterVie
         Runnable r = new Runnable() {
             @Override
             public void run() {
-                Set portsSet = new HashSet<String>();
-                portsSet.add(Integer.toString(EditFish1FormActivity.this.prefs.getInt(
-                        getString(R.string.pref_port_key),0)));
-                ports = EditFish1FormActivity.this.db.catchDao().getPortNames(portsSet);
+                portValue = EditFish1FormActivity.this.db.catchDao().getPort();
             }
         };
         Thread newThread = new Thread(r);
@@ -277,25 +269,7 @@ public class EditFish1FormActivity extends EditingActivity implements AdapterVie
         } catch (InterruptedException ie) {
             returnToFish1FormsActivity(getString(R.string.fish_1_form_loading_ports_list));
         }
-
-        //Ports are multiple-choice
-        portOfDepartureAdapter =
-                new ArrayAdapter(this,
-                        android.R.layout.simple_list_item_activated_1, ports);
-        portOfDepartureAdapter.setDropDownViewResource(
-                android.R.layout.simple_spinner_dropdown_item);
-        portOfDeparture = findViewById(R.id.port_of_departure);
-        portOfDeparture.setAdapter(portOfDepartureAdapter);
-        portOfDeparture.setOnItemSelectedListener(this);
-
-        portOfLandingAdapter =
-                new ArrayAdapter(this,
-                        android.R.layout.simple_list_item_activated_1, ports);
-        portOfLandingAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        portOfLanding = findViewById(R.id.port_of_landing);
-        portOfLanding.setAdapter(portOfLandingAdapter);
-        portOfLanding.setOnItemSelectedListener(this);
-
+        port.setText(String.format(getString(R.string.fish_1_form_port), portValue.getName()));
         saveButton = findViewById(R.id.save_form_button);
         addRowButton = findViewById(R.id.add_row_button);
         deleteButton = findViewById(R.id.delete_form_button);
@@ -316,10 +290,6 @@ public class EditFish1FormActivity extends EditingActivity implements AdapterVie
             vesselName.setText(fish1Form.getVesselName());
             ownerMaster.setText(fish1Form.getOwnerMaster());
             address.setText(fish1Form.getAddress());
-            portOfDeparture.setSelection(
-                    portOfDepartureAdapter.getPosition(fish1Form.getPortOfDeparture()));
-            portOfLanding.setSelection(
-                    portOfLandingAdapter.getPosition(fish1Form.getPortOfDeparture()));
         }
     }
 
@@ -447,14 +417,14 @@ public class EditFish1FormActivity extends EditingActivity implements AdapterVie
             create = true;
             fish1Form = new Fish1Form();
         }
+        fish1Form.setPortOfDeparture(portValue.getName());
+        fish1Form.setPortOfLanding(portValue.getName());
         //Only write to the database if something has changed (or form is new)
         if (
                 create || fish1Form.setPln(pln.getText().toString())
                         || fish1Form.setVesselName(vesselName.getText().toString())
                         || fish1Form.setOwnerMaster(ownerMaster.getText().toString())
                         || fish1Form.setAddress(address.getText().toString())
-                        || fish1Form.setPortOfDeparture(portOfDepartureValue)
-                        || fish1Form.setPortOfLanding(portOfLandingValue)
                 ) {
             if (create) {
                 AsyncTask.execute(new Runnable() {
@@ -529,27 +499,6 @@ public class EditFish1FormActivity extends EditingActivity implements AdapterVie
     }
 
     /**
-     * Handle selection of items in spinners.
-     *
-     * @param parent
-     * @param view
-     * @param pos
-     * @param id
-     */
-    public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-        switch (parent.getId()) {
-            case R.id.port_of_departure:
-                this.portOfDepartureValue = parent.getItemAtPosition(pos).toString();
-                break;
-            case R.id.port_of_landing:
-                this.portOfLandingValue = parent.getItemAtPosition(pos).toString();
-                break;
-        }
-        portOfDepartureAdapter.notifyDataSetChanged();
-
-    }
-
-    /**
      * Handle non-selection in spinners.
      *
      * @param parent
@@ -577,12 +526,12 @@ public class EditFish1FormActivity extends EditingActivity implements AdapterVie
             writer.write(
                     String.format(
                             getString(R.string.csv_port_of_departure),
-                            this.portOfDepartureValue));
+                            this.portValue.getName()));
             writer.newLine();
             writer.write(
                     String.format(
                             getString(R.string.csv_port_of_landing),
-                            this.portOfLandingValue));
+                            this.portValue.getName()));
             writer.newLine();
             writer.write(
                     String.format(

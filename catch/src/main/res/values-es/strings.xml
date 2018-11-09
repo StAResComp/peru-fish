@@ -160,6 +160,7 @@
     <string name="fish_1_form_error_creating_new_form">Error creando nueva faena de pesca</string>
     <string name="fish_1_form_loading_ports_list">Error loading ports from database</string>
     <string name="fish_1_form_error_deleting_form">Error deleting form</string>
+    <string name="fish_1_form_port">Puerto: %s</string>
 
     <!-- FISH1 Form Deletion -->
 
@@ -176,7 +177,7 @@
     <string name="csv_file_name">%s.csv</string>
     <string name="csv_fishery_office"># Fishery Office: \"%s\"</string>
     <string name="csv_email"># Email: %s</string>
-    <string name="csv_port_of_departure">#Puerto de embarque: %s</string>
+    <string name="csv_port_of_departure"># Puerto de embarque: %s</string>
     <string name="csv_port_of_landing"># Puerto de desembarque: %s</string>
     <string name="csv_pln"># PLN: %s</string>
     <string name="csv_vessel_name"># Nombre de la embarcación: %s</string>
