@@ -172,39 +172,132 @@
                 android:layout_height="1dip"
                 android:background="#999999" />
 
-            <Spinner
-                android:id="@+id/species"
+            <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:prompt="@string/fish_1_form_row_species"
-                android:spinnerMode="dropdown" />
-
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="1dip"
-                android:background="#999999" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal">
-
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight=".20">
-
-                    <android.support.design.widget.TextInputEditText
-                        android:id="@+id/weight"
-                        android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:stretchColumns="1">
+                <TableRow>
+                    <TextView
+                        android:id="@+id/species1"
+                        android:text="species1" />
+                    <EditText
+                        android:id="@+id/weight1"
                         android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
                         android:hint="@string/fish_1_form_row_weight"
                         android:inputType="numberDecimal" />
-
-                </android.support.design.widget.TextInputLayout>
-
-            </LinearLayout>
+                </TableRow>
+                <TableRow>
+                    <TextView
+                        android:id="@+id/species2"
+                        android:text="species2" />
+                    <EditText
+                        android:id="@+id/weight2"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:hint="@string/fish_1_form_row_weight"
+                        android:inputType="numberDecimal" />
+                </TableRow>
+                <TableRow>
+                    <TextView
+                        android:id="@+id/species3"
+                        android:text="species3" />
+                    <EditText
+                        android:id="@+id/weight3"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:hint="@string/fish_1_form_row_weight"
+                        android:inputType="numberDecimal" />
+                </TableRow>
+                <TableRow>
+                    <TextView
+                        android:id="@+id/species4"
+                        android:text="species4" />
+                    <EditText
+                        android:id="@+id/weight4"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:hint="@string/fish_1_form_row_weight"
+                        android:inputType="numberDecimal" />
+                </TableRow>
+                <TableRow>
+                    <TextView
+                        android:id="@+id/species5"
+                        android:text="species5" />
+                    <EditText
+                        android:id="@+id/weight5"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:hint="@string/fish_1_form_row_weight"
+                        android:inputType="numberDecimal" />
+                </TableRow>
+                <TableRow>
+                    <TextView
+                        android:id="@+id/species6"
+                        android:text="species6" />
+                    <EditText
+                        android:id="@+id/weight6"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:hint="@string/fish_1_form_row_weight"
+                        android:inputType="numberDecimal" />
+                </TableRow>
+                <TableRow>
+                    <TextView
+                        android:id="@+id/species7"
+                        android:text="species7" />
+                    <EditText
+                        android:id="@+id/weight7"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:hint="@string/fish_1_form_row_weight"
+                        android:inputType="numberDecimal" />
+                </TableRow>
+                <TableRow>
+                    <TextView
+                        android:id="@+id/species8"
+                        android:text="species8" />
+                    <EditText
+                        android:id="@+id/weight8"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:hint="@string/fish_1_form_row_weight"
+                        android:inputType="numberDecimal" />
+                </TableRow>
+                <TableRow>
+                    <TextView
+                        android:id="@+id/species9"
+                        android:text="species9" />
+                    <EditText
+                        android:id="@+id/weight9"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:hint="@string/fish_1_form_row_weight"
+                        android:inputType="numberDecimal" />
+                </TableRow>
+                <TableRow>
+                    <TextView
+                        android:id="@+id/species10"
+                        android:text="species10" />
+                    <EditText
+                        android:id="@+id/weight10"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:hint="@string/fish_1_form_row_weight"
+                        android:inputType="numberDecimal" />
+                </TableRow>
+                <TableRow>
+                    <TextView
+                        android:id="@+id/species11"
+                        android:text="species11" />
+                    <EditText
+                        android:id="@+id/weight11"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:hint="@string/fish_1_form_row_weight"
+                        android:inputType="numberDecimal" />
+                </TableRow>
+            </TableLayout>
 
             <View
                 android:layout_width="fill_parent"

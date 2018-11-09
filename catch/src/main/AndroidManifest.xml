@@ -38,7 +38,7 @@
         </activity>
         <activity
             android:name=".activities.EditFish1FormActivity"
-            android:label="FISH1 Form"
+            android:label="@string/fish_1_form_email_subject"
             android:parentActivityName=".activities.Fish1FormsActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -46,7 +46,7 @@
         </activity>
         <activity
             android:name=".activities.EditFish1FormRowActivity"
-            android:label="FISH1 Form Row"
+            android:label="@string/fish_1_form_row_title"
             android:parentActivityName=".activities.EditFish1FormActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -57,7 +57,7 @@
             android:label="@string/title_activity_map"
             android:parentActivityName=".activities.Fish1FormsActivity">
             <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
+                android:name="android.s upport.PARENT_ACTIVITY"
                 android:value=".activities.Fish1FormsActivity" />
         </activity>
         <activity

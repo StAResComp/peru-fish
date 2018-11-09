@@ -45,6 +45,7 @@ import uk.ac.masts.sifids.entities.CatchSpecies;
 import uk.ac.masts.sifids.entities.Fish1Form;
 import uk.ac.masts.sifids.R;
 import uk.ac.masts.sifids.entities.Fish1FormRow;
+import uk.ac.masts.sifids.entities.Fish1FormRowSpecies;
 import uk.ac.masts.sifids.entities.FisheryOffice;
 import uk.ac.masts.sifids.entities.Gear;
 import uk.ac.masts.sifids.providers.GenericFileProvider;
@@ -118,7 +119,7 @@ public class EditFish1FormActivity extends EditingActivity implements AdapterVie
             Callable<String> c = new Callable<String>() {
                 @Override
                 public String call() throws Exception {
-                    String rowDates = "Dates not set";
+                    String rowDates = getString(R.string.fish_1_form_header);
                     Calendar cal = Calendar.getInstance();
                     Date lowerDate = db.catchDao().getDateOfEarliestRow(fish1Form.getId());
                     if (lowerDate != null) {
@@ -623,7 +624,26 @@ public class EditFish1FormActivity extends EditingActivity implements AdapterVie
             writer.newLine();
             //Do the header row
             writer.newLine();
-            writer.write(getString(R.string.csv_header_row));
+            Callable<List<CatchSpecies>> callable = new Callable<List<CatchSpecies>>() {
+                @Override
+                public List<CatchSpecies> call() throws Exception {
+                    return db.catchDao().getSpecies();
+                }
+            };
+            ExecutorService service = Executors.newSingleThreadExecutor();
+            Future<List<CatchSpecies>> future = service.submit(callable);
+            String speciesHeaders = "";
+            try {
+                List<CatchSpecies> speciesList = future.get();
+                for (CatchSpecies species : speciesList) {
+                    speciesHeaders += species.getSpeciesName();
+                    speciesHeaders += ",";
+                }
+            } catch (Exception e) {
+                Toast.makeText(getBaseContext(),
+                        getString(R.string.csv_not_saved), Toast.LENGTH_LONG).show();
+            }
+            writer.write(String.format(getString(R.string.csv_header_row),speciesHeaders));
             writer.newLine();
             //Write the rows
             for (final Fish1FormRow formRow : formRows) {
@@ -645,8 +665,8 @@ public class EditFish1FormActivity extends EditingActivity implements AdapterVie
                     public String call() throws Exception {
                         Gear gear = EditFish1FormActivity.this
                                 .db.catchDao().getGearById(formRow.getGearId());
-                        CatchSpecies species = EditFish1FormActivity.this
-                                .db.catchDao().getSpeciesById(formRow.getSpeciesId());
+                        List<CatchSpecies> speciesList= EditFish1FormActivity.this
+                                .db.catchDao().getSpecies();
                         String row = rowSoFar;
                         if (gear != null) {
                             row = Csv.appendToCsvRow(
@@ -660,28 +680,30 @@ public class EditFish1FormActivity extends EditingActivity implements AdapterVie
                         row = Csv.appendToCsvRow(
                                 row, formRow.getMeshSize(), false,
                                 EditFish1FormActivity.this);
-                        if (species != null) {
-                            row = Csv.appendToCsvRow(
-                                    row, species.toString(), true,
-                                    EditFish1FormActivity.this);
-                        } else {
-                            row = Csv.appendToCsvRow(
-                                    row, null, false,
-                                    EditFish1FormActivity.this);
+                        for (CatchSpecies species : speciesList) {
+                            Fish1FormRowSpecies rowSpecies = EditFish1FormActivity.this
+                                    .db.catchDao()
+                                    .getSpeciesEntryForRow(formRow.getId(), species.getId());
+                            if (rowSpecies != null && rowSpecies.getWeight() != null) {
+                                row = Csv.appendToCsvRow(
+                                        row, rowSpecies.getWeight(), false,
+                                        EditFish1FormActivity.this);
+                            }
+                            else {
+                                row = Csv.appendToCsvRow(row,"",false,
+                                        EditFish1FormActivity.this);
+                            }
                         }
                         return row;
                     }
                 };
-                ExecutorService service = Executors.newSingleThreadExecutor();
-                Future<String> future = service.submit(c);
+                Future<String> f = service.submit(c);
                 try {
-                    rowToWrite = future.get();
+                    rowToWrite = f.get();
                 } catch (Exception e) {
                     Toast.makeText(getBaseContext(),
                             getString(R.string.csv_not_saved), Toast.LENGTH_LONG).show();
                 }
-                rowToWrite = Csv.appendToCsvRow(
-                        rowToWrite, formRow.getWeight(), false, this);
                 cal = Calendar.getInstance();
                 if (formRow.getLandingOrDiscardDate() != null) {
                     cal.setTime(formRow.getLandingOrDiscardDate());
