@@ -421,10 +421,10 @@ public class EditFish1FormActivity extends EditingActivity {
         fish1Form.setPortOfLanding(portValue.getName());
         //Only write to the database if something has changed (or form is new)
         if (
-                create || fish1Form.setPln(pln.getText().toString())
-                        || fish1Form.setVesselName(vesselName.getText().toString())
-                        || fish1Form.setOwnerMaster(ownerMaster.getText().toString())
-                        || fish1Form.setAddress(address.getText().toString())
+                create | fish1Form.setPln(pln.getText().toString())
+                        | fish1Form.setVesselName(vesselName.getText().toString())
+                        | fish1Form.setOwnerMaster(ownerMaster.getText().toString())
+                        | fish1Form.setAddress(address.getText().toString())
                 ) {
             if (create) {
                 AsyncTask.execute(new Runnable() {
@@ -441,6 +441,25 @@ public class EditFish1FormActivity extends EditingActivity {
                     }
                 });
             }
+        }
+        if (!pln.getText().toString().equals("")) {
+            prefs.edit().putString(
+                    getString(R.string.pref_vessel_pln_key), pln.getText().toString()).commit();
+        }
+        if (!vesselName.getText().toString().equals("")) {
+            prefs.edit().putString(
+                    getString(R.string.pref_vessel_name_key),
+                    vesselName.getText().toString()).commit();
+        }
+        if (!ownerMaster.getText().toString().equals("")) {
+            prefs.edit().putString(
+                    getString(R.string.pref_owner_master_name_key),
+                    ownerMaster.getText().toString()).commit();
+        }
+        if (!address.getText().toString().equals("")) {
+            prefs.edit().putString(
+                    getString(R.string.pref_owner_master_address_key),
+                    address.getText().toString()).commit();
         }
     }
 
