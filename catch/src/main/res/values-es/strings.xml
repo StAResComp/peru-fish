@@ -221,6 +221,7 @@
     <string name="fish_1_form_row_delete">Borrar datos de faena de pesca</string>
     <string name="duplicated_fish_1_form_row">Duplicar faena de pesca</string>
     <string name="fish_1_form_row_tostring_default">Date not set (ES)</string>
+    <string name="fish_1_form_row_location">Most distant point: %s</string>
 
     <!-- FISH1 Form Row Deletion -->
 

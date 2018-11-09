@@ -60,12 +60,9 @@ public class EditFish1FormRowActivity extends EditingActivity implements Adapter
     //Form elements
     TextView fishingActivityDateDisplay;
     Date fishingActivityDate;
-    EditText latitudeDegrees;
-    EditText latitudeMinutes;
-    String latitudeDirectionValue;
-    EditText longitudeDegrees;
-    EditText longitudeMinutes;
-    String longitudeDirectionValue;
+    TextView location;
+    Double latitude;
+    Double longitude;
     EditText meshSize;
     TextView landingOrDiscardDateDisplay;
     Date landingOrDiscardDate;
@@ -80,8 +77,6 @@ public class EditFish1FormRowActivity extends EditingActivity implements Adapter
     Map<String, Adapter> adapters;
     Map<String, List> spinnerLists;
     final String GEAR_KEY = "gear";
-    final String LATITUDE_DIRECTION_KEY = "latitude_direction";
-    final String LONGITUDE_DIRECTION_KEY = "longitude_direction";
     int gearIdValue;
     Date minDate;
     Date maxDate;
@@ -154,10 +149,6 @@ public class EditFish1FormRowActivity extends EditingActivity implements Adapter
         this.spinnerLists = new HashMap();
 
         this.spinnerLists.put(GEAR_KEY, new ArrayList<Gear>());
-        this.spinnerLists.put(LATITUDE_DIRECTION_KEY,
-                new ArrayList<>(Arrays.asList(getString(R.string.n), getString(R.string.s))));
-        this.spinnerLists.put(LONGITUDE_DIRECTION_KEY,
-                new ArrayList<>(Arrays.asList(getString(R.string.e), getString(R.string.w))));
 
         this.adapters = new HashMap();
         this.spinners = new HashMap();
@@ -166,16 +157,7 @@ public class EditFish1FormRowActivity extends EditingActivity implements Adapter
 
         fishingActivityDateDisplay = (TextView) findViewById(R.id.fishing_activity_date);
 
-        latitudeDegrees = (EditText) findViewById(R.id.latitude_degrees);
-        latitudeDegrees.setFilters(new InputFilter[]{ new InputFilterMinMax("0", "180") });
-        latitudeMinutes = (EditText) findViewById(R.id.latitude_minutes);
-        latitudeMinutes.setFilters(new InputFilter[]{ new InputFilterMinMax("0", "59") });
-        this.createSpinner(LATITUDE_DIRECTION_KEY, R.id.latitude_direction);
-        longitudeDegrees = (EditText) findViewById(R.id.longitude_degrees);
-        longitudeDegrees.setFilters(new InputFilter[]{ new InputFilterMinMax("0", "90") });
-        longitudeMinutes = (EditText) findViewById(R.id.longitude_minutes);
-        longitudeMinutes.setFilters(new InputFilter[]{ new InputFilterMinMax("0", "59") });
-        this.createSpinner(LONGITUDE_DIRECTION_KEY, R.id.longitude_direction);
+        location = findViewById(R.id.fishing_location);
 
         this.createSpinner(GEAR_KEY, R.id.gear);
         meshSize = (EditText) findViewById(R.id.mesh_size);
@@ -229,28 +211,10 @@ public class EditFish1FormRowActivity extends EditingActivity implements Adapter
         }
         if (fish1FormRow != null) {
             formId = fish1FormRow.getFormId();
-            latitudeDegrees.setText(
-                    Integer.toString(CatchLocation.getLatitudeDegrees(fish1FormRow.getLatitude())));
-            latitudeMinutes.setText(
-                    Integer.toString(CatchLocation.getLatitudeMinutes(fish1FormRow.getLatitude())));
-            for (int i = 0; i < adapters.get(LATITUDE_DIRECTION_KEY).getCount(); i++) {
-                if (((String) adapters.get(LATITUDE_DIRECTION_KEY).getItem(i)).charAt(0)
-                        == CatchLocation.getLatitudeDirection(fish1FormRow.getLatitude())) {
-                    spinners.get(LATITUDE_DIRECTION_KEY).setSelection(i);
-                }
-            }
-            longitudeDegrees.setText(
-                    Integer.toString(
-                            CatchLocation.getLongitudeDegrees(fish1FormRow.getLongitude())));
-            longitudeMinutes.setText(
-                    Integer.toString(
-                            CatchLocation.getLongitudeMinutes(fish1FormRow.getLongitude())));
-            for (int i = 0; i < adapters.get(LONGITUDE_DIRECTION_KEY).getCount(); i++) {
-                if (((String) adapters.get(LONGITUDE_DIRECTION_KEY).getItem(i)).charAt(0)
-                        == CatchLocation.getLongitudeDirection(fish1FormRow.getLongitude())) {
-                    spinners.get(LONGITUDE_DIRECTION_KEY).setSelection(i);
-                }
-            }
+            latitude = fish1FormRow.getLatitude();
+            longitude = fish1FormRow.getLongitude();
+            location.setText(
+                    String.format(getString(R.string.fish_1_form_row_location), fish1FormRow.getCoordinates()));
             for (int i = 0; i < adapters.get(GEAR_KEY).getCount(); i++) {
                 if (fish1FormRow.getGearId() != null
                         && ((Gear) adapters.get(GEAR_KEY).getItem(i)).getId()
@@ -307,31 +271,12 @@ public class EditFish1FormRowActivity extends EditingActivity implements Adapter
                     fish1FormRow.setFormId(formId);
                     fish1FormRowSpeciesMap = new HashMap<>();
                 }
-
+                fish1FormRow.setLatitude(latitude);
+                fish1FormRow.setLongitude(longitude);
                 boolean dataEntered = false;
 
                 if (fish1FormRow.setFishingActivityDate(fishingActivityDate)) {
                     dataEntered = true;
-                }
-                try {
-                    if (fish1FormRow.setLatitude(CatchLocation.getDecimalCoordinate(
-                            Integer.parseInt(latitudeDegrees.getText().toString()),
-                            Integer.parseInt(latitudeMinutes.getText().toString()),
-                            latitudeDirectionValue
-                    ))) {
-                        dataEntered = true;
-                    }
-                } catch (NumberFormatException nfe) {
-                }
-                try {
-                    if (fish1FormRow.setLongitude(CatchLocation.getDecimalCoordinate(
-                            Integer.parseInt(longitudeDegrees.getText().toString()),
-                            Integer.parseInt(longitudeMinutes.getText().toString()),
-                            longitudeDirectionValue
-                    ))) {
-                        dataEntered = true;
-                    }
-                } catch (NumberFormatException nfe) {
                 }
                 try {
                     if (fish1FormRow.setGearId(gearIdValue)) {
@@ -470,58 +415,42 @@ public class EditFish1FormRowActivity extends EditingActivity implements Adapter
     }
 
     private void updateCoordinatesFromDate(Date date) {
-        if (latitudeDegrees.getText().toString().isEmpty()
-                || latitudeMinutes.getText().toString().isEmpty()
-                || longitudeDegrees.getText().toString().isEmpty()
-                || longitudeMinutes.getText().toString().isEmpty()) {
-            Calendar cal = Calendar.getInstance();
-            cal.setTime(date);
-            cal.set(Calendar.HOUR_OF_DAY, 0);
-            cal.set(Calendar.MINUTE, 0);
-            cal.set(Calendar.SECOND, 0);
-            cal.set(Calendar.MILLISECOND, 0);
-            final Date startDate = cal.getTime();
-            cal.add(Calendar.DATE, 1);
-            final Date endDate = cal.getTime();
-            Callable<List<CatchLocation>> c = new Callable<List<CatchLocation>>() {
-                @Override
-                public List<CatchLocation> call() {
-                    return db.catchDao().getLocationsBetween(startDate, endDate);
-                }
-            };
-            ExecutorService service = Executors.newSingleThreadExecutor();
-            Future<List<CatchLocation>> future = service.submit(c);
-            try {
-                List<CatchLocation> locations = future.get();
-                CatchLocation furthestLocation = null;
-                double greatestDistance = 0.0;
-                for(CatchLocation location : locations ) {
-                    double distanceFromPort = location.getDistanceFromPort();
-                    if (distanceFromPort > greatestDistance) {
-                        greatestDistance = distanceFromPort;
-                        furthestLocation = location;
-                    }
-                }
-                if (furthestLocation != null) {
-                    latitudeDegrees.setText(Integer.toString(furthestLocation.getLatitudeDegrees()));
-                    latitudeMinutes.setText(Integer.toString(furthestLocation.getLatitudeMinutes()));
-                    for (int i = 0; i < adapters.get(LATITUDE_DIRECTION_KEY).getCount(); i++) {
-                        if (((String) adapters.get(LATITUDE_DIRECTION_KEY).getItem(i)).charAt(0)
-                                == furthestLocation.getLatitudeDirection()) {
-                            spinners.get(LATITUDE_DIRECTION_KEY).setSelection(i);
-                        }
-                    }
-                    longitudeDegrees.setText(Integer.toString(furthestLocation.getLongitudeDegrees()));
-                    longitudeMinutes.setText(Integer.toString(furthestLocation.getLongitudeMinutes()));
-                    for (int i = 0; i < adapters.get(LONGITUDE_DIRECTION_KEY).getCount(); i++) {
-                        if (((String) adapters.get(LONGITUDE_DIRECTION_KEY).getItem(i)).charAt(0)
-                                == furthestLocation.getLongitudeDirection()) {
-                            spinners.get(LONGITUDE_DIRECTION_KEY).setSelection(i);
-                        }
-                    }
-                }
-            } catch (Exception e) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        cal.set(Calendar.HOUR_OF_DAY, 0);
+        cal.set(Calendar.MINUTE, 0);
+        cal.set(Calendar.SECOND, 0);
+        cal.set(Calendar.MILLISECOND, 0);
+        final Date startDate = cal.getTime();
+        cal.add(Calendar.DATE, 1);
+        final Date endDate = cal.getTime();
+        Callable<List<CatchLocation>> c = new Callable<List<CatchLocation>>() {
+            @Override
+            public List<CatchLocation> call() {
+                return db.catchDao().getLocationsBetween(startDate, endDate);
             }
+        };
+        ExecutorService service = Executors.newSingleThreadExecutor();
+        Future<List<CatchLocation>> future = service.submit(c);
+        try {
+            List<CatchLocation> locations = future.get();
+            CatchLocation furthestLocation = null;
+            double greatestDistance = 0.0;
+            for(CatchLocation location : locations ) {
+                double distanceFromPort = location.getDistanceFromPort();
+                if (distanceFromPort > greatestDistance) {
+                    greatestDistance = distanceFromPort;
+                    furthestLocation = location;
+                }
+            }
+            if (furthestLocation != null) {
+                latitude = furthestLocation.getLatitude();
+                longitude = furthestLocation.getLongitude();
+                location.setText(
+                        String.format(getString(R.string.fish_1_form_row_location),
+                                furthestLocation.getCoordinates()));
+            }
+        } catch (Exception e) {
         }
     }
 
@@ -609,12 +538,6 @@ public class EditFish1FormRowActivity extends EditingActivity implements Adapter
         switch (parent.getId()) {
             case R.id.gear:
                 this.gearIdValue = ((Gear) parent.getItemAtPosition(pos)).getId();
-                break;
-            case R.id.latitude_direction:
-                this.latitudeDirectionValue = ((String) parent.getItemAtPosition(pos));
-                break;
-            case R.id.longitude_direction:
-                this.longitudeDirectionValue = ((String) parent.getItemAtPosition(pos));
                 break;
         }
     }

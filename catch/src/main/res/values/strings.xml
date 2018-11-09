@@ -221,6 +221,7 @@
     <string name="fish_1_form_row_delete">Delete Form Row</string>
     <string name="duplicated_fish_1_form_row">FISH1 Form Row duplicated</string>
     <string name="fish_1_form_row_tostring_default">Date not set</string>
+    <string name="fish_1_form_row_location">Most distant point: %s</string>
 
     <!-- FISH1 Form Row Deletion -->
 
