@@ -53,7 +53,7 @@ public class Fish1FormAdapter extends RecyclerView.Adapter<Fish1FormAdapter.View
         Callable<String> c = new Callable<String>() {
             @Override
             public String call() {
-                String rowDates = "Dates not set";
+                String rowDates = context.getString(R.string.fish_1_form_header);
                 Calendar cal = Calendar.getInstance();
                 Date lowerDate = db.catchDao().getDateOfEarliestRow(form.getId());
                 if (lowerDate != null) {

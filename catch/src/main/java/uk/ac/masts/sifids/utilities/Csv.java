@@ -21,10 +21,10 @@ public class Csv {
      */
     public static String appendToCsvRow(
             String rowSoFar, Object dataToAppend, boolean isComplex, Context context) {
-        if (rowSoFar != null && !rowSoFar.equals("")) {
+        if ((rowSoFar != null && !rowSoFar.equals("")) || dataToAppend == null) {
             rowSoFar += ",";
         }
-        else if (rowSoFar == null) {
+        else if (rowSoFar == null || rowSoFar.equals("")) {
             rowSoFar = "";
         }
         if (dataToAppend != null) {

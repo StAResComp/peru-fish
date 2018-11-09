@@ -17,50 +17,17 @@ public class CatchSpecies extends EntityWithId {
 
     //Species from FISH1 Form
     private static final String[][] SPECIES = {
-            {"Ballan wrasse", "USB", null},
-            {"Brill", "BLL", null},
-            {"Brown Crab", "CRE", null},
-            {"Cockles", "COC", null},
-            {"Cod", "COD", null},
-            {"Corkwing Wrasse", "YFM", null},
-            {"Crawfish", "CRA", null},
-            {"Cuckoo wrasse", "USI", null},
-            {"Eel Conger", "COE", null},
-            {"Goldsinny Wrasse", "TBR", null},
-            {"Green Crab", "CRG", null},
-            {"Gurnards", "GUR", null},
-            {"Haddock", "HAD", null},
-            {"Hake", "HKE", null},
-            {"Halibut", "HAL", null},
-            {"Herring", "HER", null},
-            {"King Scallop", "SCE", null},
-            {"Lemon Sole", "LEM", null},
-            {"Ling", "LIN", null},
-            {"Lobster", "LBE", null},
-            {"Mackerel", "MAC", null},
-            {"Megrim", "MEG", null},
-            {"Monkfish", "MON", null},
-            {"Nephrops", "NEP", null},
-            {"Plaice", "PLA", null},
-            {"Pollock", "POL", null},
-            {"Queen Scallop", "QSC", null},
-            {"Razorfish (Ensis)", "RAZ", null},
-            {"Saithe", "POK", null},
-            {"Shrimp", "PRX", null},
-            {"Skate Common", "RJB", null},
-            {"Skate Cuckoo", "RJN", null},
-            {"Skate Spotted", "RJN", null},
-            {"Skate Starry Ray", "RJR", null},
-            {"Skate Thornback", "RJC", null},
-            {"Skate White", "RJA", null},
-            {"Sprats", "SPR", null},
-            {"Squat Lobster", "LBS", null},
-            {"Squid", "SQU", null},
-            {"Turbot", "TUR", null},
-            {"Velvet Crab", "CRS", null},
-            {"Whelks", "WHE", null},
-            {"Whiting", "WHG", null},
-            {"Witches", "WIT", null}
+            {"Merluza", null, null},
+            {"Cabrilla", null, null},
+            {"Doncella", null, null},
+            {"Falso volador", null, null},
+            {"Peje", null, null},
+            {"Bereche", null, null},
+            {"Diablico", null, null},
+            {"Cachema", null, null},
+            {"Raya", null, null},
+            {"Chiri", null, null},
+            {"Tollo", null, null}
     };
 
     @ColumnInfo(name = "species_name")
@@ -112,6 +79,6 @@ public class CatchSpecies extends EntityWithId {
     }
 
     public String toString() {
-        return this.getSpeciesName() + " (" + this.getSpeciesCode() + ")";
+        return this.getSpeciesName();
     }
 }

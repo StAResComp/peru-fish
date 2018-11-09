@@ -19,6 +19,7 @@ import uk.ac.masts.sifids.entities.CatchSpeciesAllowedState;
 import uk.ac.masts.sifids.entities.CatchState;
 import uk.ac.masts.sifids.entities.Fish1Form;
 import uk.ac.masts.sifids.entities.Fish1FormRow;
+import uk.ac.masts.sifids.entities.Fish1FormRowSpecies;
 import uk.ac.masts.sifids.entities.FisheryOffice;
 import uk.ac.masts.sifids.entities.Gear;
 import uk.ac.masts.sifids.entities.Observation;
@@ -34,6 +35,7 @@ import uk.ac.masts.sifids.entities.Port;
         entities = {
                 Fish1Form.class,
                 Fish1FormRow.class,
+                Fish1FormRowSpecies.class,
                 CatchSpecies.class,
                 CatchState.class,
                 CatchPresentation.class,
@@ -47,7 +49,7 @@ import uk.ac.masts.sifids.entities.Port;
                 ObservationSpecies.class,
                 Observation.class
     },
-        version = 17
+        version = 19
 )
 @TypeConverters({DateTypeConverter.class})
 public abstract class CatchDatabase extends RoomDatabase{
@@ -121,6 +123,10 @@ public abstract class CatchDatabase extends RoomDatabase{
                                     dao.insertPorts(
                                             Port.createPorts());
                                 }
+                                if (dao.countCatchSpecies() == 0) {
+                                    dao.insertSpecies(
+                                            CatchSpecies.createSpecies());
+                                }
                             }
                         });
                     }
@@ -133,7 +139,9 @@ public abstract class CatchDatabase extends RoomDatabase{
                         MIGRATION_13_14,
                         MIGRATION_14_15,
                         MIGRATION_15_16,
-                        MIGRATION_16_17
+                        MIGRATION_16_17,
+                        MIGRATION_17_18,
+                        MIGRATION_18_19
                 )
                 .build();
     }
@@ -220,6 +228,32 @@ public abstract class CatchDatabase extends RoomDatabase{
         @Override
         public void migrate(SupportSQLiteDatabase database) {
             database.execSQL("DELETE FROM fishery_office");
+        }
+    };
+
+    static final Migration MIGRATION_17_18 = new Migration(17, 18) {
+        @Override
+        public void migrate(SupportSQLiteDatabase database) {
+            database.execSQL(
+                    "CREATE TABLE IF NOT EXISTS fish_1_form_row_species " +
+                            "(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
+                            "form_row_id INTEGER NOT NULL, " +
+                            "species_id INTEGER NOT NULL, " +
+                            "weight REAL, " +
+                            "created_at INTEGER, " +
+                            "modified_at INTEGER, " +
+                            "FOREIGN KEY(form_row_id) REFERENCES fish_1_form_row(id) " +
+                            "ON UPDATE NO ACTION ON DELETE CASCADE, " +
+                            "FOREIGN KEY(species_id) REFERENCES catch_species(id) " +
+                            "ON UPDATE NO ACTION ON DELETE NO ACTION);"
+            );
+        }
+    };
+
+    static final Migration MIGRATION_18_19 = new Migration(18,19) {
+        @Override
+        public void migrate(SupportSQLiteDatabase database) {
+            database.execSQL("DELETE FROM catch_species");
         }
     };
 }
