@@ -186,14 +186,14 @@
     <string name="csv_total_pots_fishing"># Total Pots Fishing: %s</string>
     <string name="csv_comments_buyers_information"># Comment and Buyers Information: %s</string>
     <string name="csv_header_row">
-        Fecha de faena de pesca,Lat/Long,Arte de pesca,Tamaño de malla,%sFecha de desembarque,\"Detalles del comprador\"
+        Fecha de faena de pesca,Lat/Long,Arte de pesca,Tamaño de malla,%sFecha de desembarque,\"Comentario\"
     </string>
     <string name="csv_saved">CSV file saved for attaching to email as %s</string>
     <string name="csv_not_saved">Unable to create email attachment</string>
 
     <!-- FISH1 Form Row Editing -->
 
-    <string name="fish_1_form_row_title">FISH1 Form Row (ES)</string>
+    <string name="fish_1_form_row_title">Faena de pesca </string>
     <string name="fish_1_form_row_fishing_activity_date">Fecha de faena de pesca:\u00A0</string>
     <string name="fish_1_form_row_fishing_activity_date_not_set">Fecha no seleccionada </string>
     <string name="fish_1_form_row_select_fishing_activity_date">Seleccionar fecha de faena de pesca</string>
@@ -216,11 +216,11 @@
     <string name="fish_1_form_row_landing_or_discard_date">Fecha de desembarque:\u00A0</string>
     <string name="fish_1_form_row_landing_or_discard_date_not_set">Fecha de desembarque no registrada</string>
     <string name="fish_1_form_row_select_landing_or_discard_date">Fecha de desembarque</string>
-    <string name="fish_1_form_row_transporter_reg_etc">Detalles del comprador</string>
+    <string name="fish_1_form_row_transporter_reg_etc">Comentario</string>
     <string name="fish_1_form_row_save">Grabar datos de faena de pesca</string>
     <string name="fish_1_form_row_delete">Borrar datos de faena de pesca</string>
     <string name="duplicated_fish_1_form_row">Duplicar faena de pesca</string>
-    <string name="fish_1_form_row_tostring_default">Date not set (ES)</string>
+    <string name="fish_1_form_row_tostring_default">Fecha no especificada</string>
     <string name="fish_1_form_row_location">Most distant point: %s</string>
     <string name="fish_1_form_row_location_not_found">No trip recorded for this date</string>
 
@@ -291,22 +291,22 @@
 
     <!-- General Purpose -->
 
-    <string name="yes">Yes</string>
+    <string name="yes">Si</string>
     <string name="no">No</string>
     <string name="ymd">yyyy-MM-dd</string>
     <string name="dmonthy">dd MMM yyyy</string>
     <string name="n">N</string>
-    <string name="north">North</string>
+    <string name="north">Norte</string>
     <string name="s">S</string>
-    <string name="south">South</string>
+    <string name="south">Sur</string>
     <string name="e">E</string>
-    <string name="east">East</string>
-    <string name="w">W</string>
-    <string name="west">West</string>
-    <string name="edit">Edit</string>
-    <string name="duplicate">Duplicate</string>
-    <string name="delete">Delete</string>
-    <string name="back">Go back</string>
-    <string name="next">Next</string>
+    <string name="east">Este</string>
+    <string name="w">O</string>
+    <string name="west">Oeste</string>
+    <string name="edit">Editar</string>
+    <string name="duplicate">Duplicar</string>
+    <string name="delete">Borrar</string>
+    <string name="back">Atrás</string>
+    <string name="next">Siguiente</string>
 
 </resources>
