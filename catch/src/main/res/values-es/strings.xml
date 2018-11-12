@@ -11,7 +11,7 @@
     <string name="pref_fishery_office_title">Fishery Office</string>
 
     <string name="pref_header_vessel_details">Información embarcación</string>
-    <string name="pref_vessel_pln_title">Número de placa</string>
+    <string name="pref_vessel_pln_title">Número de matrícula</string>
     <string name="pref_vessel_name_title">Nombre embarcación</string>
 
     <string name="pref_header_owner_master_details">Información patrón</string>
@@ -146,7 +146,7 @@
     <string name="fish_1_form_fishery_office_email">Fishery Office Email</string>
     <string name="fish_1_form_port_of_departure">Puerto de embarque</string>
     <string name="fish_1_form_port_of_landing">Puerto de desembarque</string>
-    <string name="fish_1_form_pln">Placa</string>
+    <string name="fish_1_form_pln">Matrícula</string>
     <string name="fish_1_form_vessel_name">Nombre de la embarcación</string>
     <string name="fish_1_form_owner_master">Nombre del patrón</string>
     <string name="fish_1_form_address">Dirección</string>
@@ -237,7 +237,7 @@
     <string name="location_tracking_notification_text">El aplicativo está grabando sus coordenadas</string>
     <string name="location_tracking_disclaimer">
         Las coordenadas grabadas por este aplicativo serán enviadas a un servidor de la Universidad de St. Andrews, Escocia.
-        Los datos transmitidos incluyen el número de placa, latitud, longitud, hora y fecha.
+        Los datos transmitidos incluyen el número de matrícula, latitud, longitud, hora y fecha.
 
     </string>
 
