@@ -1,7 +1,0 @@
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <uk.ac.masts.sifids.preferences.GearPreference
-        android:key="@string/pref_gear_key"
-        android:title="@string/pref_gear_title" />
-
-</PreferenceScreen>
