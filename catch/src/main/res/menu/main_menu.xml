@@ -6,8 +6,4 @@
         android:title="@string/title_activity_map" />
     <item android:id="@+id/activity_record_observation"
         android:title="@string/title_activity_record_observation" />
-    <item android:id="@+id/activity_about"
-        android:title="@string/title_activity_about" />
-    <item android:id="@+id/settings"
-        android:title="@string/title_activity_settings" />
 </menu>

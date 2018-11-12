@@ -127,6 +127,10 @@ public abstract class CatchDatabase extends RoomDatabase{
                                     dao.insertSpecies(
                                             CatchSpecies.createSpecies());
                                 }
+                                if (dao.countGear() == 0) {
+                                    dao.insertGear(
+                                            Gear.createGear());
+                                }
                             }
                         });
                     }
@@ -141,7 +145,8 @@ public abstract class CatchDatabase extends RoomDatabase{
                         MIGRATION_15_16,
                         MIGRATION_16_17,
                         MIGRATION_17_18,
-                        MIGRATION_18_19
+                        MIGRATION_18_19,
+                        MIGRATION_19_20
                 )
                 .build();
     }
@@ -254,6 +259,13 @@ public abstract class CatchDatabase extends RoomDatabase{
         @Override
         public void migrate(SupportSQLiteDatabase database) {
             database.execSQL("DELETE FROM catch_species");
+        }
+    };
+
+    static final Migration MIGRATION_19_20 = new Migration(19,20) {
+        @Override
+        public void migrate(SupportSQLiteDatabase database) {
+            database.execSQL("DELETE FROM gear");
         }
     };
 }

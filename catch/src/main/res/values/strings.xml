@@ -160,6 +160,7 @@
     <string name="fish_1_form_error_creating_new_form">Error creating new FISH1 form</string>
     <string name="fish_1_form_loading_ports_list">Error loading ports from database</string>
     <string name="fish_1_form_error_deleting_form">Error deleting form</string>
+    <string name="fish_1_form_port">Port: %s</string>
 
     <!-- FISH1 Form Deletion -->
 
@@ -220,6 +221,8 @@
     <string name="fish_1_form_row_delete">Delete Form Row</string>
     <string name="duplicated_fish_1_form_row">FISH1 Form Row duplicated</string>
     <string name="fish_1_form_row_tostring_default">Date not set</string>
+    <string name="fish_1_form_row_location">Most distant point: %s</string>
+    <string name="fish_1_form_row_location_not_found">No trip recorded for this date</string>
 
     <!-- FISH1 Form Row Deletion -->
 

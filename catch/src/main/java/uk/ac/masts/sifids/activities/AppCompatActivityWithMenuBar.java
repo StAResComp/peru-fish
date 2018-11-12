@@ -17,12 +17,6 @@ import uk.ac.masts.sifids.R;
  */
 public abstract class AppCompatActivityWithMenuBar extends AppCompatActivity {
 
-    @Override
-    protected void onResume() {
-        ((CatchApplication) this.getApplication()).redirectIfNecessary();
-        super.onResume();
-    }
-
     /**
      * Inflates supplied menu. Should always return true.
      * @param menu Menu to be inflated
@@ -45,10 +39,6 @@ public abstract class AppCompatActivityWithMenuBar extends AppCompatActivity {
         // Handle item selection
         Intent intent;
         switch (item.getItemId()) {
-            case R.id.settings:
-                intent = new Intent(this, SettingsActivity.class);
-                startActivity(intent);
-                return true;
             case R.id.activity_catch:
                 intent = new Intent(this, Fish1FormsActivity.class);
                 startActivity(intent);
@@ -59,10 +49,6 @@ public abstract class AppCompatActivityWithMenuBar extends AppCompatActivity {
                 return true;
             case R.id.activity_record_observation:
                 intent = new Intent(this, RecordObservationActivity.class);
-                startActivity(intent);
-                return true;
-            case R.id.activity_about:
-                intent = new Intent(this, AboutActivity.class);
                 startActivity(intent);
                 return true;
             case R.id.home:
