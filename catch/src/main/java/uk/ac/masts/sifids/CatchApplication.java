@@ -7,17 +7,13 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
-import android.content.SharedPreferences;
 import android.os.IBinder;
 import android.os.SystemClock;
-import android.preference.PreferenceActivity;
-import android.preference.PreferenceManager;
-import android.util.Log;
+
 import android.widget.Toast;
 
 import java.util.TimeZone;
 
-import uk.ac.masts.sifids.activities.SettingsActivity;
 import uk.ac.masts.sifids.receivers.AlarmReceiver;
 import uk.ac.masts.sifids.services.CatchLocationService;
 
@@ -84,14 +80,6 @@ public class CatchApplication extends Application {
                     Toast.LENGTH_LONG).show();
         }
         this.trackingLocation = trackingLocation;
-    }
-
-    public void redirectIfNecessary() {
-        if (!hasSetMinimumPreferences()) {
-            Intent intent = new Intent(this, SettingsActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
-        }
     }
 
     private boolean hasSetMinimumPreferences() {
