@@ -271,10 +271,13 @@ public class EditFish1FormRowActivity extends EditingActivity implements Adapter
                     fish1FormRow.setFormId(formId);
                     fish1FormRowSpeciesMap = new HashMap<>();
                 }
-                fish1FormRow.setLatitude(latitude);
-                fish1FormRow.setLongitude(longitude);
                 boolean dataEntered = false;
-
+                if (latitude != null && fish1FormRow.setLatitude(latitude)) {
+                    dataEntered = true;
+                }
+                if (longitude != null && fish1FormRow.setLongitude(longitude)) {
+                    dataEntered = true;
+                }
                 if (fish1FormRow.setFishingActivityDate(fishingActivityDate)) {
                     dataEntered = true;
                 }

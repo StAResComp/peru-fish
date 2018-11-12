@@ -44,7 +44,7 @@
                 style="@android:style/TextAppearance.Medium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/fish_1_form_row_location" />
+                android:text="@string/fish_1_form_row_location_not_found" />
 
             <View
                 android:layout_width="fill_parent"
