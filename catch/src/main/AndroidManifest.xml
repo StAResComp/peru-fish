@@ -18,14 +18,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activities.SettingsActivity"
-            android:label="@string/title_activity_settings"
-            android:parentActivityName=".activities.Fish1FormsActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activities.Fish1FormsActivity" />
-        </activity>
-        <activity
             android:name=".activities.Fish1FormsActivity"
             android:label="@string/title_activity_catch"
             android:launchMode="singleTop"
@@ -63,14 +55,6 @@
         <activity
             android:name=".activities.RecordObservationActivity"
             android:label="@string/title_activity_record_observation"
-            android:parentActivityName=".activities.Fish1FormsActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activities.Fish1FormsActivity" />
-        </activity>
-        <activity
-            android:name=".activities.AboutActivity"
-            android:label="@string/title_activity_about"
             android:parentActivityName=".activities.Fish1FormsActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
