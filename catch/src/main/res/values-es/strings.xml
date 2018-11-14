@@ -11,7 +11,7 @@
     <string name="pref_fishery_office_title">Fishery Office</string>
 
     <string name="pref_header_vessel_details">Información embarcación</string>
-    <string name="pref_vessel_pln_title">Número de placa</string>
+    <string name="pref_vessel_pln_title">Número de matrícula</string>
     <string name="pref_vessel_name_title">Nombre embarcación</string>
 
     <string name="pref_header_owner_master_details">Información patrón</string>
@@ -146,7 +146,7 @@
     <string name="fish_1_form_fishery_office_email">Fishery Office Email</string>
     <string name="fish_1_form_port_of_departure">Puerto de embarque</string>
     <string name="fish_1_form_port_of_landing">Puerto de desembarque</string>
-    <string name="fish_1_form_pln">Placa</string>
+    <string name="fish_1_form_pln">Matrícula</string>
     <string name="fish_1_form_vessel_name">Nombre de la embarcación</string>
     <string name="fish_1_form_owner_master">Nombre del patrón</string>
     <string name="fish_1_form_address">Dirección</string>
@@ -186,7 +186,7 @@
     <string name="csv_total_pots_fishing"># Total Pots Fishing: %s</string>
     <string name="csv_comments_buyers_information"># Comment and Buyers Information: %s</string>
     <string name="csv_header_row">
-        Fecha de faena de pesca,Lat/Long,Arte de pesca,Tamaño de malla,%sFecha de desembarque,\"Comentario\"
+        Fecha de faena de pesca,Lat/Long,Arte de pesca,Tamaño de malla,%sFecha de desembarque,consumo propio
     </string>
     <string name="csv_saved">CSV file saved for attaching to email as %s</string>
     <string name="csv_not_saved">Unable to create email attachment</string>
@@ -216,13 +216,13 @@
     <string name="fish_1_form_row_landing_or_discard_date">Fecha de desembarque:\u00A0</string>
     <string name="fish_1_form_row_landing_or_discard_date_not_set">Fecha de desembarque no registrada</string>
     <string name="fish_1_form_row_select_landing_or_discard_date">Fecha de desembarque</string>
-    <string name="fish_1_form_row_transporter_reg_etc">Comentario</string>
+    <string name="fish_1_form_row_transporter_reg_etc">Especies para consumo propio (kg/número)</string>
     <string name="fish_1_form_row_save">Grabar datos de faena de pesca</string>
     <string name="fish_1_form_row_delete">Borrar datos de faena de pesca</string>
     <string name="duplicated_fish_1_form_row">Duplicar faena de pesca</string>
     <string name="fish_1_form_row_tostring_default">Fecha no especificada</string>
-    <string name="fish_1_form_row_location">Most distant point: %s</string>
-    <string name="fish_1_form_row_location_not_found">No trip recorded for this date</string>
+    <string name="fish_1_form_row_location">Ubicación más lejana al puerto: %s</string>
+    <string name="fish_1_form_row_location_not_found">No se registraron coordenadas para esta faena</string>
 
     <!-- FISH1 Form Row Deletion -->
 
@@ -240,7 +240,7 @@
     <string name="location_tracking_notification_text">El aplicativo está grabando sus coordenadas</string>
     <string name="location_tracking_disclaimer">
         Las coordenadas grabadas por este aplicativo serán enviadas a un servidor de la Universidad de St. Andrews, Escocia.
-        Los datos transmitidos incluyen el número de placa, latitud, longitud, hora y fecha.
+        Los datos transmitidos incluyen el número de matrícula, latitud, longitud, hora y fecha.
 
     </string>
 
@@ -251,8 +251,9 @@
     <!-- Observations -->
 
     <string name="title_activity_record_observation">Otras especies</string>
-    <string name="observation_what_did_you_see">What did you see?</string>
-    <string name="observation_do_you_know_species">Are you sure of the species?</string>
+    <string name="observation_what_did_you_see">Qué otras especies capturaste?</string>
+    <string name="observation_do_you_know_species">Cuántos kilos capturaste hoy?</string>
+
     <string name="observation_select_species">Seleccione una especie de la lista</string>
     <string name="observation_species_prompt">Especies</string>
     <string name="observation_other_species_text">
