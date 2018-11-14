@@ -186,7 +186,7 @@
     <string name="csv_total_pots_fishing"># Total Pots Fishing: %s</string>
     <string name="csv_comments_buyers_information"># Comment and Buyers Information: %s</string>
     <string name="csv_header_row">
-        Fecha de faena de pesca,Lat/Long,Arte de pesca,Tamaño de malla,%sFecha de desembarque,\"Comentario\"
+        Fecha de faena de pesca,Lat/Long,Arte de pesca,Tamaño de malla,%sFecha de desembarque,consumo propio
     </string>
     <string name="csv_saved">CSV file saved for attaching to email as %s</string>
     <string name="csv_not_saved">Unable to create email attachment</string>
@@ -216,13 +216,13 @@
     <string name="fish_1_form_row_landing_or_discard_date">Fecha de desembarque:\u00A0</string>
     <string name="fish_1_form_row_landing_or_discard_date_not_set">Fecha de desembarque no registrada</string>
     <string name="fish_1_form_row_select_landing_or_discard_date">Fecha de desembarque</string>
-    <string name="fish_1_form_row_transporter_reg_etc">Comentario</string>
+    <string name="fish_1_form_row_transporter_reg_etc">Especies para consumo propio (kg/número)</string>
     <string name="fish_1_form_row_save">Grabar datos de faena de pesca</string>
     <string name="fish_1_form_row_delete">Borrar datos de faena de pesca</string>
     <string name="duplicated_fish_1_form_row">Duplicar faena de pesca</string>
     <string name="fish_1_form_row_tostring_default">Fecha no especificada</string>
-    <string name="fish_1_form_row_location">Most distant point: %s</string>
-    <string name="fish_1_form_row_location_not_found">No trip recorded for this date</string>
+    <string name="fish_1_form_row_location">Ubicación más lejana al puerto: %s</string>
+    <string name="fish_1_form_row_location_not_found">No se registraron coordenadas para esta faena</string>
 
     <!-- FISH1 Form Row Deletion -->
 
