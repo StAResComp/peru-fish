@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import uk.ac.masts.sifids.entities.BycatchSpecies;
 import uk.ac.masts.sifids.entities.CatchLocation;
 import uk.ac.masts.sifids.entities.CatchPresentation;
 import uk.ac.masts.sifids.entities.CatchSpecies;
@@ -73,6 +74,9 @@ public interface CatchDao {
 
     @Insert
     public void insertObservationSpecies(Collection<ObservationSpecies> observationSpecies);
+
+    @Insert
+    public void insertBycatchSpecies(Collection<BycatchSpecies> bycatchSpecies);
 
     @Insert
     public long insertObservation(Observation observation);
@@ -214,6 +218,9 @@ public interface CatchDao {
 
     @Query("SELECT * FROM fish_1_form_row_species WHERE form_row_id = :row_id AND species_id = :species_id LIMIT 1")
     public Fish1FormRowSpecies getSpeciesEntryForRow(int row_id, int species_id);
+
+    @Query("SELECT COUNT(*) FROM bycatch_species")
+    public int countBycatchSpecies();
 
     @Query("UPDATE observation SET submitted = 1 WHERE id = :id")
     public void markObservationSubmitted(int id);

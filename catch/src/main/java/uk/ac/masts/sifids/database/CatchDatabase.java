@@ -11,6 +11,8 @@ import android.support.annotation.NonNull;
 
 import java.util.concurrent.Executors;
 
+import uk.ac.masts.sifids.entities.Bycatch;
+import uk.ac.masts.sifids.entities.BycatchSpecies;
 import uk.ac.masts.sifids.entities.CatchLocation;
 import uk.ac.masts.sifids.entities.CatchPresentation;
 import uk.ac.masts.sifids.entities.CatchSpecies;
@@ -47,9 +49,11 @@ import uk.ac.masts.sifids.entities.Port;
                 Port.class,
                 ObservationClass.class,
                 ObservationSpecies.class,
-                Observation.class
+                Observation.class,
+                BycatchSpecies.class,
+                Bycatch.class
     },
-        version = 19
+        version = 21
 )
 @TypeConverters({DateTypeConverter.class})
 public abstract class CatchDatabase extends RoomDatabase{
@@ -83,6 +87,7 @@ public abstract class CatchDatabase extends RoomDatabase{
                                 dao.insertGear(Gear.createGear());
                                 dao.insertFisheryOffices(FisheryOffice.createFisheryOffices());
                                 dao.insertPorts(Port.createPorts());
+                                dao.insertBycatchSpecies(BycatchSpecies.createSpecies());
                             }
                         });
                     }
@@ -131,6 +136,9 @@ public abstract class CatchDatabase extends RoomDatabase{
                                     dao.insertGear(
                                             Gear.createGear());
                                 }
+                                if (dao.countBycatchSpecies() == 0) {
+                                    dao.insertBycatchSpecies(BycatchSpecies.createSpecies());
+                                }
                             }
                         });
                     }
@@ -146,7 +154,8 @@ public abstract class CatchDatabase extends RoomDatabase{
                         MIGRATION_16_17,
                         MIGRATION_17_18,
                         MIGRATION_18_19,
-                        MIGRATION_19_20
+                        MIGRATION_19_20,
+                        MIGRATION_20_21
                 )
                 .build();
     }
@@ -266,6 +275,30 @@ public abstract class CatchDatabase extends RoomDatabase{
         @Override
         public void migrate(SupportSQLiteDatabase database) {
             database.execSQL("DELETE FROM gear");
+        }
+    };
+
+    static final Migration MIGRATION_20_21 =new Migration(20,21) {
+        @Override
+        public void migrate(@NonNull SupportSQLiteDatabase database) {
+            database.execSQL(
+                    "CREATE TABLE IF NOT EXISTS bycatch_species " +
+                            "(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
+                            "name TEXT, " +
+                            "measured_by INTEGER NOT NULL);"
+            );
+            database.execSQL(
+                    "CREATE TABLE IF NOT EXISTS bycatch " +
+                            "(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
+                            "bycatch_species_id INTEGER NOT NULL, " +
+                            "number INTEGER, " +
+                            "weight REAL, " +
+                            "submitted INTEGER NOT NULL DEFAULT 0, " +
+                            "created_at INTEGER, " +
+                            "modified_at INTEGER, " +
+                            "FOREIGN KEY(bycatch_species_id) REFERENCES bycatch_species(id) " +
+                            "ON UPDATE NO ACTION ON DELETE NO ACTION);"
+            );
         }
     };
 }
