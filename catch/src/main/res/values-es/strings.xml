@@ -246,7 +246,7 @@
 
     <!-- Sending Data to Server -->
 
-    <string name="post_request_url">https://arts.st-andrews.ac.uk/sifids/</string>
+    <string name="post_request_url">https://arts.st-andrews.ac.uk/sifids/peru/</string>
 
     <!-- Observations -->
 
