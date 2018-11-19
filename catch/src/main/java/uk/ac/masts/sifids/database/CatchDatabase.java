@@ -136,9 +136,6 @@ public abstract class CatchDatabase extends RoomDatabase{
                                     dao.insertGear(
                                             Gear.createGear());
                                 }
-                                if (dao.countBycatchSpecies() == 0) {
-                                    dao.insertBycatchSpecies(BycatchSpecies.createSpecies());
-                                }
                             }
                         });
                     }

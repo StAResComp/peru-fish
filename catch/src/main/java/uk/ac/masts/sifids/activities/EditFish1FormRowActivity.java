@@ -10,6 +10,7 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.text.InputFilter;
 import android.text.Spanned;
+import android.util.Log;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
@@ -321,8 +322,11 @@ public class EditFish1FormRowActivity extends EditingActivity implements Adapter
                         Runnable r = new Runnable() {
                             @Override
                             public void run() {
-                                EditFish1FormRowActivity.this.db.catchDao()
-                                        .insertFish1FormRows(fish1FormRow);
+                                int rowId = (int) EditFish1FormRowActivity.this.db.catchDao()
+                                        .insertFish1FormRow(fish1FormRow);
+                                for (Fish1FormRowSpecies rowSpecies : fish1FormRowSpeciesMap.values()) {
+                                    rowSpecies.setFormRowId(rowId);
+                                }
                                 EditFish1FormRowActivity.this.db.catchDao()
                                         .insertFish1FormRowSpecies(fish1FormRowSpeciesMap.values());
                             }
