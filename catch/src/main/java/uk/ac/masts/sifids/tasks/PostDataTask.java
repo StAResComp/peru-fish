@@ -45,8 +45,8 @@ import java.util.concurrent.Future;
 import uk.ac.masts.sifids.CatchApplication;
 import uk.ac.masts.sifids.R;
 import uk.ac.masts.sifids.database.CatchDatabase;
+import uk.ac.masts.sifids.entities.Bycatch;
 import uk.ac.masts.sifids.entities.CatchLocation;
-import uk.ac.masts.sifids.entities.Observation;
 import uk.ac.masts.sifids.singletons.RequestQueueSingleton;
 import uk.ac.masts.sifids.utilities.Csv;
 
@@ -144,16 +144,16 @@ public class PostDataTask extends AsyncTask<Void, Void, Void> {
             } catch (Exception e) {
             }
         }
-        if (anyObservationsToPost() && noErrorsEncountered) {
-            List<Observation> observations = db.catchDao().getUnsubmittedObservations();
-            for (final Observation observation : observations) {
-                postObservation(this.context, observation, new VolleyCallback() {
+        if (anyBycatchesToPost() && noErrorsEncountered) {
+            List<Bycatch> bycatches = db.catchDao().getUnsubmittedBycatches();
+            for (final Bycatch bycatch : bycatches) {
+                postBycatch(this.context, bycatch, new VolleyCallback() {
                     @Override
                     public void onSuccess(JSONObject result) {
                         AsyncTask.execute(new Runnable() {
                             @Override
                             public void run() {
-                                db.catchDao().markObservationSubmitted(observation.getId());
+                                db.catchDao().markBycatchSubmitted(bycatch.getId());
                             }
                         });
                     }
@@ -172,67 +172,54 @@ public class PostDataTask extends AsyncTask<Void, Void, Void> {
         return db.catchDao().countUnuploadedLocations() > 0;
     }
 
-    private boolean anyObservationsToPost() {
-        return db.catchDao().countUnsubmittedObservations() > 0;
+    private boolean anyBycatchesToPost() {
+        return db.catchDao().countUnsubmittedBycatches() > 0;
     }
 
-    public static void postObservation(final Context context, final Observation observation, final VolleyCallback callback) {
+    public static void postBycatch(final Context context, final Bycatch bycatch, final VolleyCallback callback) {
         final CatchDatabase db = CatchDatabase.getInstance(context);
         final SharedPreferences prefs =
                 PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
         final GsonBuilder gsonBuilder = new GsonBuilder();
-        JsonSerializer<Observation> serializer = new JsonSerializer<Observation>() {
+        JsonSerializer<Bycatch> serializer = new JsonSerializer<Bycatch>() {
             @Override
             public JsonElement serialize(
-                    Observation src, Type typeOfSrc, JsonSerializationContext jsonSerializationContext) {
-                JsonObject jsonObservation = new JsonObject();
-                jsonObservation.addProperty(
+                    Bycatch src, Type typeOfSrc, JsonSerializationContext jsonSerializationContext) {
+                JsonObject jsonBycatch = new JsonObject();
+                jsonBycatch.addProperty(
                         "pln",
                         prefs.getString(context.getString(R.string.pref_vessel_pln_key), ""));
-                Callable<String[]> c = new Callable<String[]>() {
+                Callable<String> c = new Callable<String>() {
                     @Override
-                    public String[] call() {
-                        String[] animalDetails = new String[2];
-                        animalDetails[0] = db.catchDao()
-                                .getObservationClassName(observation.getObservationClassId());
-                        if (observation.getObservationSpeciesId() != null) {
-                            animalDetails[1] = db.catchDao()
-                                    .getObservationSpeciesName(observation.getObservationSpeciesId());
-                        }
-                        else {
-                            animalDetails[1] = "";
-                        }
-                        return animalDetails;
+                    public String call() {
+                        return db.catchDao()
+                                .getBycatchSpeciesName(bycatch.getBycatchSpeciesId());
                     }
                 };
                 ExecutorService service = Executors.newSingleThreadExecutor();
-                Future<String[]> future = service.submit(c);
+                Future<String> future = service.submit(c);
                 try {
-                    String[] animalDetails = future.get();
-                    jsonObservation.addProperty("animal", animalDetails[0]);
-                    jsonObservation.addProperty("species", animalDetails[1]);
+                    String animalDetails = future.get();
+                    jsonBycatch.addProperty("species", animalDetails);
                 } catch (Exception e) {
+                    Log.e("JSON", "Exception");
                 }
-                DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'");
-                df.setTimeZone(CatchApplication.TIME_ZONE);
-                jsonObservation.addProperty(
-                        "timestamp",
-                        df.format(observation.getTimestamp()));
-                jsonObservation.addProperty("latitude", observation.getLatitude());
-                jsonObservation.addProperty("longitude", observation.getLongitude());
-                jsonObservation.addProperty("count", observation.getCount());
-                jsonObservation.addProperty("notes",
-                        (observation.getNotes() != null ? observation.getNotes() : ""));
-                return jsonObservation;
+                if (bycatch.getWeight() != null) {
+                    jsonBycatch.addProperty("weight", bycatch.getWeight());
+                }
+                else {
+                    jsonBycatch.addProperty("count", bycatch.getNumber());
+                }
+                return jsonBycatch;
             }
         };
-        gsonBuilder.registerTypeAdapter(Observation.class, serializer);
+        gsonBuilder.registerTypeAdapter(Bycatch.class, serializer);
         Gson gson = gsonBuilder.create();
         try {
-            final JSONObject observationJson = new JSONObject(gson.toJson(observation));
+            final JSONObject bycatchJson = new JSONObject(gson.toJson(bycatch));
             final String url = context.getString(R.string.post_request_url);
             JsonObjectRequest request = new JsonObjectRequest(
-                    Request.Method.POST, url, observationJson,
+                    Request.Method.POST, url, bycatchJson,
                     new Response.Listener<JSONObject>() {
                         @Override
                         public void onResponse(JSONObject jsonObject) {

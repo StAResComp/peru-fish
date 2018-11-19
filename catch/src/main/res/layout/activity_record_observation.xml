@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -38,271 +37,6 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/obs_species_section"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:visibility="gone">
-
-        <TextView
-            style="@android:style/TextAppearance.Medium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/observation_do_you_know_species" />
-
-        <Button
-            android:id="@+id/obs_species_known_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.33"
-            android:onClick="displaySpeciesList"
-            android:text="@string/yes" />
-
-        <Button
-            android:id="@+id/obs_species_not_known_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.33"
-            android:onClick="hideSpeciesList"
-            android:text="@string/no" />
-
-        <LinearLayout
-            android:id="@+id/obs_species_selection_section"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:visibility="invisible">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/observation_select_species" />
-
-            <Spinner
-                android:id="@+id/obs_species"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:prompt="@string/observation_species_prompt"
-                android:spinnerMode="dropdown" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/observation_other_species_text"/>
-
-            <Button
-                android:id="@+id/obs_other_species_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="nextSection"
-                android:text="@string/observation_other_species_button" />
-
-        </LinearLayout>
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.33"
-            android:tag="back"
-            android:onClick="previousSection"
-            android:text="@string/back" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/obs_time_section"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:visibility="gone">
-
-        <TextView
-            style="@android:style/TextAppearance.Medium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/observation_when_did_you_see" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="setTimeNow"
-            android:text="@string/observation_now" />
-
-        <Button
-            android:id="@+id/obs_time_picker"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="showObservationTimePickerDialog"
-            android:text="@string/observation_select_time" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.33"
-            android:tag="back"
-            android:onClick="previousSection"
-            android:text="@string/back" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/obs_location_section"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:visibility="gone">
-
-        <TextView
-            style="@android:style/TextAppearance.Medium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/observation_where_did_you_see" />
-
-        <Button
-            android:id="@+id/obs_use_suggested_location"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/observation_suggested_location"
-            android:onClick="useSuggestedLocation"
-            android:visibility="invisible" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="useCurrentLocation"
-            android:text="@string/observation_here" />
-
-        <Button
-            android:id="@+id/obs_place_picker"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="showObservationPlacePickerDialog"
-            android:text="@string/observation_select_place_from_map" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="showLatLongInputs"
-            android:text="@string/observation_enter_lat_long" />
-
-        <LinearLayout
-            android:id="@+id/obs_manual_location_section"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:visibility="invisible">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal">
-
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight=".33">
-
-                    <android.support.design.widget.TextInputEditText
-                        android:id="@+id/latitude_degrees"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="@string/fish_1_form_row_latitude_degrees"
-                        android:inputType="number" />
-
-                </android.support.design.widget.TextInputLayout>
-
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight=".33">
-
-                    <android.support.design.widget.TextInputEditText
-                        android:id="@+id/latitude_minutes"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Latitude Min"
-                        android:inputType="number" />
-
-                </android.support.design.widget.TextInputLayout>
-
-                <Spinner
-                    android:id="@+id/latitude_direction"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight=".33"
-                    android:prompt="@string/fish_1_form_row_latitude_direction"
-                    android:spinnerMode="dropdown" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal">
-
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight=".33">
-
-                    <android.support.design.widget.TextInputEditText
-                        android:id="@+id/longitude_degrees"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="@string/fish_1_form_row_longitude_degrees"
-                        android:inputType="number" />
-
-                </android.support.design.widget.TextInputLayout>
-
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight=".33">
-
-                    <android.support.design.widget.TextInputEditText
-                        android:id="@+id/longitude_minutes"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="@string/fish_1_form_row_longitude_minutes"
-                        android:inputType="number" />
-
-                </android.support.design.widget.TextInputLayout>
-
-                <Spinner
-                    android:id="@+id/longitude_direction"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight=".33"
-                    android:prompt="@string/fish_1_form_row_longitude_direction"
-                    android:spinnerMode="dropdown" />
-
-            </LinearLayout>
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="submitManualLatLong"
-                android:layout_gravity="center"
-                android:text="@string/observation_submit_latitude_longitude" />
-
-        </LinearLayout>
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:tag="back"
-            android:onClick="previousSection"
-            android:text="@string/back" />
-
-    </LinearLayout>
-
-    <LinearLayout
         android:id="@+id/obs_count_section"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -316,40 +50,25 @@
             android:layout_height="wrap_content"
             android:text="@string/observation_how_many" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="submitCount"
-            android:tag="1"
-            android:text="1" />
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/bycatch_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/observation_how_many"
+                android:inputType="number" />
+
+        </android.support.design.widget.TextInputLayout>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="submitCount"
-            android:tag="2"
-            android:text="2-5" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="submitCount"
-            android:tag="6"
-            android:text="6-10" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="submitCount"
-            android:tag="10"
-            android:text="10-20" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="submitCount"
-            android:tag="20"
-            android:text="20+" />
+            android:tag="submit_count"
+            android:text="@string/observation_submit" />
 
         <Button
             android:layout_width="wrap_content"
@@ -361,7 +80,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/obs_notes_submit_section"
+        android:id="@+id/obs_weight_section"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -372,13 +91,27 @@
             style="@android:style/TextAppearance.Medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/observation_additional_notes" />
+            android:text="@string/observation_what_weight" />
 
-        <EditText
-            android:id="@+id/obs_notes"
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/bycatch_weight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/observation_what_weight"
+                android:inputType="numberDecimal" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <Button
             android:layout_width="wrap_content"
-            android:hint="@string/observation_additional_notes_hint"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:onClick="submitWeight"
+            android:tag="submit_weight"
+            android:text="@string/observation_submit" />
 
         <Button
             android:layout_width="wrap_content"
@@ -386,12 +119,6 @@
             android:tag="back"
             android:onClick="previousSection"
             android:text="@string/back" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="submitObservation"
-            android:text="@string/observation_submit" />
 
     </LinearLayout>
 

@@ -14,6 +14,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import uk.ac.masts.sifids.entities.Bycatch;
+import uk.ac.masts.sifids.entities.BycatchSpecies;
 import uk.ac.masts.sifids.entities.CatchLocation;
 import uk.ac.masts.sifids.entities.CatchPresentation;
 import uk.ac.masts.sifids.entities.CatchSpecies;
@@ -75,7 +77,13 @@ public interface CatchDao {
     public void insertObservationSpecies(Collection<ObservationSpecies> observationSpecies);
 
     @Insert
+    public void insertBycatchSpecies(Collection<BycatchSpecies> bycatchSpecies);
+
+    @Insert
     public long insertObservation(Observation observation);
+
+    @Insert
+    public long insertBycatch(Bycatch bycatch);
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     public void insertFish1FormRowSpecies(Collection<Fish1FormRowSpecies> fish1FormRowSpecies);
@@ -215,8 +223,29 @@ public interface CatchDao {
     @Query("SELECT * FROM fish_1_form_row_species WHERE form_row_id = :row_id AND species_id = :species_id LIMIT 1")
     public Fish1FormRowSpecies getSpeciesEntryForRow(int row_id, int species_id);
 
+    @Query("SELECT COUNT(*) FROM bycatch_species")
+    public int countBycatchSpecies();
+
+    @Query("SELECT * FROM bycatch_species")
+    public List<BycatchSpecies> getBycatchSpecies();
+
     @Query("UPDATE observation SET submitted = 1 WHERE id = :id")
     public void markObservationSubmitted(int id);
+
+    @Query("UPDATE bycatch SET submitted = 1 WHERE id = :id")
+    public void markBycatchSubmitted(int id);
+
+    @Query("SELECT COUNT(*) FROM bycatch WHERE submitted = 1")
+    public int countSubmittedBycatches();
+
+    @Query("SELECT COUNT(*) FROM bycatch WHERE submitted = 0")
+    public int countUnsubmittedBycatches();
+
+    @Query("SELECT * FROM bycatch WHERE submitted = 0")
+    public List<Bycatch> getUnsubmittedBycatches();
+
+    @Query("SELECT name FROM bycatch_species WHERE id = :id")
+    public String getBycatchSpeciesName(int id);
 
     @Update
     public void updateFish1Forms(Fish1Form... forms);
