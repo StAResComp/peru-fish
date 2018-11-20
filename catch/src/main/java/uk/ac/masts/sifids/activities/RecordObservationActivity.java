@@ -233,7 +233,7 @@ public class RecordObservationActivity extends AppCompatActivityWithMenuBar impl
 
                     updateSubmissionMessage(true);
                     Toast.makeText(RecordObservationActivity.this,
-                            "Observation successfully submitted.",
+                            getString(R.string.observation_toast_success),
                             Toast.LENGTH_LONG).show();
                 }
 
@@ -241,14 +241,14 @@ public class RecordObservationActivity extends AppCompatActivityWithMenuBar impl
                 public void onError(String result) {
                     updateSubmissionMessage(false);
                     Toast.makeText(RecordObservationActivity.this,
-                            "Error submitting observation. Will try again later.",
+                            getString(R.string.observation_toast_error),
                             Toast.LENGTH_LONG).show();
                 }
             });
             nextSection();
         } else {
             Toast.makeText(getBaseContext(),
-                    "Insufficient information supplied. Please go back and try again",
+                    getString(R.string.observation_toast_insufficient),
                     Toast.LENGTH_LONG).show();
         }
     }
