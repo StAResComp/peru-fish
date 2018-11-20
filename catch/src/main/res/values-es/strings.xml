@@ -260,6 +260,9 @@
     <string name="observation_submission_unsuccessful">Your observation could not be submitted just now - it has been added to a queue for submitting later.</string>
     <string name="observation_make_another">Make another observation</string>
     <string name="observation_done">Finished</string>
+    <string name="observation_toast_success">Observation successfully submitted.</string>
+    <string name="observation_toast_error">Error submitting observation. Will try again later.</string>
+    <string name="observation_toast_insufficient">Insufficient information supplied. Please go back and try again.</string>
 
     <!-- About -->
 
