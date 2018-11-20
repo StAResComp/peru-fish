@@ -260,9 +260,9 @@
     <string name="observation_submission_unsuccessful">Su observación no puede ser submitida ahora - se ha añadido a la cola para submitir después.</string>
     <string name="observation_make_another">Otra observación</string>
     <string name="observation_done">Finalizar</string>
-    <string name="observation_toast_success">Observation successfully submitted.</string>
-    <string name="observation_toast_error">Error submitting observation. Will try again later.</string>
-    <string name="observation_toast_insufficient">Insufficient information supplied. Please go back and try again.</string>
+    <string name="observation_toast_success">Observación submitida excitosamente.</string>
+    <string name="observation_toast_error">Error submitiendo observación. Se intentará de nuevo después.</string>
+    <string name="observation_toast_insufficient">Insuficiente información. Por favor intente de nuevo.</string>
 
     <!-- About -->
 
