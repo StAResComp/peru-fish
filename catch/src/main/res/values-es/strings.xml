@@ -155,7 +155,7 @@
     <string name="fish_1_form_add_row">Añadir otra faena de pesca</string>
     <string name="fish_1_form_save">Grabar datos</string>
     <string name="fish_1_form_delete">Borrar faena de pesca</string>
-    <string name="fish_1_form_rows_header">Faenas de pesca</string>
+    <string name="fish_1_form_rows_header">Captura</string>
     <string name="fish_1_form_error_retrieving_from_database">Error retrieving FISH1 form from database</string>
     <string name="fish_1_form_error_creating_new_form">Error creando nueva faena de pesca</string>
     <string name="fish_1_form_loading_ports_list">Error loading ports from database</string>
@@ -205,7 +205,7 @@
     <string name="fish_1_form_row_longitude_direction">Longitud Dir</string>
     <string name="fish_1_form_row_ices_area">ICES Area</string>
     <string name="fish_1_form_row_gear">Arte de pesca</string>
-    <string name="fish_1_form_row_mesh_size">Tamaño de malla (mm)</string>
+    <string name="fish_1_form_row_mesh_size">Tamaño de malla (pulgadas)</string>
     <string name="fish_1_form_row_species">Especies</string>
     <string name="fish_1_form_row_state">State</string>
     <string name="fish_1_form_row_presentation">Presentation</string>
@@ -251,7 +251,7 @@
     <!-- Observations -->
 
     <string name="title_activity_record_observation">Otras especies</string>
-    <string name="observation_what_did_you_see">Qué otras especies capturaste?</string>
+    <string name="observation_what_did_you_see">Qué otras especies ha regresado al mar?</string>
     <string name="observation_how_many">Cuántos capturaste?</string>
     <string name="observation_what_weight">Cuánto pesó?</string>
     <string name="observation_submit">Submitir observación</string>
