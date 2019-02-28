@@ -76,6 +76,9 @@ public class Fish1FormRow extends ChangeLoggingEntity{
     @ColumnInfo(name = "mesh_size")
     public int meshSize;
 
+    @ColumnInfo(name = "net_size")
+    public int netSize;
+
     @ColumnInfo(name = "species_id")
     public Integer speciesId;
 
@@ -192,6 +195,19 @@ public class Fish1FormRow extends ChangeLoggingEntity{
     public boolean setMeshSize(int meshSize) {
         if (meshSize != this.getMeshSize()) {
             this.meshSize = meshSize;
+            this.updateDates();
+            return true;
+        }
+        return false;
+    }
+
+    public int getNetSize() {
+        return netSize;
+    }
+
+    public boolean setNetSize(int netSize) {
+        if (netSize != this.getNetSize()) {
+            this.netSize = netSize;
             this.updateDates();
             return true;
         }

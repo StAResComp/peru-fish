@@ -53,7 +53,7 @@ import uk.ac.masts.sifids.entities.Port;
                 BycatchSpecies.class,
                 Bycatch.class
     },
-        version = 21
+        version = 22
 )
 @TypeConverters({DateTypeConverter.class})
 public abstract class CatchDatabase extends RoomDatabase{
@@ -152,7 +152,8 @@ public abstract class CatchDatabase extends RoomDatabase{
                         MIGRATION_17_18,
                         MIGRATION_18_19,
                         MIGRATION_19_20,
-                        MIGRATION_20_21
+                        MIGRATION_20_21,
+                        MIGRATION_21_22
                 )
                 .build();
     }
@@ -296,6 +297,13 @@ public abstract class CatchDatabase extends RoomDatabase{
                             "FOREIGN KEY(bycatch_species_id) REFERENCES bycatch_species(id) " +
                             "ON UPDATE NO ACTION ON DELETE NO ACTION);"
             );
+        }
+    };
+
+    static final Migration MIGRATION_21_22 = new Migration(21,22) {
+        @Override
+        public void migrate(@NonNull SupportSQLiteDatabase database) {
+            database.execSQL("ALTER TABLE fish_1_form_row ADD COLUMN net_size INTEGER NOT NULL DEFAULT 0");
         }
     };
 }
