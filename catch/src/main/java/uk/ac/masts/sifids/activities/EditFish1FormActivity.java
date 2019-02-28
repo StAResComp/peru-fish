@@ -16,10 +16,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,9 +29,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -49,7 +45,6 @@ import uk.ac.masts.sifids.entities.Fish1FormRowSpecies;
 import uk.ac.masts.sifids.entities.FisheryOffice;
 import uk.ac.masts.sifids.entities.Gear;
 import uk.ac.masts.sifids.entities.Port;
-import uk.ac.masts.sifids.providers.GenericFileProvider;
 import uk.ac.masts.sifids.tasks.PostDataTask;
 import uk.ac.masts.sifids.utilities.Csv;
 
@@ -377,7 +372,7 @@ public class EditFish1FormActivity extends EditingActivity {
                             new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
                             PERMISSION_REQUEST_WRITE_EXTERNAL_STORAGE);
                 } else {
-                    createAndEmailFile();
+                    uploadFile();
                 }
             }
         });
@@ -386,24 +381,9 @@ public class EditFish1FormActivity extends EditingActivity {
     /**
      * Handover to email app, with details of email to be sent, including attachment
      */
-    private void createAndEmailFile() {
-        Intent emailIntent = new Intent();
-        emailIntent.setAction(Intent.ACTION_SEND);
-        emailIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        emailIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        emailIntent.setType("vnd.android.cursor.dir/email");
-        emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{
-                fish1Form.getEmail(),
-                prefs.getString(getString(R.string.pref_owner_master_email_key), ""),
-                getString(R.string.email)
-        });
-        emailIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.fish_1_form_email_subject));
-        emailIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.fish_1_form_email_text));
+    private void uploadFile() {
         File csvFile = createFileToSend();
-        emailIntent.putExtra(Intent.EXTRA_STREAM, GenericFileProvider.getUriForFile(
-                this, "uk.ac.masts.sifids", csvFile));
         PostDataTask.postFish1Form(getApplicationContext(), csvFile);
-        startActivityForResult(emailIntent, 101);
     }
 
     /**
@@ -693,7 +673,7 @@ public class EditFish1FormActivity extends EditingActivity {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    createAndEmailFile();
+                    uploadFile();
                 }
             }, 500);
         }
