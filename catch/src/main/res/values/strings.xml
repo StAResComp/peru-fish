@@ -206,6 +206,7 @@
     <string name="fish_1_form_row_ices_area">ICES Area</string>
     <string name="fish_1_form_row_gear">Gear</string>
     <string name="fish_1_form_row_mesh_size">Mesh Size (mm)</string>
+    <string name="fish_1_form_row_net_size">Net Size</string>
     <string name="fish_1_form_row_species">Species</string>
     <string name="fish_1_form_row_state">State</string>
     <string name="fish_1_form_row_presentation">Presentation</string>

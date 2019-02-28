@@ -206,6 +206,7 @@
     <string name="fish_1_form_row_ices_area">ICES Area</string>
     <string name="fish_1_form_row_gear">Arte de pesca</string>
     <string name="fish_1_form_row_mesh_size">Tamaño de malla (pulgadas)</string>
+    <string name="fish_1_form_row_net_size">Net Size</string>
     <string name="fish_1_form_row_species">Especies</string>
     <string name="fish_1_form_row_state">State</string>
     <string name="fish_1_form_row_presentation">Presentation</string>

@@ -13,6 +13,10 @@
         <xliff:g id="preference_key">pref_mesh_size</xliff:g>
     </string>
 
+    <string name="pref_net_size_key">
+        <xliff:g id="preference_key">pref_net_size</xliff:g>
+    </string>
+
     <string name="pref_total_pots_fishing_key">
         <xliff:g id="preference_key">pref_total_pots_fishing</xliff:g>
     </string>

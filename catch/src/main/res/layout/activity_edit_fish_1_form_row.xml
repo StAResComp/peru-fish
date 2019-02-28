@@ -51,19 +51,23 @@
                 android:layout_height="1dip"
                 android:background="#999999" />
 
+            <Spinner
+                android:id="@+id/gear"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:prompt="@string/fish_1_form_row_gear"
+                android:spinnerMode="dropdown" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dip"
+                android:background="#999999" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
                 android:orientation="horizontal">
-
-                <Spinner
-                    android:id="@+id/gear"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.5"
-                    android:prompt="@string/fish_1_form_row_gear"
-                    android:spinnerMode="dropdown" />
 
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="0dp"
@@ -75,6 +79,20 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/fish_1_form_row_mesh_size"
+                        android:inputType="number" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/net_size"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/fish_1_form_row_net_size"
                         android:inputType="number" />
 
                 </android.support.design.widget.TextInputLayout>

@@ -65,6 +65,7 @@ public class EditFish1FormRowActivity extends EditingActivity implements Adapter
     Double latitude;
     Double longitude;
     EditText meshSize;
+    EditText netSize;
     TextView landingOrDiscardDateDisplay;
     Date landingOrDiscardDate;
     EditText transporterRegEtc;
@@ -162,6 +163,7 @@ public class EditFish1FormRowActivity extends EditingActivity implements Adapter
 
         this.createSpinner(GEAR_KEY, R.id.gear);
         meshSize = (EditText) findViewById(R.id.mesh_size);
+        meshSize = (EditText) findViewById(R.id.net_size);
 
         Callable<List<CatchSpecies>> c = new Callable<List<CatchSpecies>>() {
             @Override
@@ -229,8 +231,10 @@ public class EditFish1FormRowActivity extends EditingActivity implements Adapter
                     spinners.get(GEAR_KEY).setSelection(i);
             }
             meshSize.setText(Integer.toString(fish1FormRow.getMeshSize()));
+            netSize.setText(Integer.toString(fish1FormRow.getNetSize()));
         } else {
             meshSize.setText(this.prefs.getString(getString(R.string.pref_mesh_size_key), ""));
+            netSize.setText(this.prefs.getString(getString(R.string.pref_net_size_key), ""));
         }
         if (fish1FormRow != null) {
             for (int rowSpeciesId : fish1FormRowSpeciesMap.keySet()) {
@@ -289,6 +293,12 @@ public class EditFish1FormRowActivity extends EditingActivity implements Adapter
                 } catch (NullPointerException npe) { }
                 try {
                     if (fish1FormRow.setMeshSize(Integer.parseInt(meshSize.getText().toString()))) {
+                        dataEntered = true;
+                    }
+                } catch (NumberFormatException nfe) {
+                }
+                try {
+                    if (fish1FormRow.setNetSize(Integer.parseInt(netSize.getText().toString()))) {
                         dataEntered = true;
                     }
                 } catch (NumberFormatException nfe) {
