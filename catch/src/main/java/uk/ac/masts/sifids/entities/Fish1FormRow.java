@@ -201,6 +201,28 @@ public class Fish1FormRow extends ChangeLoggingEntity{
         return false;
     }
 
+    public String getMeshSizeInInches() {
+        if (meshSize <= 79) return "3";
+        else if (meshSize > 79 && meshSize < 86) return "3¼";
+        else if (meshSize >= 86) return "3½";
+        return null;
+    }
+
+    public boolean setMeshSize(String meshSizeInInches) {
+        if (meshSizeInInches.equals("3")) {
+            return this.setMeshSize(76);
+        }
+        else if (meshSizeInInches.equals("3¼")) {
+            return this.setMeshSize(83);
+        }
+        else if (meshSizeInInches.equals("3½")) {
+            return this.setMeshSize(89);
+        }
+        else {
+            return false;
+        }
+    }
+
     public int getNetSize() {
         return netSize;
     }

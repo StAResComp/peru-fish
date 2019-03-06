@@ -64,7 +64,6 @@ public class EditFish1FormRowActivity extends EditingActivity implements Adapter
     TextView location;
     Double latitude;
     Double longitude;
-    EditText meshSize;
     EditText netSize;
     TextView landingOrDiscardDateDisplay;
     Date landingOrDiscardDate;
@@ -79,7 +78,9 @@ public class EditFish1FormRowActivity extends EditingActivity implements Adapter
     Map<String, Adapter> adapters;
     Map<String, List> spinnerLists;
     final String GEAR_KEY = "gear";
+    final String MESH_SIZE_KEY = "mesh_size";
     int gearIdValue;
+    String meshSizeValue;
     Date minDate;
     Date maxDate;
 
@@ -162,8 +163,8 @@ public class EditFish1FormRowActivity extends EditingActivity implements Adapter
         location = findViewById(R.id.fishing_location);
 
         this.createSpinner(GEAR_KEY, R.id.gear);
-        meshSize = (EditText) findViewById(R.id.mesh_size);
-        meshSize = (EditText) findViewById(R.id.net_size);
+        this.createSpinner(MESH_SIZE_KEY, R.id.mesh_size);
+        netSize = (EditText) findViewById(R.id.net_size);
 
         Callable<List<CatchSpecies>> c = new Callable<List<CatchSpecies>>() {
             @Override
@@ -224,16 +225,17 @@ public class EditFish1FormRowActivity extends EditingActivity implements Adapter
                         == fish1FormRow.getGearId())
                     spinners.get(GEAR_KEY).setSelection(i);
             }
-            for (int i = 0; i < adapters.get(GEAR_KEY).getCount(); i++) {
-                if (fish1FormRow.getGearId() != null
-                        && ((Gear) adapters.get(GEAR_KEY).getItem(i)).getId()
-                        == fish1FormRow.getGearId())
-                    spinners.get(GEAR_KEY).setSelection(i);
+            for (int i = 0; i < adapters.get(MESH_SIZE_KEY).getCount(); i++) {
+                if (fish1FormRow.getMeshSizeInInches() != null
+                        && fish1FormRow.getMeshSizeInInches()
+                        .equals((String) adapters.get(MESH_SIZE_KEY).getItem(i))) {
+                    spinners.get(MESH_SIZE_KEY).setSelection(i);
+                }
             }
-            meshSize.setText(Integer.toString(fish1FormRow.getMeshSize()));
+            //meshSize.setText(Integer.toString(fish1FormRow.getMeshSize()));
             netSize.setText(Integer.toString(fish1FormRow.getNetSize()));
         } else {
-            meshSize.setText(this.prefs.getString(getString(R.string.pref_mesh_size_key), ""));
+            //meshSize.setText(this.prefs.getString(getString(R.string.pref_mesh_size_key), ""));
             netSize.setText(this.prefs.getString(getString(R.string.pref_net_size_key), ""));
         }
         if (fish1FormRow != null) {
@@ -292,11 +294,10 @@ public class EditFish1FormRowActivity extends EditingActivity implements Adapter
                     }
                 } catch (NullPointerException npe) { }
                 try {
-                    if (fish1FormRow.setMeshSize(Integer.parseInt(meshSize.getText().toString()))) {
+                    if (fish1FormRow.setMeshSize(meshSizeValue)) {
                         dataEntered = true;
                     }
-                } catch (NumberFormatException nfe) {
-                }
+                } catch (NullPointerException npe) { }
                 try {
                     if (fish1FormRow.setNetSize(Integer.parseInt(netSize.getText().toString()))) {
                         dataEntered = true;
@@ -495,6 +496,7 @@ public class EditFish1FormRowActivity extends EditingActivity implements Adapter
         } catch (InterruptedException ie) {
 
         }
+        spinnerLists.put(this.MESH_SIZE_KEY, Arrays.asList("3","3¼","3½"));
     }
 
     private static List<EntityWithId> rearrangeList(List<EntityWithId> list, int id) {
@@ -555,6 +557,9 @@ public class EditFish1FormRowActivity extends EditingActivity implements Adapter
         switch (parent.getId()) {
             case R.id.gear:
                 this.gearIdValue = ((Gear) parent.getItemAtPosition(pos)).getId();
+                break;
+            case R.id.mesh_size:
+                this.meshSizeValue = (String) parent.getItemAtPosition(pos);
                 break;
         }
     }
