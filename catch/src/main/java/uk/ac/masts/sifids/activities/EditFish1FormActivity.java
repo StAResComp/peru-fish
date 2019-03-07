@@ -623,6 +623,9 @@ public class EditFish1FormActivity extends EditingActivity {
                                         EditFish1FormActivity.this);
                             }
                         }
+                        row = Csv.appendToCsvRow(
+                                row, formRow.getNetSize(), false,
+                                EditFish1FormActivity.this);
                         return row;
                     }
                 };

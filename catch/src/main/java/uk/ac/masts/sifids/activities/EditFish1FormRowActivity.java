@@ -372,7 +372,7 @@ public class EditFish1FormRowActivity extends EditingActivity implements Adapter
                         }
                     }
                 }
-                EditFish1FormRowActivity.this.returnToEditFish1FormActivity();
+                EditFish1FormRowActivity.this.goToBycatch();
             }
         });
 
@@ -621,6 +621,12 @@ public class EditFish1FormRowActivity extends EditingActivity implements Adapter
         Intent i = new Intent(this, EditFish1FormActivity.class);
         i.putExtra(Fish1Form.ID, this.formId);
         i.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        this.startActivity(i);
+        this.finish();
+    }
+
+    private void goToBycatch() {
+        Intent i = new Intent(this, RecordObservationActivity.class);
         this.startActivity(i);
         this.finish();
     }
