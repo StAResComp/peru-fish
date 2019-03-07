@@ -67,7 +67,6 @@ public class EditFish1FormRowActivity extends EditingActivity implements Adapter
     EditText netSize;
     TextView landingOrDiscardDateDisplay;
     Date landingOrDiscardDate;
-    EditText transporterRegEtc;
     Button saveButton;
     Button deleteButton;
 
@@ -196,7 +195,6 @@ public class EditFish1FormRowActivity extends EditingActivity implements Adapter
         }
 
         landingOrDiscardDateDisplay = (TextView) findViewById(R.id.landing_or_discard_date);
-        transporterRegEtc = (EditText) findViewById(R.id.transporter_reg_etc);
 
         saveButton = (Button) findViewById(R.id.save_form_row_button);
         deleteButton = (Button) findViewById(R.id.delete_form_row_button);
@@ -253,15 +251,6 @@ public class EditFish1FormRowActivity extends EditingActivity implements Adapter
             this.updateDateDisplay(landingOrDiscardDate, landingOrDiscardDateDisplay,
                     getString(R.string.fish_1_form_row_landing_or_discard_date));
         }
-        if (fish1FormRow != null
-                && fish1FormRow.getTransporterRegEtc() != null
-                && !fish1FormRow.getTransporterRegEtc().equals("")) {
-            transporterRegEtc.setText(fish1FormRow.getTransporterRegEtc());
-        } else if (fish1FormRow == null) {
-            transporterRegEtc.setText(
-                    this.prefs.getString(getString(R.string.pref_buyer_details_key), ""));
-        }
-
     }
 
     private void setListeners() {
@@ -322,9 +311,6 @@ public class EditFish1FormRowActivity extends EditingActivity implements Adapter
                     }
                 }
                 if (fish1FormRow.setLandingOrDiscardDate(landingOrDiscardDate)) {
-                    dataEntered = true;
-                }
-                if (fish1FormRow.setTransporterRegEtc(transporterRegEtc.getText().toString())) {
                     dataEntered = true;
                 }
 
