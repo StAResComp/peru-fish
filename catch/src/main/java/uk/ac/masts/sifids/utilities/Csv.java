@@ -1,6 +1,7 @@
 package uk.ac.masts.sifids.utilities;
 
 import android.content.Context;
+import android.util.Log;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -21,11 +22,11 @@ public class Csv {
      */
     public static String appendToCsvRow(
             String rowSoFar, Object dataToAppend, boolean isComplex, Context context) {
-        if ((rowSoFar != null && !rowSoFar.equals("")) || dataToAppend == null) {
-            rowSoFar += ",";
-        }
-        else if (rowSoFar == null || rowSoFar.equals("")) {
+        if (rowSoFar == null) {
             rowSoFar = "";
+        }
+        if ((rowSoFar.length() > 0 && !rowSoFar.substring(rowSoFar.length() -1).equals(",")) || dataToAppend == null || dataToAppend =="") {
+            rowSoFar += ",";
         }
         if (dataToAppend != null) {
             if (dataToAppend instanceof Calendar) {

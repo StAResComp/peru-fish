@@ -6,8 +6,10 @@ import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.Index;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import static android.arch.persistence.room.ForeignKey.CASCADE;
 
@@ -414,6 +416,9 @@ public class Fish1FormRow extends ChangeLoggingEntity{
         } catch (Exception e) {}
         try {
             newRow.setTransporterRegEtc(this.getTransporterRegEtc());
+        } catch (Exception e) {}
+        try {
+            newRow.setNetSize(this.getNetSize());
         } catch (Exception e) {}
         return newRow;
     }

@@ -645,6 +645,9 @@ public class EditFish1FormActivity extends EditingActivity {
                 rowToWrite = Csv.appendToCsvRow(rowToWrite, cal, false, this);
                 rowToWrite = Csv.appendToCsvRow(rowToWrite, formRow.getTransporterRegEtc(),
                         true, this);
+                rowToWrite = Csv.appendToCsvRow(
+                        rowToWrite, formRow.getNetSize(), false,
+                        EditFish1FormActivity.this);
                 writer.write(rowToWrite);
                 writer.newLine();
             }
