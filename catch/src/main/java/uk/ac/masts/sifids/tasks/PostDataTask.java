@@ -74,6 +74,7 @@ public class PostDataTask extends AsyncTask<Void, Void, Void> {
             String pln = prefs.getString(context.getString(R.string.pref_vessel_pln_key), "PLN");
             List<CatchLocation> locations = db.catchDao().getUnuploadedLocations();
             String csv = "";
+            int row = 0;
             for (CatchLocation loc : locations) {
                 DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
                 df.setTimeZone(CatchApplication.TIME_ZONE);
@@ -142,6 +143,7 @@ public class PostDataTask extends AsyncTask<Void, Void, Void> {
                 urlConnection.disconnect();
 
             } catch (Exception e) {
+                noErrorsEncountered = false;
             }
         }
         if (anyBycatchesToPost() && noErrorsEncountered) {
@@ -202,7 +204,6 @@ public class PostDataTask extends AsyncTask<Void, Void, Void> {
                     String animalDetails = future.get();
                     jsonBycatch.addProperty("species", animalDetails);
                 } catch (Exception e) {
-                    Log.e("JSON", "Exception");
                 }
                 if (bycatch.getWeight() != null) {
                     jsonBycatch.addProperty("weight", bycatch.getWeight());

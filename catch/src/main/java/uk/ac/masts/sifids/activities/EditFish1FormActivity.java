@@ -14,6 +14,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -584,7 +585,12 @@ public class EditFish1FormActivity extends EditingActivity {
                     cal = null;
                 }
                 //strip leading comma
-                rowToWrite = Csv.appendToCsvRow(rowToWrite, cal, false, this);
+                if (cal == null) {
+                    rowToWrite = Csv.appendToCsvRow(rowToWrite, "Not Given", false, this);
+                }
+                else {
+                    rowToWrite = Csv.appendToCsvRow(rowToWrite, cal, false, this);
+                }
                 rowToWrite = Csv.appendToCsvRow(rowToWrite,
                         formRow.getCoordinates(), false, this);
                 final String rowSoFar = rowToWrite;
@@ -623,9 +629,6 @@ public class EditFish1FormActivity extends EditingActivity {
                                         EditFish1FormActivity.this);
                             }
                         }
-                        row = Csv.appendToCsvRow(
-                                row, formRow.getNetSize(), false,
-                                EditFish1FormActivity.this);
                         return row;
                     }
                 };

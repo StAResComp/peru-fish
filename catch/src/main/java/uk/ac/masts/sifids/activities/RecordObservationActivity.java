@@ -138,7 +138,8 @@ public class RecordObservationActivity extends AppCompatActivityWithMenuBar impl
         button.setId(animal.getId());
         button.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
         button.setTag(animal);
-        button.setPadding(dpToPx(1), 0, dpToPx(1), 0);
+        button.setAdjustViewBounds(true);
+        //button.setPadding(dpToPx(1), 0, dpToPx(1), 0);
         LinearLayout.LayoutParams lllp = new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.WRAP_CONTENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT
@@ -162,7 +163,7 @@ public class RecordObservationActivity extends AppCompatActivityWithMenuBar impl
         GridLayout.LayoutParams gllp = new GridLayout.LayoutParams();
         gllp.height = ViewGroup.LayoutParams.WRAP_CONTENT;
         gllp.width = 0;
-        gllp.columnSpec = GridLayout.spec(GridLayout.UNDEFINED, 1, 0.5f);
+        gllp.columnSpec = GridLayout.spec(GridLayout.UNDEFINED, 1, 1);
         wrapper.setLayoutParams(gllp);
         wrapper.setTag(animal);
 

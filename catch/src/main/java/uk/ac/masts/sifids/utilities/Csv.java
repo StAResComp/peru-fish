@@ -25,7 +25,7 @@ public class Csv {
         if (rowSoFar == null) {
             rowSoFar = "";
         }
-        if ((rowSoFar.length() > 0 && !rowSoFar.substring(rowSoFar.length() -1).equals(",")) || dataToAppend == null || dataToAppend =="") {
+        if (rowSoFar.length() > 0) {
             rowSoFar += ",";
         }
         if (dataToAppend != null) {
