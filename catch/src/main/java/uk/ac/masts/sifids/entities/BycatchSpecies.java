@@ -20,7 +20,12 @@ public class BycatchSpecies extends EntityWithId {
             {"Cangrejo", "NUMBER"},
             {"Coral", "NUMBER"},
             {"Erizo", "NUMBER"},
-            {"Estrella de mar", "NUMBER"}
+            {"Estrella de mar", "NUMBER"},
+            {"Bereche", "NUMBER"},
+            {"Morena", "NUMBER"},
+            {"Pez Bulldog", "NUMBER"},
+            {"Pez Cocodrilo", "NUMBER"},
+            {"Pez Zorra", "NUMBER"}
     };
 
     @ColumnInfo(name = "name")
