@@ -223,7 +223,19 @@
                         android:hint="@string/fish_1_form_row_weight"
                         android:inputType="numberDecimal" />
                 </TableRow>
+                <TableRow>
+                    <TextView
+                        android:id="@+id/species12"
+                        android:text="species12" />
+                    <EditText
+                        android:id="@+id/weight12"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:hint="@string/fish_1_form_row_weight"
+                        android:inputType="numberDecimal" />
+                </TableRow>
             </TableLayout>
+
 
             <View
                 android:layout_width="fill_parent"

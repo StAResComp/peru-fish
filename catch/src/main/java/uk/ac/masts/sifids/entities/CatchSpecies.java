@@ -27,7 +27,8 @@ public class CatchSpecies extends EntityWithId {
             {"Cachema", null, null},
             {"Raya", null, null},
             {"Chiri", null, null},
-            {"Tollo", null, null}
+            {"Tollo", null, null},
+            {"Pota", null, null}
     };
 
     @ColumnInfo(name = "species_name")

@@ -48,7 +48,6 @@ public class Csv {
             }
         }
         return rowSoFar;
-
     }
 
     /**
