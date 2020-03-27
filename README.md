@@ -1,4 +1,4 @@
-[![DOI](https://zenodo.org/badge/153292227.svg)](https://zenodo.org/badge/latestdoi/153292227)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![DOI](https://zenodo.org/badge/153292227.svg)](https://zenodo.org/badge/latestdoi/153292227)
 
 # Peruvian Fishing App
 
@@ -14,3 +14,6 @@ This app requires a [Google Maps API key](https://developers.google.com/maps/doc
     <string name="google_maps_api_key">your-api-key-goes-here</string>
 </resources>
 ```
+
+Copyright (c) 2019, University of St Andrews.
+This project is licensed under the terms of the MIT license.
